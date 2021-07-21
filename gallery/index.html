@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RichardMe123 | Gallery</title>
+    <link rel="stylesheet" href="../styles/uimini.min.css" />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+    />
+  </head>
+  <style>
+      body{
+          margin: 20px 10px 10px 10px;
+          text-align: center;
+      }
+      body h2{
+          margin-top: 40px;
+      }
+      .grid{
+          display: grid;
+          gap: 1rem;
+          place-items: center;
+          grid-template-columns: repeat(auto-fill, minmax(calc(1vw + 400px), 1fr));
+          grid-auto-rows: 1fr;
+      }
+      .grid-item {
+          margin-top: 15px;
+          width: calc(1vw + 400px);
+    }
+  </style>
+ <header>
+    <nav>
+      <div class="navbar navbar--fixed">
+        <div class="container">
+          <div class="navbar-content">
+            <a class="header-logo" href="../index.html">RichardMe123</a>
+            <div class="button-burger">
+              <span class="line line-1"></span>
+              <span class="line line-2"></span><span class="line line-3"></span>
+            </div>
+            <div class="navbar-list__wrapper">
+              <ul class="navbar-list">
+                <li class="navbar-item">
+                  <a class="navbar-link" href="../index.html">About</a>
+                </li>
+                <li class="navbar-item">
+                  <a class="navbar-link" href="#">Blog</a>
+                </li>
+                <li class="navbar-item">
+                  <!-- Impossible List -->
+                  <a class="navbar-link" href="../list/">Bucket</a>
+                </li>
+                <li class="navbar-item">
+                  <a class="navbar-link" href="../gallery/">Gallery</a>
+                </li>
+                <li class="navbar-item">
+                  <a class="navbar-link" href="../contact/">Contact</a>
+                </li>
+                <li class="navbar-item">
+                  <a class="navbar-link" target="_blank" href="https://github.com/MeRichard123/MeRichard123/blob/master/FAQ.md">FAQ</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+<body>
+<h2 class="ui-title-2">Some of my Illustrations</h2>
+<div class="grid">
+  <div class="grid-item">
+      <img src="./images/garden-bg.png" alt="">
+  </div>
+  <div class="grid-item">
+      <img src="./images/me-blue.png" alt="">
+  </div>
+  <div class="grid-item">
+      <img src="./images/me-jumper.png" alt="">
+  </div>
+  <div class="grid-item">
+      <img src="./images/lenny.png" alt="">
+  </div>
+</div>
+    
+</body>
+</html>
