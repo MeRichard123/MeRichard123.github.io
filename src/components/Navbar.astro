@@ -1,0 +1,60 @@
+---
+import 'uimini/dist/css/uimini.css';
+---
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+    />
+ 
+    <style scoped>
+        .navbar-link {
+  color: gray;
+}
+    </style>
+    <nav>
+      <div class="navbar navbar--fixed">
+        <div class="container">
+          <div class="navbar-content">
+            <a class="header-logo" href="/">RichardMe123</a>
+            <div class="button-burger">
+              <span class="line line-1"></span>
+              <span class="line line-2"></span><span class="line line-3"></span>
+            </div>
+            <div class="navbar-list__wrapper">
+              <ul class="navbar-list">
+                <li class="navbar-item">
+                  <a class="navbar-link" href="/">About</a>
+                </li>
+                <li class="navbar-item">
+                  <a class="navbar-link" href="/blog">Blog</a>
+                </li>
+                <li class="navbar-item">
+                  <!-- Impossible List -->
+                  <a class="navbar-link" href="/list">Bucket</a>
+                </li>
+                <li class="navbar-item">
+                  <a class="navbar-link" href="/gallery">Gallery</a>
+                </li>
+                <li class="navbar-item">
+                  <a class="navbar-link" href="/contact">Contact</a>
+                </li>
+                <li class="navbar-item">
+                  <a class="navbar-link" target="_blank" href="https://github.com/MeRichard123/MeRichard123/blob/master/FAQ.md">FAQ</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <script>
+    const uiNavbarListMobile = document.querySelector('.navbar-list__wrapper');
+    const uiNavbarMenuMobileBtn = document.querySelector('.navbar-content .button-burger');
+
+    if(uiNavbarMenuMobileBtn){
+      uiNavbarMenuMobileBtn.addEventListener('click', function(){
+      this.classList.toggle('active');
+      uiNavbarListMobile.classList.toggle('active');
+    });
+    }
+    </script>

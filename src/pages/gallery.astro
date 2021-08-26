@@ -1,0 +1,62 @@
+---
+import 'uimini/dist/css/uimini.css';
+import Navbar from '$components/Navbar.astro';
+import Footer from '$components/Footer.astro';
+---
+    <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RichardMe123 | Gallery</title>
+ <link rel="stylesheet" href="/style/global.css"/>
+   <link rel="stylesheet" href="/style/home.css"/>
+
+  </head>
+  <style>
+      body{
+          margin: 20px 10px 10px 10px;
+          text-align: center;
+      }
+      body h2{
+          margin-top: 40px;
+      }
+      .grid{
+          display: grid;
+          gap: 1rem;
+          place-items: center;
+          grid-template-columns: repeat(auto-fill, minmax(calc(1vw + 300px), 1fr));
+          grid-auto-rows: 1fr;
+      }
+      .grid-item {
+          margin-top: 15px;
+          width: 60%;
+          min-width: calc(1vw + 300px);
+          height: auto;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+    }
+  </style>
+ <header>
+   <Navbar/>
+  </header>
+<body>
+<h2 class="ui-title-2">Some of my Illustrations</h2>
+<div class="grid">
+  <div class="grid-item">
+      <img src="/assets/illustrations/garden-bg.png" alt="">
+  </div>
+  <div class="grid-item">
+      <img src="/assets/illustrations/me-blue.png" alt="">
+  </div>
+  <div class="grid-item">
+      <img src="/assets/illustrations/me-jumper.png" alt="">
+  </div>
+  <div class="grid-item">
+      <img src="/assets/illustrations/lenny.png" alt="">
+  </div>
+</div>
+<Footer/>
+</body>
+</html>

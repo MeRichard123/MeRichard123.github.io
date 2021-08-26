@@ -1,0 +1,70 @@
+---
+let title = 'RichardMe123';
+import Navbar from '$components/Navbar.astro';
+import Footer from '$components/Footer.astro';
+import 'uimini/dist/css/uimini.css';
+
+---
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{title}</title>
+
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/style/global.css">
+    <link rel="stylesheet" href="/style/home.css">
+</head>
+<body>
+    <header>
+        <Navbar client:visible/>
+    </header>
+
+        <div class="content-wrapper">
+      <main class="About-container">
+        <div class="LandingImage">
+          <img
+            src="/assets/bookcaseillustration.jpg"
+            alt="Illustration of MeRichard123"
+          />
+        </div>
+        <h1 class="ui-title-1">Who am I?</h1>
+        <p class="ui-text-regular">
+          Hi, My name is Richard. I am an aspiring Web Developer in the UK. I am
+          currently aiming towards becoming a Fullstack Python Developer (Mainly
+          because Python was my first language).
+        </p>
+        <p class="ui-text-regular">
+          I have been doing some sort of programming since my 1st year in
+          Secondary school (6th grade - middle school); and ever since playing
+          around with Adobe DreamWeaver at school I have been fascinated by Web
+          Development. I then took my first steps in HTML in 2018. (More on this
+          in my blog).
+        </p>
+        <p class="ui-text-regular">
+          I am currently taking A-Levels in Geography, Computer Science and
+          Chemistry. I hope to Eventually get into university (College if you're
+          in the US) to study either Chemistry or Computer Science. I hope to
+          continue learning Web Development while in school, this means that if
+          all goes to plan, I will be a beginner Fullstack Dev by the time I
+          finish school.
+        </p>
+        <p class="ui-text-regular">
+          Other than coding I read many books in my free time, as well as tend
+          to my tortoise 'Fred'. I learn French in school and German in my free
+          time, because languages have always intrigued me. I love watching
+          Medical drama, and I'm just a general science nerd.
+        </p>
+        <a
+          href="https://richardcoric.netlify.app/"
+          title="Portfolio"
+          target="_blank"
+          class="button button-default"
+          >See My Work</a
+        >
+      </main>
+    <Footer/> 
+    </div>   
+   
+</body>
+</html>
