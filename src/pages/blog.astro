@@ -6,31 +6,7 @@ import Footer from '$components/Footer.astro';
 const response = await fetch("https://dev.to/api/articles?username=merichard123")
 const data = await response.json();
 
-export async function getStaticPaths({rss}) {
-  const response = await fetch("https://dev.to/api/articles?username=merichard123")
-  const data = await response.json();
-  const allPosts = data
-  const sortedPosts = allPosts.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-  // Generate an RSS feed from this collection
-  rss({
-    // The RSS Feed title, description, and custom metadata.
-    title: 'Richard\'s Blog',
-    description: 'Dev.to blog',
-    customData: `<language>en-us</language>`,
-    // The list of items for your RSS feed, sorted.
-    items: sortedPosts.map(item => ({
-      title: item.title,
-      description: item.description,
-      link: item.url,
-      pubDate: item.readable_publish_date,
-    })),
-    // Optional: Customize where the file is written to.
-    // Otherwise, defaults to "/rss.xml"
-    dest: "/blog/rss.xml",
-  });
-  // Return your paths
-  return [];
-}
+
 
 ---
 <!DOCTYPE html>
