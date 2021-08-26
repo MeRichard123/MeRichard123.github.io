@@ -31,19 +31,36 @@ const data = await response.json();
     h1{
       margin-top: 20px;
     }
+    .content-wrapper{
+      position: relative;
+    }
+    .rss{
+      position: absolute;
+      top: 100px;
+      right: 20px;
+      font-size: 2rem;
+    }
    </style>
  </head>
   <header>
     <Navbar />
   </header>
  <body class="content-wrapper">
+    <div class="rss">
+      <a href="https://rss.app/feeds/OHDTC7LYngJCbm5T.xml"
+        target="_blank" rel="noreferrer noopener"
+        title="RSS Feed"  
+      >
+        <i class="fas fa-rss"></i>
+      </a>
+    </div>
     <div class="container blogs">
       <h1 class="ui-title-1">View My Blog Posts</h1>
       <div class="blog-container">
         <!-- Add blogs here dynamically -->
         {!data.length && <h2 class="post-loader">Loading Posts....</h2>}
         {data.map(post => (
-            <a href={post.url}>
+            <a href={post.url} target="_blank" rel="noreferrer noopener">
               <div class="blog">
                 <h2 class="blog__title">{post.title}</h2>
                 <h4 class="blog__date">{post.readable_publish_date}</h4>
