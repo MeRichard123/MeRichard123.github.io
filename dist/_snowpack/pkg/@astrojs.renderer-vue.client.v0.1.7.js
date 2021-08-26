@@ -1,0 +1,1 @@
+import{e,h as a,f as r}from"../../vue.v3.2.6-e05e4c06.js";const t=e({props:{value:String},setup:({value:e})=>e?()=>a("astro-fragment",{innerHTML:e}):()=>null});var u=e=>(u,n,s)=>{r({render:()=>a(u,n,{default:()=>a(t,{value:s})})}).mount(e,!0)};export{u as default};
