@@ -60,9 +60,9 @@ h1 {
 .button {
   border-radius: 10px;
 }
-input:focus,
+input:focus, .button:focus,
 textarea:focus {
-  border: cornflowerblue 2px solid;
+  border: cornflowerblue 2px solid !important;
 }
 
 @media screen and (max-width: 800px) {
