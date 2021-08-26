@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-mv docs build
+rm docs
 npm run build
 mv build docs
 git add .
