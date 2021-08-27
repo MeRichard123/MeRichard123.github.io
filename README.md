@@ -1,5 +1,5 @@
 # My Personal Site
-Personal Site rebuilt using Astro rather than vanilla HTML and JS. This time more preformat and accessible.
+Personal Site rebuilt using Astro rather than vanilla HTML and JS. This time more preformant and accessible.
 
 **Features:**
 - About me page
@@ -10,8 +10,10 @@ Personal Site rebuilt using Astro rather than vanilla HTML and JS. This time mor
 
 ## Tech Stack
 - [Astro JS](https://astro.build/)
-- SCSS
+- [SCSS](https://sass-lang.com/)
 - [VueJs](https://v3.vuejs.org/)
+- [ReactJs](https://reactjs.org/)
+- [Typescript](https://www.typescriptlang.org/)
 
 ## Lighthouse score
 ![Google Lighthouse Report](./public/assets/lighthouse.png)
