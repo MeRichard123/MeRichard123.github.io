@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'MuseoModerno';
   src: url('../assets/fonts/MuseoModerno-Light.ttf') format('truetype');
+  font-display: swap;
 }
 
 * {
