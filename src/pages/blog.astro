@@ -2,9 +2,7 @@
 import Navbar from '$components/Navbar.astro';
 import 'uimini/dist/css/uimini.css';
 import Footer from '$components/Footer.astro';
-
-const response = await fetch("https://dev.to/api/articles?username=merichard123")
-const data = await response.json();
+import BlogFeed from '../components/BlogFeed.tsx'
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -38,24 +36,7 @@ const data = await response.json();
     <div class="container blogs">
       <h1 class="ui-title-1">View My Blog Posts</h1>
       <div class="blog-container">
-        <!-- Add blogs here dynamically -->
-        {!data.length && <h2 class="post-loader">Loading Posts....</h2>}
-        {data.map(post => (
-            <a href={post.url} target="_blank" rel="noreferrer noopener">
-              <div class="blog">
-                <h2 class="blog__title">{post.title}</h2>
-                <h4 class="blog__date">{post.readable_publish_date}</h4>
-                <p class="blog__desc">{post.description}</p>
-                <div class="ui-tag__wrapper tags">
-                    {post.tag_list.slice(0,2).map(tag => (
-                        <div class="ui-tag">
-                            <span class="tag-title">{tag}</span>
-                        </div>
-                    ))}
-                </div>
-              </div>
-            </a>
-        ))}
+        <BlogFeed client:load />
       </div>
     </div>
     <Footer/>
