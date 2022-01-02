@@ -1,4 +1,5 @@
 <template>
+<div>
        <h2 class="ui-title-2">Programming</h2>
         <ol class="gradient-list">
           <li v-for="(goal,index) in data.goals" :key="index">
@@ -24,6 +25,7 @@
             </div>
           </li>
         </ol>
+</div>
 </template>
 
 <script>
@@ -52,7 +54,7 @@ export default{
             {title: "Continue learning German", completedDate: "Completed 26/8/2021"},
             {title: "Do exercise more often"},
             {title: "Get through A-Level exams with minimal stress"},
-            {title: "Get into The University of Lincoln"},
+            {title: "Get into The University of Lincoln", completedDate: "Completed: 16/12/2022"},
         ]
       })
     
