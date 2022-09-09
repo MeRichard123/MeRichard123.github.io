@@ -1,4 +1,6 @@
-import React,{useEffect, useState} from 'react'
+//@ts-nocheck
+import React, { useEffect, useState, ReactNode } from 'react'
+
 
 interface User {
         name: string;
@@ -38,7 +40,7 @@ interface ApiResponseType {
         user: User;
 }
 
-const BlogFeed: React.FC = () => {
+const BlogFeed = () => {
     const [data, setData] = useState<ApiResponseType[]>([]);
     useEffect(() => {
         (async () => {
@@ -50,24 +52,24 @@ const BlogFeed: React.FC = () => {
     return (
         <div>
             {!data?.length && <h2 className="post-loader">Loading Posts....</h2>}
-            {data?.map(post => (
+            {data?.map((post:ApiResponseType) => (
                 <a href={post.url} target="_blank" rel="noreferrer noopener" key={post.id}>
-                <div className="blog">
-                    <h2 className="blog__title">{post.title}</h2>
-                    <h4 className="blog__date">{post.readable_publish_date}</h4>
-                    <p className="blog__desc">{post.description}</p>
-                    <div className="ui-tag__wrapper tags">
-                        {post.tag_list.slice(0,2).map(tag => (
-                            <div className="ui-tag" key={tag}>
-                                <span className="tag-title">{tag}</span>
-                            </div>
-                        ))}
+                    <div className="blog">
+                        <h2 className="blog__title">{post.title}</h2>
+                        <h4 className="blog__date">{post.readable_publish_date}</h4>
+                        <p className="blog__desc">{post.description}</p>
+                        <div className="ui-tag__wrapper tags">
+                            {post.tag_list.slice(0,2).map((tag:string) => (
+                                <div className="ui-tag" key={tag}>
+                                    <span className="tag-title">{tag}</span>
+                                </div>
+                            ))}
+                        </div>                
                     </div>
-                </div>
                 </a>
-            ))}
+            ))}  
         </div>
     )
 }
 
-export default BlogFeed
+export default BlogFeed;

@@ -1,7 +1,8 @@
 ---
-import Navbar from '$components/Navbar.astro';
-import 'uimini/dist/css/uimini.css';
-import Footer from '$components/Footer.astro';
+import Navbar from '../components/Navbar.astro';
+import 'uimini/dist/uimini.css';
+import Footer from '../components/Footer.astro';
+//@ts-ignore
 import BlogFeed from '../components/BlogFeed.tsx'
 ---
 <!DOCTYPE html>
@@ -34,7 +35,7 @@ import BlogFeed from '../components/BlogFeed.tsx'
  <body class="content-wrapper">
 
     <div class="container blogs">
-      <h1 class="ui-title-1">View My Blog Posts</h1>
+      <h1 class="ui-title-1" style="margin-top: 2.2rem;">View My Blog Posts</h1>
       <div class="blog-container">
         <BlogFeed client:load />
       </div>

@@ -1,8 +1,8 @@
 ---
 let title = 'RichardMe123';
-import Navbar from '$components/Navbar.astro';
-import Footer from '$components/Footer.astro';
-import 'uimini/dist/css/uimini.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import 'uimini/dist/uimini.css';
 
 ---
 <html lang="en">
@@ -26,7 +26,7 @@ import 'uimini/dist/css/uimini.css';
 </head>
 <body>
     <header>
-        <Navbar client:visible/>
+        <Navbar />
     </header>
 
         <div class="content-wrapper">
@@ -38,19 +38,19 @@ import 'uimini/dist/css/uimini.css';
           />
         </div>
         <h1 class="ui-title-1">Who am I?</h1>
-        <p class="ui-text-regular">
+        <p class="ui-text-regular text">
           Hi, My name is Richard. I am an aspiring Web Developer in the UK. I am
           currently aiming towards becoming a Fullstack Python Developer (Mainly
           because Python was my first language).
         </p>
-        <p class="ui-text-regular">
+        <p class="ui-text-regular text">
           I have been doing some sort of programming since my 1st year in
           Secondary school (6th grade - middle school); and ever since playing
           around with Adobe DreamWeaver at school I have been fascinated by Web
           Development. I then took my first steps in HTML in 2018. (More on this
           in my blog).
         </p>
-        <p class="ui-text-regular">
+        <p class="ui-text-regular text">
           I am currently taking A-Levels in Geography, Computer Science and
           Chemistry. I hope to Eventually get into university (College if you're
           in the US) to study either Chemistry or Computer Science. I hope to
@@ -58,7 +58,7 @@ import 'uimini/dist/css/uimini.css';
           all goes to plan, I will be a beginner Fullstack Dev by the time I
           finish school.
         </p>
-        <p class="ui-text-regular">
+        <p class="ui-text-regular text">
           Other than coding I read many books in my free time, as well as tend
           to my tortoise 'Fred'. I learn French in school and German in my free
           time, because languages have always intrigued me. I love watching
@@ -69,7 +69,8 @@ import 'uimini/dist/css/uimini.css';
           title="Portfolio"
           rel="noreferrer noopener"
           target="_blank"
-          class="button button-default"
+          class="ui-button isDefault"
+          style="margin: 20px 0; padding: 1.2rem 1.5rem; border: 1px solid #e9ebef; border-radius: 10px;"
           >See My Work</a
         >
       </main>

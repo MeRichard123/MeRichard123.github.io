@@ -1,7 +1,7 @@
 ---
-import Navbar from '$components/Navbar.astro';
-import Footer from '$components/Footer.astro';
-import 'uimini/dist/css/uimini.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import 'uimini/dist/uimini.css';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -27,12 +27,23 @@ import 'uimini/dist/css/uimini.css';
     }
    </style>
   </head>
+  <style>
+    form{
+      font-size: 80%;
+    }
+    input {
+      margin: 10px 0 20px 0!important;
+    }
+    textarea{
+      border: 1px solid #e9ebef !important;
+    }
+  </style>
   <header>
      <Navbar />
   </header>
   <body class="content-wrapper">
     <div class="container">
-      <h1 class="ui-title-1">Send me a message...</h1>
+      <h1 class="ui-title-1" style="margin: 20px; font-size:2.7rem">Send me a message...</h1>
       <div class="form-container">
         <form action="https://formspree.io/xjvaorkb" method="POST">
           <label for="nameField">Name</label>

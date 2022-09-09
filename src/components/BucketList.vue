@@ -55,7 +55,7 @@ export default{
             {title: "Continue learning German", completedDate: "Completed 26/8/2021"},
             {title: "Get into The University of Lincoln", completedDate: "Completed: 16/12/2022"},
             {title: "Do exercise more often"},
-            {title: "Get through A-Level exams with minimal stress"},
+            {title: "Get through A-Level exams with minimal stress", completedDate: "Completed: 19/08/2022"},
         ]
       })
 
