@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'MuseoModerno';
+  src: url('../assets/fonts/MuseoModerno-Light.ttf') format('truetype');
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "MuseoModerno", cursive;
+}
+
+@import './uimini';
+
+a{
+  color: #333;
+}
+h1, h2{
+  font-weight: 700 !important;
+}
+
+.text{
+  color: #606266;
+}
+.footer-link i{
+  color: #333 !important;
+}
