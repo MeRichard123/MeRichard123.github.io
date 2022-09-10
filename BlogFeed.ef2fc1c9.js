@@ -1,9 +1,0 @@
-import{r as i}from"./chunks/index.0fe9e7c8.js";var s={exports:{}},n={};/**
- * @license React
- * react-jsx-runtime.production.min.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */var d=i.exports,x=Symbol.for("react.element"),_=Symbol.for("react.fragment"),f=Object.prototype.hasOwnProperty,m=d.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,h={key:!0,ref:!0,__self:!0,__source:!0};function p(a,r,t){var e,o={},l=null,c=null;t!==void 0&&(l=""+t),r.key!==void 0&&(l=""+r.key),r.ref!==void 0&&(c=r.ref);for(e in r)f.call(r,e)&&!h.hasOwnProperty(e)&&(o[e]=r[e]);if(a&&a.defaultProps)for(e in r=a.defaultProps,r)o[e]===void 0&&(o[e]=r[e]);return{$$typeof:x,type:a,key:l,ref:c,props:o,_owner:m.current}}n.Fragment=_;n.jsx=p;n.jsxs=p;(function(a){a.exports=n})(s);const j=()=>{const[a,r]=i.exports.useState([]);return i.exports.useEffect(()=>{(async()=>{const e=await(await fetch("https://dev.to/api/articles?username=merichard123")).json();r(e)})()},[]),s.exports.jsxs("div",{children:[!a?.length&&s.exports.jsx("h2",{className:"post-loader",children:"Loading Posts...."}),a?.map(t=>s.exports.jsx("a",{href:t.url,target:"_blank",rel:"noreferrer noopener",children:s.exports.jsxs("div",{className:"blog",children:[s.exports.jsx("h2",{className:"blog__title",children:t.title}),s.exports.jsx("h4",{className:"blog__date",children:t.readable_publish_date}),s.exports.jsx("p",{className:"blog__desc",children:t.description}),s.exports.jsx("div",{className:"ui-tag__wrapper tags",children:t.tag_list.slice(0,2).map(e=>s.exports.jsx("div",{className:"ui-tag",children:s.exports.jsx("span",{className:"tag-title",children:e})},e))})]})},t.id))]})};export{j as default};

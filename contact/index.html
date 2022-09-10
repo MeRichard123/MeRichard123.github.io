@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="astro-BYY7NKQA">
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width">
     <title>RichardMe123 | Contact</title>
 
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
      <meta name="description" content="RichardMe123 personal site">
      <meta name="robots" content="index, nofollow">
      	<meta name="author" content="Richard C">
@@ -14,15 +15,12 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
     <link rel="manifest" href="/favicon/site.webmanifest">
-    <link rel="stylesheet" href="/style/home.css">
     <link rel="stylesheet" href="/style/global.css">
- 
-  <link rel="stylesheet" href="/assets/contact.845be53c.css" />
+    <link rel="stylesheet" href="/style/home.css">
 <link rel="stylesheet" href="/assets/blog-contact-gallery-index-list.4f81b2a6.css" /><script type="module">const e=document.querySelector(".navbar-list__wrapper"),t=document.querySelector(".navbar-content .button-burger");t&&t.addEventListener("click",function(){this.classList.toggle("active"),e?.classList.toggle("active")});
 </script></head>
-  
-  <header class="astro-BYY7NKQA">
-     <link rel="preload stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+<header>
+    <link rel="preload stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
  
     <nav>
       <div class="navbar navbar--fixed">
@@ -60,26 +58,28 @@
         </div>
       </div>
     </nav>
-  </header>
-  
-    <div class="container astro-BYY7NKQA">
-      <h1 class="ui-title-1 astro-BYY7NKQA" style="margin: 20px; font-size:2.7rem">Send me a message...</h1>
-      <div class="form-container astro-BYY7NKQA">
-        <form action="https://formspree.io/xjvaorkb" method="POST" class="astro-BYY7NKQA">
-          <label for="nameField" class="astro-BYY7NKQA">Name</label>
-          <input id="nameField" type="text" placeholder="John Doe" name="name" class="astro-BYY7NKQA">
-          <label for="emailField" class="astro-BYY7NKQA">Email</label>
-          <input id="emailField" type="email" placeholder="JohnDoe@email.com" name="_replyto" class="astro-BYY7NKQA">
+</header>
 
-          <label for="commentField" class="astro-BYY7NKQA">Message</label>
-          <textarea id="commentField" placeholder="Hi CJ …" name="message" class="astro-BYY7NKQA"></textarea>
-          <button type="submit" class="button button-default astro-BYY7NKQA" aria-label="Send Email">
+    <main class="content-wrapper">
+    <div class="container">
+      <h1 class="ui-title-1" style="margin: 20px; font-size:2.7rem; ">Send me a message...</h1>
+      <div class="form-container">
+        <form action="https://formspree.io/xjvaorkb" method="POST">
+          <label for="nameField">Name</label>
+          <input id="nameField" type="text" placeholder="John Doe" name="name">
+          <label for="emailField">Email</label>
+          <input id="emailField" type="email" placeholder="JohnDoe@email.com" name="_replyto">
+          
+          <label for="commentField">Message</label>
+          <textarea id="commentField" placeholder="Hi CJ …" name="message" class="textarea"></textarea>
+          <button type="submit" class="button button-default" aria-label="Send Email">
             Send...
           </button>
         </form>
       </div>
     </div>
-    <footer class="container-fluid" style="margin-top:20px;">
+  </main>
+<footer class="container-fluid" style="margin-top:20px;">
       <ul class="socials">
         <li>
           <a href="https://www.instagram.com/me_richard1/" target="_blank" rel="noreferrer noopener" title="Instagram" class="footer-link"><i class="fab fa-instagram" style="font-size: 1.5rem;"></i></a>
@@ -98,5 +98,5 @@
         </li>
       </ul>
       <p>2022 &copy; RichardMe123 all rights reserved</p>
-    </footer>
-  </html>
+    </footer> 
+</html>
