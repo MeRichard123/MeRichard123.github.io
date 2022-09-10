@@ -1,71 +1,33 @@
 ---
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import 'uimini/dist/uimini.css';
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RichardMe123 | Contact</title>
-
-     <meta name="description" content="RichardMe123 personal site">
-     <meta name="robots" content="index, nofollow">
-     	<meta name="author" content="Richard C" />
-    <link rel="canonical" href="https://merichard123.github.io/" />
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/favicon/site.webmanifest">
-    <link rel="stylesheet" href="/style/home.css" />
-    <link rel="stylesheet" href="/style/global.css" />
- <style>
-    h1{
-      margin-top: 20px;
-    }
-   </style>
-  </head>
-  <style>
-    form{
-      font-size: 80%;
-    }
-    input {
-      margin: 10px 0 20px 0!important;
-    }
-    textarea{
-      border: 1px solid #e9ebef !important;
-    }
-  </style>
-  <header>
-     <Navbar />
-  </header>
-  <body class="content-wrapper">
+<BaseLayout title="RichardMe123 | Contact">
+  <main class="content-wrapper">
     <div class="container">
-      <h1 class="ui-title-1" style="margin: 20px; font-size:2.7rem">Send me a message...</h1>
+      <h1 class="ui-title-1" style="margin: 20px; font-size:2.7rem; ">Send me a message...</h1>
       <div class="form-container">
         <form action="https://formspree.io/xjvaorkb" method="POST">
           <label for="nameField">Name</label>
           <input
-            id="nameField"
-            type="text"
-            placeholder="John Doe"
-            name="name"
+          id="nameField"
+          type="text"
+          placeholder="John Doe"
+          name="name"
           />
           <label for="emailField">Email</label>
           <input
-            id="emailField"
-            type="email"
-            placeholder="JohnDoe@email.com"
-            name="_replyto"
+          id="emailField"
+          type="email"
+          placeholder="JohnDoe@email.com"
+          name="_replyto"
           />
-
+          
           <label for="commentField">Message</label>
           <textarea
-            id="commentField"
-            placeholder="Hi CJ …"
-            name="message"
+          id="commentField"
+          placeholder="Hi CJ …"
+          name="message"
+          class="textarea"
           ></textarea>
           <button type="submit" class="button button-default" aria-label="Send Email">
             Send...
@@ -73,6 +35,5 @@ import 'uimini/dist/uimini.css';
         </form>
       </div>
     </div>
-    <Footer />
-  </body>
-</html>
+  </main>
+</BaseLayout>

@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React, { useEffect, useState, ReactNode } from 'react'
 
 
@@ -39,8 +38,7 @@ interface ApiResponseType {
         tags: string;
         user: User;
 }
-
-const BlogFeed = () => {
+const BlogFeed = (): JSX.Element => {
     const [data, setData] = useState<ApiResponseType[]>([]);
     useEffect(() => {
         (async () => {
@@ -50,7 +48,7 @@ const BlogFeed = () => {
         })()
     }, [])
     return (
-        <div>
+        <React.Fragment>
             {!data?.length && <h2 className="post-loader">Loading Posts....</h2>}
             {data?.map((post:ApiResponseType) => (
                 <a href={post.url} target="_blank" rel="noreferrer noopener" key={post.id}>
@@ -68,8 +66,7 @@ const BlogFeed = () => {
                     </div>
                 </a>
             ))}  
-        </div>
+        </React.Fragment>
     )
 }
-
 export default BlogFeed;

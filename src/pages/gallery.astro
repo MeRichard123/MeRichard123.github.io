@@ -1,83 +1,31 @@
 ---
-import 'uimini/dist/uimini.css'
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
-    <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-     <meta name="description" content="RichardMe123 personal site">
-     <meta name="robots" content="index, nofollow">
-     	<meta name="author" content="Richard C" />
-    <link rel="canonical" href="https://merichard123.github.io/" />
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/favicon/site.webmanifest">
-    <title>RichardMe123 | Gallery</title>
- <link rel="stylesheet" href="/style/global.css"/>
-   <link rel="stylesheet" href="/style/home.css"/>
-
-  </head>
-  <style>
-      body{
-          margin: 20px 10px 10px 10px;
-          text-align: center;
-      }
-      body h2{
-          margin-top: 40px;
-      }
-      .grid{
-          display: grid;
-          gap: 1rem;
-          place-items: center;
-          grid-template-columns: repeat(auto-fill, minmax(calc(1vw + 300px), 1fr));
-          grid-auto-rows: 1fr;
-      }
-      .grid-item {
-          margin-top: 15px;
-          width: 60%;
-          min-width: calc(1vw + 300px);
-          height: auto;
-          display: block;
-          margin-left: auto;
-          margin-right: auto;
-    }
-  </style>
- <header>
-   <Navbar/>
-  </header>
-<body>
-<h2 class="ui-title-2" style="margin: 30px; font-size:2.4rem;">Some of my Illustrations</h2>
-<div class="grid">
-<div class="grid-item">
-      <img src="/assets/illustrations/Pless_myLove.webp" alt="Pless Drawing">
-  </div>
-<div class="grid-item">
-      <img src="/assets/illustrations/Lukie.webp" alt="Luke Drawing">
-  </div>
-
-<div class="grid-item">
-      <img src="/assets/illustrations/Renaat.webp" alt="Renaat Drawing">
-  </div>
-  <div class="grid-item">
-      <img src="/assets/illustrations/garden-bg.webp" alt="Illustation in Garden">
-  </div>
-  <div class="grid-item">
-      <img src="/assets/illustrations/me-blue.webp" alt="Illustation of me">
-  </div>
-  <div class="grid-item">
-      <img src="/assets/illustrations/me-jumper.webp" alt="Portrait Illustration">
-  </div>
-  <div class="grid-item">
-      <img src="/assets/illustrations/lenny.webp" alt="Lenny Drawing">
-  </div>
-
-</div>
-<Footer/>
-</body>
-</html>
+<BaseLayout title = "RichardMe123 | Gallery">
+    <main class="gallery-body">
+        <h2 class="ui-title-2" style="margin: 30px; font-size:2.4rem;">Some of my Illustrations</h2>
+        <div class="grid">
+            <div class="grid-item">
+                <img src="/assets/illustrations/Pless_myLove.webp" alt="Pless Drawing">
+            </div>
+            <div class="grid-item">
+                <img src="/assets/illustrations/Lukie.webp" alt="Luke Drawing">
+            </div>
+            <div class="grid-item">
+                <img src="/assets/illustrations/Renaat.webp" alt="Renaat Drawing">
+            </div>
+            <div class="grid-item">
+                <img src="/assets/illustrations/garden-bg.webp" alt="Illustation in Garden">
+            </div>
+            <div class="grid-item">
+                <img src="/assets/illustrations/me-blue.webp" alt="Illustation of me">
+            </div>
+            <div class="grid-item">
+                <img src="/assets/illustrations/me-jumper.webp" alt="Portrait Illustration">
+            </div>
+            <div class="grid-item">
+                <img src="/assets/illustrations/lenny.webp" alt="Lenny Drawing">
+            </div>
+        </div>
+    </main>
+</BaseLayout>

@@ -8,18 +8,20 @@
     "build": "astro build"
   },
   "devDependencies": {
-    "@astrojs/react": "^1.0.0",
+    "@astrojs/react": "^1.1.2",
     "@astrojs/renderer-react": "^0.5.0",
     "@astrojs/renderer-vue": "^0.4.0",
     "@astrojs/vue": "^1.0.0",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
-    "astro": "^1.0.1",
+    "astro": "^1.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "vue": "^3.2.37"
   },
   "dependencies": {
+    "@astrojs/svelte": "^1.0.0",
+    "svelte": "^3.50.1",
     "uimini": "^2.0.8"
   }
 }

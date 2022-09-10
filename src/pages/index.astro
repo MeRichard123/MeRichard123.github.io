@@ -1,36 +1,10 @@
 ---
 let title = 'RichardMe123';
-import Navbar from '../components/Navbar.astro';
-import Footer from '../components/Footer.astro';
-import 'uimini/dist/uimini.css';
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <title>{title}</title>
-
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-     <meta name="description" content="RichardMe123 personal site">
-     <meta name="robots" content="index, nofollow">
-     	<meta name="author" content="Richard C" />
-    <link rel="canonical" href="https://merichard123.github.io/" />
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/favicon/site.webmanifest">
-    <link rel="stylesheet" href="/style/global.css">
-    <link rel="stylesheet" href="/style/home.css">
-</head>
-<body>
-    <header>
-        <Navbar />
-    </header>
-
-        <div class="content-wrapper">
-      <main class="About-container">
+<BaseLayout title={title}>
+  <div class="content-wrapper">
+    <main class="About-container">
         <div class="LandingImage">
           <img
             src="/assets/bookcaseillustration.webp"
@@ -74,8 +48,5 @@ import 'uimini/dist/uimini.css';
           >See My Work</a
         >
       </main>
-    <Footer/> 
-    </div>   
-   
-</body>
-</html>
+  </div>  
+</BaseLayout>

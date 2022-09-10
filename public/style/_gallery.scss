@@ -1,0 +1,26 @@
+.gallery-body{
+    margin: 20px 10px 10px 10px;
+    text-align: center;
+
+    h2{
+        margin-top: 40px;
+    }
+      
+    .grid{
+        display: grid;
+        gap: 1rem;
+        place-items: center;
+        grid-template-columns: repeat(auto-fill, minmax(calc(1vw + 300px), 1fr));
+        grid-auto-rows: 1fr;
+    }
+    
+    .grid-item {
+        margin-top: 15px;
+        width: 60%;
+        min-width: calc(1vw + 300px);
+        height: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
