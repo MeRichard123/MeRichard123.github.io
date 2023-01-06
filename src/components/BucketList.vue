@@ -106,17 +106,5 @@ export default{
 .external{
   text-decoration: underline;
   color: black;
-  position: relative;
-}
-.external::after{
-  display: inline-block;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  font-family: "Font Awesome 5 Free";
-  content: "\f08e";
-  position: absolute;
-  right: -30px;
 }
 </style>
