@@ -3,13 +3,18 @@
        <h2 class="ui-title-2">Programming</h2>
         <ol class="gradient-list">
           <li v-for="(goal,index) in data.goals" :key="index">
-            {{goal.title}}
+              <template v-if="goal.link">
+                <a :href="goal.link" target="_blank" class="external">{{goal.title}}</a>
+              </template>
+              <template v-else>
+                {{goal.title}}
+              </template>
+            
             <div class="checkbox">
               <span class="checkbox-span" data-status="">
                 <template v-if="goal.completedDate">{{goal.completedDate}}</template>
                 <input v-else type="checkbox" id="checkbox" v-on:click="toggleGoalStatus(index)"/>
-              </span
-              >
+              </span>
             </div>
           </li>
         </ol>
@@ -50,6 +55,7 @@ export default{
             {title: "Play with Websockets - Socket.io"},
             {title: "Try FeathersJS for Realtime Express"},
             {title: "Play with NestJS for backend JS?"},
+            {title: "Build Stuff from Scratch", link: "https://richardme123.notion.site/Building-Everything-from-Scratch-at-Least-Once-f26a9cff555942c4af26fadc258ad57f"}
         ], 
         todos: [
             {title: "Continue learning German", completedDate: "Completed 26/8/2021"},
@@ -96,6 +102,21 @@ export default{
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="css" scoped>
+.external{
+  text-decoration: underline;
+  color: black;
+  position: relative;
+}
+.external::after{
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Font Awesome 5 Free";
+  content: "\f08e";
+  position: absolute;
+  right: -30px;
+}
 </style>
