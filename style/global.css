@@ -2116,6 +2116,184 @@ textarea {
   cursor: pointer;
 }
 
+.notes-container {
+  margin: 0 110px 110px 110px;
+}
+
+.notes-container * {
+  font-family: 'Courier New', Courier, monospace !important;
+}
+
+.notes-container h1 {
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.notes-container h2 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.notes-container h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.notes-container h4 {
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+table, th, td {
+  border: 1px solid;
+  border-collapse: collapse;
+  padding: 10px;
+}
+
+table {
+  margin: 15px 0;
+}
+
+.notes-title {
+  font-size: clamp(1.5rem, 2.5rem, 3rem);
+}
+
+.notes-container > * {
+  margin: 15px 0;
+  padding: 5px;
+}
+
+.astro-code {
+  padding: 30px;
+}
+
+.notes-container a {
+  text-decoration: underline;
+  color: #6262d7;
+}
+
+.content-wrapper-notes {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 90vh;
+}
+
+.note-files {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 80vw;
+  height: 60vh;
+  overflow-y: scroll;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border: 2px solid gray;
+  border-radius: 10px;
+}
+
+.note-files .content {
+  padding: 30px;
+}
+
+.note-files .content .file-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.note-files .content .file-details .file-size {
+  color: #2a2a2a;
+}
+
+.note-files .content a {
+  display: block;
+}
+
+.note-files .header {
+  width: 100%;
+  border-radius: 10px 10px 0 0;
+  background-color: #ecf0f1;
+  height: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.note-files .header p {
+  margin-left: 20px;
+}
+
+.note-files .header .circles {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  left: 10px;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  margin-left: 15px;
+}
+
+.note-files .header .circles div {
+  margin: 5px;
+  width: 25px;
+  height: 25px;
+  border-radius: 70vw;
+}
+
+@media screen and (max-width: 900px) {
+  .note-files .header .circles div {
+    width: 15px;
+    height: 15px;
+    margin: 2px;
+  }
+}
+
+.note-files .header .circles div:first-of-type {
+  background-color: #e74c3c;
+}
+
+.note-files .header .circles div:nth-of-type(2) {
+  background-color: #f1c40f;
+}
+
+.note-files .header .circles div:nth-of-type(3) {
+  background-color: #2ecc71;
+}
+
+.note-files a:hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 900px) {
+  .notes-container {
+    margin: 20px;
+  }
+}
+
 a {
   color: #333;
 }
