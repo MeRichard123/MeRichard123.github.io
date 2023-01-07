@@ -2,7 +2,7 @@ import react from "@astrojs/react";
 import vue from "@astrojs/vue";
 import { defineConfig } from "astro/config";
 
-import svelte from "@astrojs/svelte";
+import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,5 +17,5 @@ export default defineConfig({
     port: 3000,
     host: false
   },
-  integrations: [react(), vue(), svelte()]
+  integrations: [react(), vue(), mdx()]
 });

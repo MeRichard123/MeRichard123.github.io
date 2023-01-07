@@ -1,0 +1,31 @@
+---
+let title = 'RichardMe123';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = await Astro.glob('../notes/*.mdx');
+const allPosts = posts.filter((post) => post.frontmatter.tile !== "RichardMe123");
+---
+<BaseLayout title={title}>
+  <div class="content-wrapper-notes">
+    <div class="note-files">
+      <div class="header">
+        <div class="circles">
+          <div />
+          <div />
+          <div />
+        </div>
+        <p>Documents/Notes</p>
+      </div>
+      <div class="content">
+        {allPosts.map(post => {
+          return (
+            <div class="file-details">
+              <a href={post.url}>{post.url}</a>
+              <p class="file-size">{Math.floor(Math.random()*10)}KB</p>
+            </div>
+            )
+        })}
+        </div>
+    </div>  
+  </div>  
+</BaseLayout>
