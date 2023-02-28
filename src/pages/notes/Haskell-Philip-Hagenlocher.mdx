@@ -299,7 +299,7 @@ tree = Node (Node Leaf 1 Leaf) 2 (Node (Node Leaf 3 Leaf) 4 Leaf)
 ```
 
 ## Problem 
-![Legrange](./Img/exthree.png)
+![Legrange](/assets/exthree.png)
 ```haskell
 lagrange :: [(Float, Float)] -> Float -> Float 
 lagrange xs x = foldl (\acc (xj,y) -> acc + (y * l xj)) 0 

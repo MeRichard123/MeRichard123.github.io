@@ -26,6 +26,32 @@
     font-weight: bold;
   text-decoration: underline;
 }
+.notes-container blockquote{
+  padding-left: 20px;
+  position: relative;
+  &::before{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 3px;
+    background-color: black;
+    left: 0;
+    top: 0;
+  }
+}
+
+.notes-container ol{
+  li{
+    margin-left: 35px;
+    list-style-type: decimal;
+  }
+}
+.notes-container ul{
+  li{
+    margin-left: 20px;
+    list-style-type:circle;
+  }
+}
 
 table, th, td {
   border: 1px solid;
