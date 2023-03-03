@@ -2,7 +2,44 @@
 layout: "../../layouts/NotesLayout.astro"
 title: "The Rust Language"
 ---
- 
+
+<details>
+<summary><span style="font-weight:bold; font-size: 1.4rem;">Contents</span></summary>
+- [Basic I/O](#basic-io)
+  - [Dependencies](#dependencies)
+- [Data](#data)
+  - [Shadowing](#shadowing)
+  - [Data Types](#data-types)
+    - [Scalar Types](#scalar-types)
+    - [Compound Types](#compound-types)
+    - [Functions](#functions)
+    - [Control Flow](#control-flow)
+- [Ownership](#ownership)
+    - [The Stack and the Heap](#the-stack-and-the-heap)
+      - [Rules of Ownership](#rules-of-ownership)
+- [References and Borrowing](#references-and-borrowing)
+- [The Slice Type](#the-slice-type)
+- [Structs](#structs)
+  - [Methods](#methods)
+    - [C++ and C -> operator](#c-and-c---operator)
+- [Enums ](#enums)
+- [Crates and Modules](#crates-and-modules)
+- [Common Collections](#common-collections)
+  - [Vectors](#vectors)
+    - [Iteration:](#iteration:)
+  - [String](#string)
+- [HashMaps  ](#hashmaps)
+- [Error Handling](#error-handling)
+      - [Error Propagation](#error-propagation)
+- [Generic Types, Traits and Lifetimes.](#generic-types-traits-and-lifetimes)
+  - [Traits](#traits)
+  - [Lifetimes](#lifetimes)
+- [Testing](#testing)
+- [Functional Programming in Rust](#functional-programming-in-rust)
+- [Iterators](#iterators)
+- [Extra Patterns](#extra-patterns)
+- [Destructuring](#destructuring)
+</details>
 
 1. Start a New Project using: `cargo new [Project Name]`
 2. Build with: `cargo build`
@@ -1599,7 +1636,7 @@ let v1: Vec<i32> = vec![1, 2, 3];
 let v2: Vec<_> = v1.iter().map(|x| x + 1).collect();
 ```
 
-## Extra Patterns:
+## Extra Patterns
 ```rust
 let x = 1; 
 // OR 
@@ -1631,7 +1668,7 @@ match x {
 }
 ```
 
-## Destructuring:
+## Destructuring
 ```rust
 struct Point { 
 	x: i32, 
