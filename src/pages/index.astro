@@ -1,6 +1,22 @@
 ---
 let title = 'RichardMe123';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+function getYear() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth();
+  
+  if (year == 2023 && month >= 6) {
+    return "second";
+  }
+  else if (year == 2025 && month >= 6) {
+    return "third";
+  }
+  else {
+    return "NaN";
+  }
+}
 ---
 <BaseLayout title={title}>
   <div class="content-wrapper">
@@ -13,9 +29,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
         <h1 class="ui-title-1">Who am I?</h1>
         <p class="ui-text-regular text">
-          Hi, My name is Richard. I am an aspiring Web Developer in the UK. I am
-          currently aiming towards becoming a Fullstack Python Developer (Mainly
-          because Python was my first language).
+          Hi, My name is Richard. I am an aspiring Software Engineer in the UK. I am
+          currently aiming towards becoming a well versed software developer, by building
+          things and exploring differnt technology. 
         </p>
         <p class="ui-text-regular text">
           I have been doing some sort of programming since my 1st year in
@@ -25,18 +41,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           in my blog).
         </p>
         <p class="ui-text-regular text">
-          I am currently taking A-Levels in Geography, Computer Science and
-          Chemistry. I hope to Eventually get into university (College if you're
-          in the US) to study either Chemistry or Computer Science. I hope to
-          continue learning Web Development while in school, this means that if
-          all goes to plan, I will be a beginner Fullstack Dev by the time I
-          finish school.
+          I am currently in my {getYear()} year at the University of Lincoln 
+          studying a BCs in Computer Science. I am intrested in a mix of software,
+          at the moment I am doing a lot of exploration on different topics in CS
+          alongside my studies. I am interested in compiler development, and building 
+          things from scratch. I aim  to build everything from 0 at least once. 
+          I still dabble in Web Development, sometimes that is fun too.  
         </p>
         <p class="ui-text-regular text">
           Other than coding I read many books in my free time, as well as tend
-          to my tortoise 'Fred'. I learn French in school and German in my free
-          time, because languages have always intrigued me. I love watching
-          Medical drama, and I'm just a general science nerd.
+          to my tortoise 'Fred'. I enjoy linguistics, I am also studying Korean, German
+          and French in my free time, because languages have always intrigued me.
         </p>
         <a
           href="https://richardcoric.dev/"
