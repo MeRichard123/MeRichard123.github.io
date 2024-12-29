@@ -3,7 +3,7 @@ let title = 'RichardMe123';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const posts = await Astro.glob('../notes/*.mdx');
-const allPosts = posts.filter((post) => post.frontmatter.tile !== "RichardMe123");
+const allPosts = posts.filter((post : any) => post.frontmatter.tile !== "RichardMe123");
 ---
 <BaseLayout title={title}>
   <div class="content-wrapper-notes">
@@ -17,7 +17,7 @@ const allPosts = posts.filter((post) => post.frontmatter.tile !== "RichardMe123"
         <p>Documents/Notes</p>
       </div>
       <div class="content">
-        {allPosts.map(post => {
+        {allPosts.map((post:any) => {
           return (
             <div class="file-details">
               <a href={post.url}>{post.url}</a>
