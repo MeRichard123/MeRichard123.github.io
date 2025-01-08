@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^0.14.0",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
     "uimini": "^2.0.8"
   }
 }

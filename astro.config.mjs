@@ -1,6 +1,8 @@
 import react from "@astrojs/react";
 import vue from "@astrojs/vue";
 import { defineConfig } from "astro/config";
+import rehypeKatex from 'rehype-katex'; // relevant
+import remarkMath from 'remark-math';   // relevant
 
 import mdx from "@astrojs/mdx";
 
@@ -17,5 +19,10 @@ export default defineConfig({
     port: 3000,
     host: false
   },
-  integrations: [react(), vue(), mdx()]
+  markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex],
+  },
+  integrations: [
+    react(), vue(), mdx()]
 });
