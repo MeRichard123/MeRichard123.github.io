@@ -10,6 +10,7 @@
      <meta name="robots" content="index, nofollow">
      	<meta name="author" content="Richard C">
     <link rel="canonical" href="https://merichard123.github.io/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css">
     
 
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
@@ -95,70 +96,23 @@
 <li><a href="#maths">Maths</a></li>
 </ul></details>
 <h3 id="data-types">Data Types</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>Type</th><th>Description</th><th>Size</th><th>Values</th></tr></thead><tbody><tr><td><code>int</code></td><td>a whole number</td><td>2-4 Bytes</td><td>-2,147,483,648 to 2,147,483,647</td></tr><tr><td><code>float</code></td><td>a number with possible decimals</td><td>4 Bytes</td><td>6 decimal places</td></tr><tr><td><code>double</code></td><td>a number with possible decimals</td><td>8 Bytes</td><td>15 decimal places</td></tr><tr><td><code>char</code></td><td>stores one character (letter or number)</td><td>1 Byte</td><td>a single character</td></tr></tbody></table>
+<p>| Type | Description | Size | Values |
+| ----- | ------------- | --------- | ---- |
+| <code>int</code> | a whole number | 2-4 Bytes | -2,147,483,648 to 2,147,483,647 |
+| <code>float</code> | a number with possible decimals | 4 Bytes | 6 decimal places |
+| <code>double</code> | a number with possible decimals | 8 Bytes | 15 decimal places |
+| <code>char</code> | stores one character (letter or number) | 1 Byte | a single character |</p>
 <pre class="astro-code" style="background-color:#0d1117;overflow-x:auto"><code><span class="line"><span style="color:#FF7B72">#include</span><span style="color:#C9D1D9"> </span><span style="color:#A5D6FF">&lt;stdio.h&gt;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#FF7B72">int</span><span style="color:#C9D1D9"> </span><span style="color:#D2A8FF">main</span><span style="color:#C9D1D9">() {</span></span>
 <span class="line"><span style="color:#C9D1D9">	</span><span style="color:#FF7B72">int</span><span style="color:#C9D1D9"> day </span><span style="color:#FF7B72">=</span><span style="color:#C9D1D9"> </span><span style="color:#79C0FF">3</span><span style="color:#C9D1D9">;</span></span>
 <span class="line"><span style="color:#C9D1D9">	</span><span style="color:#D2A8FF">printf</span><span style="color:#C9D1D9">(</span><span style="color:#A5D6FF">&quot;Hello World, today is the </span><span style="color:#79C0FF">%d</span><span style="color:#A5D6FF">rd!&quot;</span><span style="color:#C9D1D9">, day);</span></span>
 <span class="line"><span style="color:#C9D1D9">}</span></span></code></pre>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<table><thead><tr><th>symbol</th><th>type</th></tr></thead><tbody><tr><td>%d or %i</td><td>int</td></tr><tr><td>%f</td><td>double or float</td></tr><tr><td>%c</td><td>char</td></tr></tbody></table>
+<p>| symbol | type |
+| -------- | ----- |
+| %d or %i | int |
+| %f | double or float |
+| %c | char |</p>
 <h4 id="c-constants">C Constants</h4>
 <p>It is a best practice to use all upper case letters when declaring a constant:</p>
 <pre class="astro-code" style="background-color:#0d1117;overflow-x:auto"><code><span class="line"><span style="color:#FF7B72">const</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">int</span><span style="color:#C9D1D9"> DAYSINWEEK </span><span style="color:#FF7B72">=</span><span style="color:#C9D1D9"> </span><span style="color:#79C0FF">7</span><span style="color:#C9D1D9">;</span></span></code></pre>
@@ -334,7 +288,7 @@ The <code>continue</code> statement breaks one iteration (in the loop), if a spe
 <span class="line"><span style="color:#D2A8FF">printf</span><span style="color:#C9D1D9">(</span><span style="color:#A5D6FF">&quot;Your number is: </span><span style="color:#79C0FF">%d\n</span><span style="color:#A5D6FF">&quot;</span><span style="color:#C9D1D9">, myNum);  </span></span>
 <span class="line"><span style="color:#8B949E">// Print the character  </span></span>
 <span class="line"><span style="color:#D2A8FF">printf</span><span style="color:#C9D1D9">(</span><span style="color:#A5D6FF">&quot;Your character is: </span><span style="color:#79C0FF">%c\n</span><span style="color:#A5D6FF">&quot;</span><span style="color:#C9D1D9">, myChar);</span></span></code></pre>
-<p>Getting strings doesn’t require an address we just need to allocate enough memory when we initalise to be able to store it</p>
+<p>Getting strings doesn&#39;t require an address we just need to allocate enough memory when we initalise to be able to store it</p>
 <pre class="astro-code" style="background-color:#0d1117;overflow-x:auto"><code><span class="line"><span style="color:#8B949E">// Create a string  </span></span>
 <span class="line"><span style="color:#FF7B72">char</span><span style="color:#C9D1D9"> </span><span style="color:#FFA657">firstName</span><span style="color:#C9D1D9">[</span><span style="color:#79C0FF">30</span><span style="color:#C9D1D9">];  </span></span>
 <span class="line"><span style="color:#8B949E">// Ask the user to input some text  </span></span>
@@ -359,7 +313,7 @@ Use the <code>scanf()</code> function to get a single word as input, and use <co
 <p>The reference operator &amp; syntax gets the address of something in memory.</p>
 <pre class="astro-code" style="background-color:#0d1117;overflow-x:auto"><code><span class="line"><span style="color:#FF7B72">int</span><span style="color:#C9D1D9"> myAge </span><span style="color:#FF7B72">=</span><span style="color:#C9D1D9"> </span><span style="color:#79C0FF">43</span><span style="color:#C9D1D9">;  </span></span>
 <span class="line"><span style="color:#D2A8FF">printf</span><span style="color:#C9D1D9">(</span><span style="color:#A5D6FF">&quot;</span><span style="color:#79C0FF">%p</span><span style="color:#A5D6FF">&quot;</span><span style="color:#C9D1D9">, </span><span style="color:#FF7B72">&amp;</span><span style="color:#FFA657">myAge</span><span style="color:#C9D1D9">);</span><span style="color:#8B949E"> // Outputs 0x7ffe5367e044</span></span></code></pre>
-<p>Note that <code>&amp;myAge</code> is often called a “pointer”. A pointer basically stores the memory address of a variable as its value. To print pointer values, we use the <code>%p</code> format specifier.</p>
+<p>Note that <code>&amp;myAge</code> is often called a &quot;pointer&quot;. A pointer basically stores the memory address of a variable as its value. To print pointer values, we use the <code>%p</code> format specifier.</p>
 <p>* syntax is used to denote a variable which holds a pointer</p>
 <pre class="astro-code" style="background-color:#0d1117;overflow-x:auto"><code><span class="line"><span style="color:#FF7B72">int</span><span style="color:#C9D1D9"> myAge </span><span style="color:#FF7B72">=</span><span style="color:#C9D1D9"> </span><span style="color:#79C0FF">43</span><span style="color:#C9D1D9">;</span><span style="color:#8B949E">     // An int variable  </span></span>
 <span class="line"><span style="color:#FF7B72">int*</span><span style="color:#C9D1D9"> ptr </span><span style="color:#FF7B72">=</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">&amp;</span><span style="color:#C9D1D9">myAge;</span></span></code></pre>
@@ -501,6 +455,6 @@ Use the <code>scanf()</code> function to get a single word as input, and use <co
           <a href="https://www.youtube.com/channel/UCJfXfGX3vMK_FpuqpasCK1g" target="_blank" rel="noreferrer noopener" title="Youtube" class="footer-link"><i class="fab fa-youtube" style="font-size: 1.5rem;"></i></a>
         </li>
       </ul>
-      <p>2024 &copy; RichardMe123 all rights reserved</p>
+      <p>2025 &copy; RichardMe123 all rights reserved</p>
     </footer> 
 </html>

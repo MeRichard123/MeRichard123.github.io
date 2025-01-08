@@ -10,6 +10,7 @@
      <meta name="robots" content="index, nofollow">
      	<meta name="author" content="Richard C">
     <link rel="canonical" href="https://merichard123.github.io/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css">
     
 
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
@@ -89,7 +90,7 @@
 </ul></details>
 <h2 id="purity">Purity</h2>
 <ul>
-<li>Haskell Functions are pure they don’t modify the outside world.</li>
+<li>Haskell Functions are pure they don&#39;t modify the outside world.</li>
 <li>Applying a function on the same parameters will always return the same result.</li>
 </ul>
 <h2 id="laziness">Laziness</h2>
@@ -102,7 +103,7 @@
 </ul>
 <h2 id="types">Types</h2>
 <ul>
-<li>Types aren’t madatory because the compiler is smart enough to figure it out but they can be useful for debugging and for writing code in the first place.</li>
+<li>Types aren&#39;t madatory because the compiler is smart enough to figure it out but they can be useful for debugging and for writing code in the first place.</li>
 <li>Haskell uses <strong>Parametric Polymorphism</strong> this means you can use general types and haskell will abide by its rules</li>
 </ul>
 <pre class="astro-code" style="background-color:#0d1117;overflow-x:auto"><code><span class="line"><span style="color:#D2A8FF">f</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">::</span><span style="color:#C9D1D9"> a </span><span style="color:#FF7B72">-&gt;</span><span style="color:#C9D1D9"> a </span><span style="color:#FF7B72">-&gt;</span><span style="color:#C9D1D9"> a</span></span>
@@ -239,7 +240,7 @@ In Infix you may define a square function like this:</p>
 <span class="line"><span style="color:#C9D1D9">      mysum n </span><span style="color:#79C0FF">[]</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">=</span><span style="color:#C9D1D9"> n</span></span>
 <span class="line"><span style="color:#C9D1D9">      mysum n (x</span><span style="color:#FF7B72">:</span><span style="color:#C9D1D9">xs) </span><span style="color:#FF7B72">=</span><span style="color:#C9D1D9"> mysum (n</span><span style="color:#FF7B72">+</span><span style="color:#C9D1D9">x) xs</span></span></code></pre>
 <p>Even is bult in so we can filter out the even numbers of l. We can use a fold to make it even neater.
-foldl’ is a strict type version of fold from Data.List</p>
+foldl&#39; is a strict type version of fold from Data.List</p>
 <pre class="astro-code" style="background-color:#0d1117;overflow-x:auto"><code><span class="line"><span style="color:#FF7B72">import</span><span style="color:#C9D1D9"> </span><span style="color:#FFA657">Data.List</span></span>
 <span class="line"><span style="color:#C9D1D9">evenSum l </span><span style="color:#FF7B72">=</span><span style="color:#C9D1D9"> foldl&#39; mysum </span><span style="color:#79C0FF">0</span><span style="color:#C9D1D9"> (filter even l)</span></span>
 <span class="line"><span style="color:#C9D1D9">  </span><span style="color:#FF7B72">where</span><span style="color:#C9D1D9"> mysum acc value </span><span style="color:#FF7B72">=</span><span style="color:#C9D1D9"> acc </span><span style="color:#FF7B72">+</span><span style="color:#C9D1D9"> value</span></span></code></pre>
@@ -314,7 +315,7 @@ Even a Complex number!!</p>
 <ul>
 <li>The root is <code>x</code></li>
 <li>Its left subtree is the tree created from members of the list <code>xs</code> which are strictly inferior to <code>x</code> and the right subtree is the tree created from members of the list <code>xs</code> which are strictly superior to <code>x</code>.
-We didn’t specify show so that we can make our own:</li>
+We didn&#39;t specify show so that we can make our own:</li>
 </ul>
 </li>
 </ul>
@@ -412,7 +413,7 @@ In Haskell you can define infinite lists like so:</p>
 <span class="line"><span style="color:#C9D1D9">  putStrLn </span><span style="color:#A5D6FF">&quot;Enter a list of numbers (separated by comma):&quot;</span></span>
 <span class="line"><span style="color:#C9D1D9">  input </span><span style="color:#FF7B72">&lt;-</span><span style="color:#C9D1D9"> getLine</span></span>
 <span class="line"><span style="color:#C9D1D9">  print </span><span style="color:#FF7B72">$</span><span style="color:#C9D1D9"> sum (toList input)</span></span></code></pre>
-<p>However if the user enters anything weird such as “foo” not comma separated it will break.
+<p>However if the user enters anything weird such as &quot;foo&quot; not comma separated it will break.
 We can write code using Maybe to catch this.</p>
 <pre class="astro-code" style="background-color:#0d1117;overflow-x:auto"><code><span class="line"><span style="color:#D2A8FF">maybeRead</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">::</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">Read</span><span style="color:#C9D1D9"> a </span><span style="color:#FF7B72">=&gt;</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">String</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">-&gt;</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">Maybe</span><span style="color:#C9D1D9"> a</span></span>
 <span class="line"><span style="color:#C9D1D9">maybeRead s </span><span style="color:#FF7B72">=</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">case</span><span style="color:#C9D1D9"> reads s </span><span style="color:#FF7B72">of</span></span>
@@ -585,6 +586,6 @@ If we have this function:</p>
           <a href="https://www.youtube.com/channel/UCJfXfGX3vMK_FpuqpasCK1g" target="_blank" rel="noreferrer noopener" title="Youtube" class="footer-link"><i class="fab fa-youtube" style="font-size: 1.5rem;"></i></a>
         </li>
       </ul>
-      <p>2024 &copy; RichardMe123 all rights reserved</p>
+      <p>2025 &copy; RichardMe123 all rights reserved</p>
     </footer> 
 </html>

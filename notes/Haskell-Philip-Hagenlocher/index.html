@@ -10,6 +10,7 @@
      <meta name="robots" content="index, nofollow">
      	<meta name="author" content="Richard C">
     <link rel="canonical" href="https://merichard123.github.io/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css">
     
 
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
@@ -111,7 +112,7 @@
 <li>Lazily Evaluated = only evaluate when needed</li>
 </ul>
 <p>Function Definition:
-name arg1 arg2 … arg = &lt;expr&gt;</p>
+name arg1 arg2 ... arg = &lt;expr&gt;</p>
 <pre class="astro-code" style="background-color:#0d1117;overflow-x:auto"><code><span class="line"><span style="color:#C9D1D9">in_range min max x </span><span style="color:#FF7B72">=</span><span style="color:#C9D1D9"> x </span><span style="color:#FF7B72">&gt;=</span><span style="color:#C9D1D9"> min </span><span style="color:#FF7B72">&amp;&amp;</span><span style="color:#C9D1D9"> x </span><span style="color:#FF7B72">&lt;=</span><span style="color:#C9D1D9"> max</span></span></code></pre>
 <h2 id="types">Types:</h2>
 <p>name :: &lt;type&gt;</p>
@@ -254,10 +255,10 @@ Used to clean up code</p>
 <h1 id="folding-reduce">Folding (Reduce)</h1>
 <p>We can fold left or right.</p>
 <pre class="astro-code" style="background-color:#0d1117;overflow-x:auto"><code><span class="line"><span style="color:#D2A8FF">foldr</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">::</span><span style="color:#C9D1D9"> (a </span><span style="color:#FF7B72">-&gt;</span><span style="color:#C9D1D9"> b </span><span style="color:#FF7B72">-&gt;</span><span style="color:#C9D1D9"> b) </span><span style="color:#FF7B72">-&gt;</span><span style="color:#C9D1D9"> b </span><span style="color:#FF7B72">-&gt;</span><span style="color:#C9D1D9"> [a] </span><span style="color:#FF7B72">-&gt;</span><span style="color:#C9D1D9"> b</span></span></code></pre>
-<p>Foldr takes a function as it’s argument. The function itself takes two arguments an argument of type a and an argument of type b and returns a type b. Then foldr gets an argument b and a list a and returns a type b</p>
+<p>Foldr takes a function as it&#39;s argument. The function itself takes two arguments an argument of type a and an argument of type b and returns a type b. Then foldr gets an argument b and a list a and returns a type b</p>
 <pre class="astro-code" style="background-color:#0d1117;overflow-x:auto"><code><span class="line"><span style="color:#C9D1D9">foldr (</span><span style="color:#D2A8FF">⊕</span><span style="color:#C9D1D9">) a [x1, x2,</span><span style="color:#FF7B72">...</span><span style="color:#C9D1D9">, xn] </span><span style="color:#FF7B72">=</span><span style="color:#C9D1D9"> x1 </span><span style="color:#FF7B72">⊕</span><span style="color:#C9D1D9"> x2 </span><span style="color:#FF7B72">⊕</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">...</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">⊕</span><span style="color:#C9D1D9"> xn </span><span style="color:#FF7B72">⊕</span><span style="color:#C9D1D9"> a </span></span></code></pre>
 <p>We have an operator in this case XOR (⊕) foldr takes in a list and an accumulator or starting value.
-Foldr is the combination of all values with the binary function and it’s starting value. Kinda like reduce.</p>
+Foldr is the combination of all values with the binary function and it&#39;s starting value. Kinda like reduce.</p>
 <p><strong>Example: Sum of an Array</strong></p>
 <pre class="astro-code" style="background-color:#0d1117;overflow-x:auto"><code><span class="line"><span style="color:#C9D1D9">foldr (</span><span style="color:#D2A8FF">+</span><span style="color:#C9D1D9">) </span><span style="color:#79C0FF">0</span><span style="color:#C9D1D9"> [</span><span style="color:#79C0FF">1</span><span style="color:#C9D1D9">,</span><span style="color:#79C0FF">2</span><span style="color:#C9D1D9">,</span><span style="color:#FF7B72">...</span><span style="color:#C9D1D9">,n] </span><span style="color:#FF7B72">=</span><span style="color:#C9D1D9"> </span><span style="color:#79C0FF">1</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">+</span><span style="color:#C9D1D9"> </span><span style="color:#79C0FF">2</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">+</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">...</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">+</span><span style="color:#C9D1D9"> n </span><span style="color:#FF7B72">+</span><span style="color:#C9D1D9"> </span><span style="color:#79C0FF">0</span></span></code></pre>
 <p><strong>Building the Functions:</strong></p>
@@ -383,7 +384,7 @@ In Foldl the elements are treated from left to right, start with first and move 
 <pre class="astro-code" style="background-color:#0d1117;overflow-x:auto"><code><span class="line"><span style="color:#C9D1D9">hw </span><span style="color:#FF7B72">=</span><span style="color:#C9D1D9"> putStrLn </span><span style="color:#A5D6FF">&quot;Hello World&quot;</span></span>
 <span class="line"><span style="color:#D2A8FF">hw</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">::</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">IO</span><span style="color:#C9D1D9"> </span><span style="color:#79C0FF">()</span></span></code></pre>
 <p>IO is an action. It can be performed by calling the function hw.
-Functions in Haskell have to be pure so it couldn’t work with the environment.</p>
+Functions in Haskell have to be pure so it couldn&#39;t work with the environment.</p>
 <h3 id="getline-action">getLine action</h3>
 <pre class="astro-code" style="background-color:#0d1117;overflow-x:auto"><code><span class="line"><span style="color:#D2A8FF">getLine</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">::</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">IO</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">String</span></span>
 <span class="line"><span style="color:#D2A8FF">greet</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">::</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">IO</span><span style="color:#C9D1D9"> </span><span style="color:#79C0FF">()</span></span>
@@ -391,8 +392,8 @@ Functions in Haskell have to be pure so it couldn’t work with the environment.
 <span class="line"><span style="color:#C9D1D9">    putStrLn </span><span style="color:#A5D6FF">&quot;What is your name?&quot;</span></span>
 <span class="line"><span style="color:#C9D1D9">    name </span><span style="color:#FF7B72">&lt;-</span><span style="color:#C9D1D9"> getLine</span></span>
 <span class="line"><span style="color:#C9D1D9">    putStrLn (</span><span style="color:#A5D6FF">&quot;Hello &quot;</span><span style="color:#C9D1D9"> </span><span style="color:#FF7B72">++</span><span style="color:#C9D1D9"> name </span><span style="color:#FF7B72">++</span><span style="color:#C9D1D9"> </span><span style="color:#A5D6FF">&quot;.&quot;</span><span style="color:#C9D1D9">)</span></span></code></pre>
-<p>greet is an IO actions which prints “What is your name?” and then waits for the user to input a name.
-You technically could use <code>unsafePerformIO</code> to get the input but it’s not recommended.</p>
+<p>greet is an IO actions which prints &quot;What is your name?&quot; and then waits for the user to input a name.
+You technically could use <code>unsafePerformIO</code> to get the input but it&#39;s not recommended.</p>
 <h2 id="type-inference">Type Inference</h2>
 <pre class="astro-code" style="background-color:#0d1117;overflow-x:auto"><code><span class="line"><span style="color:#C9D1D9">add x y z </span><span style="color:#FF7B72">=</span><span style="color:#C9D1D9"> (x </span><span style="color:#FF7B72">+</span><span style="color:#C9D1D9"> y) </span><span style="color:#FF7B72">+</span><span style="color:#C9D1D9"> z</span></span>
 <span class="line"></span>
@@ -553,6 +554,6 @@ You technically could use <code>unsafePerformIO</code> to get the input but it�
           <a href="https://www.youtube.com/channel/UCJfXfGX3vMK_FpuqpasCK1g" target="_blank" rel="noreferrer noopener" title="Youtube" class="footer-link"><i class="fab fa-youtube" style="font-size: 1.5rem;"></i></a>
         </li>
       </ul>
-      <p>2024 &copy; RichardMe123 all rights reserved</p>
+      <p>2025 &copy; RichardMe123 all rights reserved</p>
     </footer> 
 </html>
