@@ -14,6 +14,7 @@ title: "Evaluation Metrics"
   - [ROC Curves](#roc-curves)
     - [AUC-ROC](#auc-roc)
   - [Log Loss ](#log-loss)
+- [Regression](#regression)
   - [Mean Absolute Error](#mean-absolute-error)
   - [Mean Squared Error](#mean-squared-error)
   - [Root Mean Squared Error ](#root-mean-squared-error)
@@ -107,7 +108,7 @@ $$LogarithmicLoss = \frac{-1}{N} \sum_{i=1}^N \sum_{j=1}^M y_{ij} * \log(p_{ij})
 	- $y_{ij}$, indicates whether sample $i$ belongs to class $j$ or not
 	- $p_{ij}$, indicates the probability of sample $i$ belonging to class $j$
 - Log Loss has a range of $[0, \infty)$ it thus has no upper bound limit, we can therefore say the loser it is to 0 the better the mode.
-# Regression
+## Regression
 ### Mean Absolute Error
 $$MAE = \frac{1}{n} \sum_{i=1}^n |y_i - \hat{y}_i| $$
 - Looks at average magnitude, in the same unit as the target.
