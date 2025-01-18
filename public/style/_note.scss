@@ -2,6 +2,10 @@ h1 {
   text-align: center;
 }
 
+.katex {
+  font-size: clamp(0.7rem, 1rem, 1.3rem);
+}
+
 .notes-container{
   margin: 0 110px 110px 110px;
   font-size: clamp(0.8rem, 0.9rem, 1.2rem);

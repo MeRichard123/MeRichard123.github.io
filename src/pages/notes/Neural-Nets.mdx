@@ -130,13 +130,13 @@ A Cost function measures how well a neural network performs with respect to the 
 A cost function takes the form:
 
 $$
-\begin{align}
+\begin{align*}
 C(W, B, S^r, E^r) \\ \ \\
-W &= \text{network weights} \\
-B &= \text{network biases} \\
-S^r &= \text{Input of a single training sample} \\
-E^r &= \text{The desired output}
-\end{align}
+W = \text{network weights} \\
+B = \text{network biases} \\
+S^r = \text{Input of a single training sample} \\
+E^r = \text{The desired output}
+\end{align*}
 $$
 
 This function can also possibly be dependent on $y_j^i$ and $z_j^i$ for any neuron $j$ in layer $i$, since those values are dependent on $W$, $B$, and $S^r$.
@@ -180,7 +180,7 @@ C'_{CE} &= -\sum_j \left[E_j^r \frac{1}{a_j^L} + (1 -E_j^r) \frac{1}{(1-a_j^L)}\
 C'_{CE} &= -\sum_j \left[\frac{E_j^r}{a_j^L} + \frac{(1 -E_j^r)}{(1-a_j^L)}\right]' \\
 C'_{CE} &= -\sum_j \left[\frac{E_j^r}{(a_j^L)(1-a_j^L)} + \frac{(1 -E_j^r)}{(a_j^L)(1-a_j^L)}\right]' \\
 C'_{CE} &= -\sum_j \left[ \frac{E_j^r + (1 -E_j^r)}{(a_j^L)(1-a_j^L)}\right]' \\
-\\ \text{w.r.t to one sample r:} \\
+\\ &\text{w.r.t to one sample r:} \\
 C'_{CE} &= -\sum_j \frac{(a^L -E^r)}{(a^L)(1-a^L)} \\
 \end{align}
 $$
