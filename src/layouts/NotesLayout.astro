@@ -1,0 +1,38 @@
+---
+import Footer from '../components/footer.astro';
+import TopBar from '../components/TopBar.astro';
+
+let {frontmatter} = Astro.props
+
+---
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{frontmatter.title}</title>
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+     <meta name="description" content="RichardMe123 personal site">
+     <meta name="robots" content="index, nofollow">
+     	<meta name="author" content="Richard C" />
+    <link rel="canonical" href="https://merichard123.github.io/" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="stylesheet" href="/style/global.css">
+    <link rel="stylesheet" href="/style/home.css">
+</head>
+<header>
+    <TopBar/>
+</header>
+<body>
+    <div class="notes-container">
+        <h1 class="notes-title">{frontmatter.title}</h1>
+        <slot />
+    </div>
+</body>
+<Footer/> 
+</html>

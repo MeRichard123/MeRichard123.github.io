@@ -1,0 +1,50 @@
+.blog-list * {
+    box-sizing: border-box;
+    margin: 0;
+}
+.blog-list {
+    max-width: 100ch;
+}
+
+.blog-link {
+    color: black;
+    text-decoration: none;
+}
+
+.blog__title {
+    margin: 0;
+    font-size: clamp(0.8rem, 0.9rem, 1.1rem);
+}
+
+.ui-tag__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.blog__date {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.ui-tag {
+    font-size: 0.8rem;
+    color: #666;
+    margin-right: 1px;
+}
+
+.divider {
+    margin: 0 10px;
+    color: #666;
+}
+
+.bottom {
+    display: flex;
+    align-items: center;
+}
+
+.blog-item {
+    cursor: pointer;
+    padding: 10px 0;
+    border-bottom: 0.5px solid #ddd;
+}

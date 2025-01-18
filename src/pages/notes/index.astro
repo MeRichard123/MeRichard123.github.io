@@ -1,0 +1,37 @@
+---
+let title = 'RichardMe123 | Notes';
+import Layout from '../../layouts/Layout.astro';
+import { fs } from '@zenfs/core'; 
+
+const matches = await import.meta.glob('../notes/*.mdx', { eager: true });
+const posts = Object.values(matches);
+const allPosts = posts.filter((post : any) => post.frontmatter.tile !== "RichardMe123")
+                      .sort((a : any, b : any) => {
+                        return b.frontmatter.order - a.frontmatter.order;
+                      });
+
+---
+<Layout title={title}>
+  <div class="content-wrapper-notes">
+    <div class="note-files">
+      <div class="header">
+        <div class="circles">
+          <div />
+          <div />
+          <div />
+        </div>
+        <p>Documents/Notes</p>
+      </div>
+      <div class="content">
+        {allPosts.map((post:any) => {
+          return (
+            <div class="file-details">
+              <a href={post.url}>{post.url}</a>
+              <p class="file-size">{Math.floor(Math.random()*10)}KB</p>
+            </div>
+            )
+        })}
+        </div>
+    </div>  
+  </div>  
+</Layout>

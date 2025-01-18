@@ -1,0 +1,109 @@
+---
+layout: "../../layouts/NotesLayout.astro"
+title: "Using Vim"
+order: 2
+---
+
+- Open Vim: `vim filename`
+- Closing Vim:
+	-  `:wq` -> save and quit
+	-  `:q` ->  quit and not save
+	-  `:w` -> save and not quit
+
+### Movements
+-  Hitting <kbd>gg</kbd> will take you to the top of file
+-  <kbd>G</kbd> takes you to the bottom
+-  <kbd>&rcub;</kbd> and <kbd>&lcub;</kbd> navigate code blocks
+-  <kbd>o</kbd> adding a new line and put into insert mode
+-  <kbd>O</kbd> adding a new line above and put into insert mode
+-  <kbd>w</kbd> will jump to next word <kbd>b</kbd> will take you back
+-  `:number` will take you to line number
+-  <kbd>0</kbd> will take you to the start of the line
+-  <kbd>0 + w</kbd>  or <kbd>^</kbd> will take you to the first word of a line
+- `h j k l` to move up down left and right 
+- <kbd>a</kbd> move over by  1 and set insert mode
+- <kbd>A</kbd>  jump to end and set insert mode 
+
+### Editing 
+- Hitting "i" in command mode lets you insert 
+- Hitting <kbd>shift + i</kbd> will set insert mode at the beginning of the line 
+- Then <kbd>esc</kbd> puts you back into command mode 
+- Hitting <kbd>dd</kbd>  will delete a line and copy to clip board 
+- Hitting <kbd>d + &rcub;</kbd> will delete a whole block of code
+- Hitting <kbd>10 dd</kbd> will delete 10 lines
+- Hitting `u` will undo 
+- Hitting <kbd>ctrl + r</kbd> will redo
+-  Hitting <kbd>yy</kbd> will copy a line
+-  <kbd>p</kbd> to paste bellow <kbd>P</kbd> to paste above
+-  <kbd>x</kbd> remove a letter where the cursor is
+-  <kbd>number x</kbd> remove number letters before cursor
+-  <kbd>~</kbd> swap the case of the letter prefix with number for multiple characters
+-  <kbd>.</kbd> redo
+
+-  <kbd>$</kbd> will take you to the end of a line
+-  <kbd>W</kbd> will jump spaces and <kbd>B</kbd> reverses that
+-  <kbd>f + char</kbd> find and place cursor on char
+-  <kbd>t + char</kbd>find and place cursor before char
+-  <kbd>%</kbd> take you to and from closing brackets
+-  <kbd>d + %</kbd> remove code between brackets
+-  <kbd>c + w</kbd> change mode and word will remove a word and set insert mode
+-  <kbd>D</kbd> remove everthing from cursor onwards
+-  <kbd>c + t + char</kbd> edit from cursor to char
+-  <kbd>C</kbd> change whole line
+-  <kbd>d + t + char</kbd> delete from cursor to char
+-  <kbd>*</kbd> take you to occurances of the word where your cursor is
+-  <kbd>;</kbd> take you to next instance after using a find command
+-  <kbd>r + char</kbd> replace letter at cursor with char prefix with number for multiple replaces
+-  <kbd>R</kbd> allow to replace lots of letters into replace mode
+* Searches*
+-  <kbd>/word</kbd> highlight all occurances of word
+-  <kbd>?word</kbd> highlight all occurances form cursor backwards
+-  <kbd>Enter</kbd> go to first occurance after / or ?
+-  <kbd>n</kbd> go to next instance
+-  <kbd>N</kbd> go to previous instance
+-  <kbd>*</kbd> take you to the next occurance of the highlighted word
+-  <kbd>#</kbd> next occurance of highlighted word
+
+### Macros
+- Press <kbd>q</kbd> to start recording then select a hotkey. Now run some commands and hit <kbd>q</kbd> to end. Then hit <kbd>@ hotkey</kbd> to replay a command. Prefix `@` with a number to replace that many times
+
+### Visual Mode: <kbd>V</kbd>
+- Select text with movement commands then you can hit:
+	- <kbd>d</kbd> to delete
+	- After selected <kbd>&gt;</kbd> or <kbd>&lt;</kbd> to indent code.
+- <kbd>shift + v</kbd> selects the whole line and puts you into visual mode.
+- <kbd>v + move</kbd> select from cursor while move
+
+#### Visual Block Mode
+<kbd>ctrl + v</kbd> enter visual block mode. Now you can select columns and hit `r` to replace things.
+In visual block mode hitting <kbd>shift i</kbd> will allow you to type and then after you hit <kbd>esc</kbd> the text will appear in all places selected
+
+
+*NOTES EXTRA*:
+- <kbd>g_</kbd> moves to a non blank char at the end of a line
+- <kbd>CTRL  + D</kbd> move half way down the page
+- <kbd>CTRL + U</kbd> move half way up the page
+- <kbd>2w</kbd> allows us to move the cursor 2 words forward.
+	- &lcub;Count&rcub;&lcub;Command&rcub; to repeat something
+-   Use **`gd`** to jump to definition of whatever is under your cursor.
+-   Use **`gf`** to jump to a file in an import.
+-   Use **`&lcub;line&rcub;gg`** to go to a specific line.
+
+```
+&lcub;operator&rcub;&lcub;count&rcub;&lcub;motion&rcub;
+&lcub;count&rcub;&lcub;operator&rcub;&lcub;motion&rcub;
+```
+For instance, the `d2w` combination allows you to **delete two words**
+-   **`c/hello`** changes everything until the first occurrence of `hello`.
+-   **`ggyG`** copies a whole document
+-   **`gUw`** capitalizes a word
+-   **`daw`** to **d**elete **a** **w**ord (plus trailing whitespace)
+-   **`ciw`** to **c**hange **i**nner **w**ord
+-   **`das`** to **d**elete **a** **s**entence (**`dis`** to delete inner sentence)
+-   **`da"`** to delete something in double quotes including the quotes themselves (**`di"`** deletes only the content **i**nside the quotes and spares the quotes)
+-   **`ci"`** to change something inside double quotes
+-   **`dap`** to delete a paragraph
+-   **`dab`** **`da(`** or **`da)`** to delete a block surrounded by **`(`**
+-   **`daB`** **`da&lcub;`** or **`da&rcub;`** to delete a block surrounded by **`&lcub;`**
+-   **`dat`** to delete an HTML tag
+-   **`cit`** to change the contents of an HTML tag

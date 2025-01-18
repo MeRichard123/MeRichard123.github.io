@@ -1,6 +1,5 @@
 ---
 import Footer from '../components/footer.astro';
-import TopBar from '../components/TopBar.astro';
 
 const { title } = Astro.props;
 
@@ -16,13 +15,13 @@ const { title } = Astro.props;
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="/style/home.css">
+        <link rel="stylesheet" href="/style/global.css">
 		<title>{title}</title>
 	</head>
-	<header>
-		<TopBar />
-	</header>
 	<body>
+		<div class="container">
 			<slot />
+		</div>
 	</body>
 	<Footer />
 </html>
@@ -34,5 +33,10 @@ const { title } = Astro.props;
 		width: 100%;
 		height: 100%;
 		font-family: 'JetBrains Mono', "Lato", sans-serif;
+	}
+	.container {
+		max-width: 90ch;
+		margin: 0 auto;
+		padding: 6rem 1rem 0 1rem;
 	}
 </style>

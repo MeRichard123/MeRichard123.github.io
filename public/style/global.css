@@ -1,0 +1,20 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  color: black;
+}
+
+h2 {
+  margin-top: 2rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+}/*# sourceMappingURL=global.css.map */

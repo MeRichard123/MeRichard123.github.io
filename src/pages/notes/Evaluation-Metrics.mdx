@@ -1,0 +1,262 @@
+---
+layout: "../../layouts/NotesLayout.astro"
+title: "Evaluation Metrics"
+order: 8
+---
+
+<details>
+<summary><span style='font-weight:bold; font-size: 1.4rem;'>Contents</span></summary>
+  - [Accuracy](#accuracy)
+- [Classification](#classification)
+  - [Confusion Matrix](#confusion-matrix)
+  - [Precision and Recall](#precision-and-recall)
+  - [F1 Score](#f1-score)
+  - [Sensitivity and Specificity](#sensitivity-and-specificity)
+  - [ROC Curves](#roc-curves)
+    - [AUC-ROC](#auc-roc)
+  - [Log Loss ](#log-loss)
+  - [Mean Absolute Error](#mean-absolute-error)
+  - [Mean Squared Error](#mean-squared-error)
+  - [Root Mean Squared Error ](#root-mean-squared-error)
+  - [Coefficient of Determination](#coefficient-of-determination)
+  - [Root Mean Squared Log Error](#root-mean-squared-log-error)
+- [Clustering](#clustering)
+  - [Adjusted Rand Score ](#adjusted-rand-score)
+  - [Silhouette](#silhouette)
+- [Natural Language Processing ](#natural-language-processing)
+  - [BLEU](#bleu)
+  - [Cross-Entropy ](#cross-entropy)
+  - [Perplexity ](#perplexity)
+</details>
+
+### Accuracy
+
+$$
+\begin{align*}
+Accuracy = \frac{\text{Number of Correct Predictions}}{\text{Total Predictions}}
+\end{align*}
+$$
+
+- Overall correctness of the predictions.
+- Higher Values = Better Performance.
+- Misleading for imbalanced Dataset.
+
+
+```python
+from sklearn.metrics import accuracy_score
+
+accuracy = accuracy_score(y_true, y_pred) 
+print(f"Accuracy {accuracy}"
+```
+## Classification
+
+### Confusion Matrix
+- Used for **classification**, very popular for binary classifiers.
+![Confusion Matrix](../../assets/cmatrix.png)
+- This evaluates the number of Positives and Negatives, which are correctly and incorrectly predicted.
+```python
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+
+c_matrix = confusion_matrix(df['Actual Labels'], df['Predicted Labels'])
+display_matrix = ConfusionMatrixDisplay(c_matrix, display_labels=['0', '1'])
+display_matrix.plot()
+plt.show()
+```
+
+### Precision and Recall
+- **Precision** Quantifies the model's ability to identify only the relevant cases.
+	- "How many items are relevant"
+    
+$$
+\begin{align*}
+Precision = \frac{TP}{TP + FP}
+\end{align*}
+$$
+
+- **Recall** quantifies the model's ability to find all the relevant cases.
+	- "How many items are relevant?"
+
+$$
+\begin{align*}
+Recall = \frac{TP}{TP + FN}
+\end{align*}
+$$
+
+- These are bad for imbalanced datasets.
+### F1 Score
+- A combination of precision and recall.
+
+$$
+\begin{align*}
+F1 = \left( \frac{recall^{-1} + precision ^{-1}}{2} \right)^{-1} = 2 \cdot \frac{precision \cdot recall}{precision + recall}
+\end{align*}
+$$
+
+- This is the harmonic mean of precision and recall, because that doesn't give an unfair weight to extreme values.
+- The higher the F1 score more is the predictive power of the classification model. A score close to 1 means a perfect model, however, score close to 0 shows decrement in the model’s predictive capability.
+### Sensitivity and Specificity
+- True Positive Rate (TPR / Sensitivity): measures the proportion of positive instances correctly classified by the model.
+
+$$
+\begin{align*}
+Sensitivity = \frac{TP}{TP + FN}
+\end{align*}
+$$
+
+- True Negative Rate (TNR / Specificity): It is the proportion:
+
+$$
+\begin{align*}
+Specificity = \frac{TN}{TN + FP}
+\end{align*}
+$$
+
+- False Positive Rate (FPR / 1 - Specificity):
+
+$$
+\begin{align*}
+FPR =1 - TNR
+\end{align*}
+$$
+
+### ROC Curves
+- Receiver Operation Characteristic (ROC) is a graphical representation to evaluate Binary Classification.
+- The ROC curves plot the graph between True positive rate and false-positive rate
+#### AUC-ROC
+- Looks at area under the curve, at different thresholds
+- AUC is considered to be scaled variant, it measures the rank of predictions rather than its absolute values
+- AUC always focuses on the quality of the Model’s skills on prediction irrespective of what threshold has been chosen.
+- A perfect model has an AUC-ROC of 1 
+- A random model has an AUC-ROC of 0.5
+### Log Loss 
+- Log Loss penalises false classifications
+- Log loss is a measure of how close a prediction probability comes to the true value in classification.
+- Best for multi-class classification.
+- Log loss takes the probabilities for all classes present in the sample.
+
+$$
+\begin{align*}
+LogarithmicLoss = \frac{-1}{N} \sum_{i=1}^N \sum_{j=1}^M y_{ij} * \log(p_{ij})
+\end{align*}
+$$
+
+	- $y_{ij}$, indicates whether sample $i$ belongs to class $j$ or not
+	- $p_{ij}$, indicates the probability of sample $i$ belonging to class $j$
+- Log Loss has a range of $[0, \infty)$ it thus has no upper bound limit, we can therefore say the loser it is to 0 the better the mode.
+# Regression
+### Mean Absolute Error
+
+$$
+\begin{align*}
+MAE = \frac{1}{n} \sum_{i=1}^n |y_i - \hat{y}_i|
+\end{align*}
+$$
+
+- Looks at average magnitude, in the same unit as the target.
+- Less sensitive to outliers compared to MSE.
+- Lower MAE = better performance, ($MAE > 0$)
+### Mean Squared Error
+
+$$
+\begin{align*}
+MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2
+\end{align*}
+$$
+
+- MSE takes the average of the square of the difference between the original values and the predicted values.
+- Good for computing the gradient.
+- Good for when the target column is distributed around the mean.
+- Can amplify outliers.
+### Root Mean Squared Error 
+- Quantifies the average magnitude of the errors or residuals.
+- Measures how well predicted values align with actual values.
+- Smaller RMSE indicate the model’s predications are closer to actual ones.
+
+$$
+\begin{align*}
+RMSE = \sqrt{MSE}
+\end{align*}
+$$
+
+### Coefficient of Determination
+- Measures how well the model fits, how much the real values very from the regression line.
+- $R^2$ ranges from $[0, 1)$,  a value of 0 indicates no variance. 
+- The higher the value the better fit.
+
+$$
+\begin{align*}
+R^2 = \frac{\text{Explained Variation}}{\text{Total Variation}}
+\end{align*}
+$$
+
+```python
+from sklearn.metrics import r2_score
+r2 = r2_score(y, y_pred)
+```
+### Root Mean Squared Log Error
+- Usually used when we don’t want to penalise huge differences in the predicted and the actual values.
+- These predicted and actual values are considered to be huge numbers.
+
+$$
+\begin{align*}
+RMSLE = \sqrt{\frac{1}{n} \sum_{i=1}^n (log(p_1 + 1) - log(a_i+1))^2}
+\end{align*}
+$$
+
+## Clustering
+
+### Adjusted Rand Score 
+
+$$
+\begin{align*}
+RI = \frac{2(a+b)}{n(n-1)}
+\end{align*}
+$$
+
+-  Calculates a share of observations for which these splits i.r.initial and clustering result is consistent.
+- Where $n$ be the number of observations in a sample. 
+- $a$ to be the number of observation pairs with the same labels and located in the same cluster.
+- $b$ to be the number of observations with different labels and located in different clusters.
+### Silhouette
+The Silhouette distance shows up to which extent the distance between the objects of the same class differs from the mean distance between the objects from different clusters.
+
+$$
+\begin{align*}
+s = \frac{b-a}{max(a,b)}
+\end{align*}
+$$
+
+- The value lies between $-1$ to $+1$ 
+- If the value is closer to $1$ then it the clustering results are good.
+- A value is closer to $-1$ represents bad clustering. 
+
+
+## Natural Language Processing 
+- BERTScore
+
+### BLEU
+- Bilingual Evaluation Understudy
+- Metric for machine translation tasks. 
+### Cross-Entropy 
+Cross-entropy is a measure of the difference between two probability distributions for a given random variable or set of events.
+
+$$
+\begin{align*}
+H(P,Q) = - \sum_x P(x) \log{Q(x)}
+\end{align*}
+$$
+
+- This computes the "surprise factor" of seeing a result. 
+- $P$ - true distribution of the data
+- $Q$ - distribution predicted by model
+- The lower the entropy the better the model at matching true distributions.
+### Perplexity 
+- Language Model Evaluation 
+- Measures how well a model predicts a sample, it can capture the level of uncertainly.
+- Lower values indicate better performance.
+
+$$
+\begin{align*}
+perplexity = \prod^T_{t=1}\left(\frac{1}{P_{LM}(x^{(t+1)}| x^{(t)}, \dots, x^{(1)})}\right)^{\frac{1}{T}}
+\end{align*}
+$$

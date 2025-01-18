@@ -1,0 +1,478 @@
+---
+layout: "../../layouts/NotesLayout.astro"
+title: "The C Language"
+order: 5
+---
+
+<details>
+<summary><span style='font-weight:bold; font-size: 1.4rem;'>Contents</span></summary>
+  - [Data Types](#data-types)
+    - [C Constants ](#c-constants)
+    - [Casting](#casting)
+    - [Booleans](#booleans)
+  - [Else if ](#else-if)
+    - [C Ternary ](#c-ternary)
+    - [C has switch case:](#c-has-switch-case)
+  - [Loops](#loops)
+  - [Break and Continue](#break-and-continue)
+  - [Arrays](#arrays)
+    - [2D Array:](#2d-array)
+    - [String](#string)
+    - [String Functions:](#string-functions)
+    - [concatenate strings](#concatenate-strings)
+- [User Input](#user-input)
+- [Maths](#maths)
+</details>
+
+### Data Types
+
+| Type | Description | Size | Values |
+| ----- | ------------- | --------- | ---- |
+| `int` | a whole number | 2-4 Bytes | -2,147,483,648 to 2,147,483,647 |
+| `float` | a number with possible decimals | 4 Bytes | 6 decimal places |
+| `double` | a number with possible decimals | 8 Bytes | 15 decimal places |
+| `char` | stores one character (letter or number) | 1 Byte | a single character |
+
+```c
+#include <stdio.h>
+
+int main() {
+	int day = 3;
+	printf("Hello World, today is the %drd!", day);
+}
+```
+
+| symbol | type |
+| -------- | ----- |
+| %d or %i | int |
+| %f | double or float |
+| %c | char |
+
+#### C Constants 
+It is a best practice to use all upper case letters when declaring a constant:
+```c
+const int DAYSINWEEK = 7;
+```
+
+#### Casting
+We can cast varaibles from 1 type to another:
+```c
+#include <stdio.h>
+
+int main() {
+  double testScore = 95.7;
+  int displayScore = (int)testScore;
+  
+  printf("Great work, you got a %d%% on your test\n", displayScore);
+}
+```
+
+Doing this for characters gives you the ASCII Codes:
+```c
+int targetInt;
+char sourceChar = 'a';
+targetInt = (int)sourceChar; // 97
+
+// similarly
+int sourceInt = 65;
+char targetChar;
+targetChar = (char)sourceInt; // 'A'
+```
+
+#### Booleans
+To use Booleans you have to import them since they were added in C99
+```c
+#include <stdio.h>
+#include <stdbool.h>
+
+int main() {
+	// Create boolean variables  
+	bool isProgrammingFun = true;  
+	bool isFishTasty = false;  
+	// Return boolean values  
+	printf("%d", isProgrammingFun);   // Returns 1 (true)  
+	printf("%d", isFishTasty);        // Returns 0 (false)
+}
+```
+
+### Else if 
+```c
+if (_condition1_) {  
+  // block of code to be executed if condition1 is true_  
+} else if (_condition2_) {  
+  // block of code to be executed if the condition1 is false and condition2 is true_  
+} else {  
+  // block of code to be executed if the condition1 is false and condition2 is false_  
+}
+```
+
+#### C Ternary 
+```c
+int time = 20;  
+(time < 18) ? printf("Good day.") : printf("Good evening.");
+```
+
+#### C has switch case:
+```c
+switch(_expression_) {  
+  case x:  
+    // code block_  
+    break;  
+  case y:  
+    // code block_  
+    break;  
+  default:  
+    // code block_  
+}
+```
+
+### Loops
+
+While Loop:
+```c
+int i = 0;  
+  
+while (i < 5) {  
+  printf("%d\n", i);  
+  i++;  
+}
+```
+
+Do While:
+```c
+int i = 0;  
+  
+do {  
+  printf("%d\n", i);  
+  i++;  
+}  
+while (i < 5);
+```
+
+### Break and Continue
+The `break` statement can also be used to jump out of a **loop**.
+The `continue` statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
+
+### Arrays
+```c
+int myNumbers[] = {25, 50, 75, 100};  
+printf("%d", myNumbers[0]);  
+  
+// Outputs 25
+int i;  
+  
+for (i = 0; i < 4; i++) {  
+  printf("%d\n", myNumbers[i]);  
+}
+
+// Declare an array of four integers:  
+int myNumbers[4];  
+  
+// Add elements  
+myNumbers[0] = 25;  
+myNumbers[1] = 50;  
+myNumbers[2] = 75;  
+myNumbers[3] = 100;
+```
+
+#### 2D Array:
+```c
+int matrix[2][3] = { {1, 4, 2}, {3, 6, 8} };
+```
+
+#### String
+```c
+char greetings[] = "Hello World!";  
+printf("%s", greetings);
+printf("%c", greetings[0]);
+```
+
+You can also make a string from an array. But we have to specify a `\0` a null-termiator to tell C this is the end of the string.
+```c
+char greetings[] = {'H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd', '!', '\0'};  
+printf("%s", greetings);
+
+char greetings2[] = "Hello World!";  
+  
+printf("%lu\n", sizeof(greetings));   // Outputs 13  
+printf("%lu\n", sizeof(greetings2));  // Outputs 13
+```
+Getting the size counts the null terminator in both cases.
+
+#### String Functions:
+```c
+#include <string.h>
+
+int main(){
+	char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";  
+	printf("%d", strlen(alphabet));
+	return 0;
+}
+```
+sizeof will always give you the memory in bytes
+```c
+char alphabet[50] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";  
+printf("%d", strlen(alphabet));   // 26  
+printf("%d", sizeof(alphabet));   // 50
+```
+
+#### concatenate strings
+```c
+char str1[20] = "Hello ";  
+char str2[] = "World!";  
+  
+// Concatenate str2 to str1 (result is stored in str1)  
+strcat(str1, str2);  
+  
+// Print str1  
+printf("%s", str1);
+```
+Note that the size of `str1` should be large enough to store the result of the two strings combined (20 in our example).
+
+We can also Copy Strings:
+```c
+char str1[20] = "Hello World!";  
+char str2[20];  
+  
+// Copy str1 to str2  
+strcpy(str2, str1);  
+  
+// Print str2  
+printf("%s", str2);
+```
+
+Compare Strings
+```c
+char str1[] = "Hello";  
+char str2[] = "Hello";  
+char str3[] = "Hi";  
+  
+// Compare str1 and str2, and print the result  
+printf("%d\n", strcmp(str1, str2));  // Returns 0 (the strings are equal)  
+  
+// Compare str1 and str3, and print the result  
+printf("%d\n", strcmp(str1, str3));  // Returns -4 (the strings are not equal)
+```
+
+## User Input
+```c
+// Create an integer variable that will store the number we get from the user  
+int myNum;  
+  
+// Ask the user to type a number  
+printf("Type a number: \n");  
+  
+// Get and save the number the user types  
+scanf("%d", &myNum);  
+  
+// Output the number the user typed  
+printf("Your number is: %d", myNum);
+```
+The `scanf()` function takes two arguments: the format specifier of the variable (`%d` in the example above) and the memory address of the variable you want to store the output in.
+
+You can take multiple inputs:
+```c
+int myNum;  
+char myChar;  
+// Ask the user to type a number AND a character  
+printf("Type a number AND a character and press enter: \n");  
+// Get and save the number AND character the user types  
+scanf("%d %c", &myNum, &myChar); 
+// Print the number  
+printf("Your number is: %d\n", myNum);  
+// Print the character  
+printf("Your character is: %c\n", myChar);
+```
+
+Getting strings doesn't require an address we just need to allocate enough memory when we initalise to be able to store it
+```c
+// Create a string  
+char firstName[30];  
+// Ask the user to input some text  
+printf("Enter your first name: \n");  
+// Get and save the text  
+scanf("%s", firstName);  
+// Output the text  
+printf("Hello %s", firstName);
+```
+
+If your input is a string which is more than a word (split by a space) you have to use fgets
+```c
+char fullName[30];  
+  
+printf("Type your full name: \n");  
+fgets(fullName, sizeof(fullName), stdin);  
+  
+printf("Hello %s", fullName);  
+  
+// Type your full name: John Doe  
+// Hello John Doe
+```
+`fgets()` function to **read a line of text**. Note that you must include the following arguments: the name of the string variable, `sizeof`(_string_name_), and `stdin`
+Use the `scanf()` function to get a single word as input, and use `fgets()` for multiple words.
+
+# Memory
+The reference operator & syntax gets the address of something in memory.
+```c
+int myAge = 43;  
+printf("%p", &myAge); // Outputs 0x7ffe5367e044
+```
+ Note that `&myAge` is often called a "pointer". A pointer basically stores the memory address of a variable as its value. To print pointer values, we use the `%p` format specifier.
+
+\* syntax is used to denote a variable which holds a pointer
+```c
+int myAge = 43;     // An int variable  
+int* ptr = &myAge;
+```
+
+If you are getting the value of a pointer you have to dereference it:
+```c
+int myAge = 43;     // Variable declaration  
+int* ptr = &myAge;  // Pointer declaration  
+// Reference: Output the memory address of myAge with the pointer (0x7ffe5367e044)  
+printf("%p\n", ptr);  
+// Dereference: Output the value of myAge with the pointer (43)  
+printf("%d\n", *ptr);
+```
+
+Define Pointer:
+```c
+int* myNum; // Most used  
+int *myNum;  
+int * myNum;
+```
+
+
+# Functions
+```c
+// Create a function  
+void myFunction(char name[], int age) {  
+  printf("Hello %s. You are %d years old.\n", name, age);  
+}
+  
+int main() {  
+  myFunction("Richard", 18); // call the function  
+  return 0;  
+}  
+  
+// Outputs "I just got executed!"
+```
+
+Pass arrays to a function
+```c
+void myFunction(int myNumbers[5]) {  
+  for (int i = 0; i < 5; i++) {  
+    printf("%d\n", myNumbers[i]);  
+  }  
+}  
+  
+int main() {  
+  int myNumbers[5] = {10, 20, 30, 40, 50};  
+  myFunction(myNumbers);  
+  return 0;  
+}
+```
+
+## Maths
+```c
+#include <math.h>  
+```
+
+
+# Struct 
+```c
+// Create a structure called myStructure  
+struct myStructure {  
+  int myNum;  
+  char myLetter;  
+};  
+  
+int main() {  
+  // Create a structure variable of myStructure called **s1**  
+  struct myStructure s1;  
+  
+  // Assign values to members of s1  
+  s1.myNum = 13;  
+  s1.myLetter = 'B';  
+  
+  // Print values  
+  printf("My number: %d\n", s1.myNum);  
+  printf("My letter: %c\n", s1.myLetter);  
+  
+  return 0;  
+}
+```
+
+When assiging a value to a string in a struct you have to copy the string into that memory address
+```c
+struct myStructure {  
+  int myNum;  
+  char myLetter;  
+  char myString[30]; // String  
+};  
+  
+int main() {  
+  struct myStructure s1;  
+  
+  // Assign a value to the string using the strcpy function  
+  strcpy(s1.myString, "Some text");  
+  
+  // Print the value  
+  printf("My string: %s", s1.myString);  
+  
+  return 0;  
+}
+```
+
+OR
+
+```c
+struct myStructure {  
+  int myNum;  
+  char myLetter;  
+  char myString[30];  
+};  
+  
+int main() {  
+  // Create a structure variable and assign values to it  
+  struct myStructure s1 = {13, 'B', "Some text"};  
+  
+  // Print values  
+  printf("%d %c %s", s1.myNum, s1.myLetter, s1.myString);  
+  
+  return 0;  
+}
+```
+
+C has Enums too!
+
+`(pointer_name)->(variable_name)`
+
+**Operation:** The -> operator in C  gives the value held by variable_name to structure or union variable pointer_name.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+// Creating the structure`
+struct student {
+	char name[80];
+    int age;
+    float percentage;
+};
+
+// Creating the structure object
+struct student* emp = NULL;
+
+int main() {
+    // Assigning memory to struct variable emp
+	emp = (struct student*)
+	   malloc (sizeof(struct student));
+
+    // Assigning value to age variable
+    emp->age = 18;
+
+    printf("%d", emp->age);
+    return 0;
+}
+```
