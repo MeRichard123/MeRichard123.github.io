@@ -3,11 +3,12 @@ h1 {
 }
 
 .katex {
-  font-size: clamp(0.7rem, 1rem, 1.7rem);
+  font-size: clamp(0.6rem, 1.3rem, 1.9rem);
 }
 
 .notes-container{
-  margin: 0 110px 110px 110px;
+  margin: 0 auto 110px auto;
+  max-width: 100ch;
   font-size: clamp(0.8rem, 0.9rem, 1.2rem);
 }
 
