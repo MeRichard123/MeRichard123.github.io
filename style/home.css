@@ -1,15 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans+Math&display=swap");
 h1 {
   text-align: center;
 }
 
 .katex {
   font-size: 1.3rem;
+  font-family: "Noto Sans Math", serif;
+}
+@media screen and (max-width: 900px) {
+  .katex {
+    font-size: clamp(0.9rem, 1vw, 1rem);
+  }
 }
 
 .notes-container {
   margin: 0 auto 110px auto;
   max-width: 100ch;
-  font-size: 0.9rem;
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+  .notes-container table {
+    font-size: clamp(0.8rem, 1vw, 1.2rem);
+  }
 }
 
 .notes-container * {
@@ -110,6 +123,12 @@ table {
 }
 .note-files .content {
   padding: 30px;
+  font-size: 1rem;
+}
+@media screen and (max-width: 900px) {
+  .note-files .content {
+    font-size: clamp(0.8rem, 0.833vw, 1.2rem);
+  }
 }
 .note-files .content .file-details {
   display: flex;
