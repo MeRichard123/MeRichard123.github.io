@@ -4,6 +4,41 @@ title: "Neural Networks"
 order: 9
 ---
 
+<details>
+<summary><span style='font-weight:bold; font-size: 1.4rem;'>Contents</span></summary>
+- [1. Linear Model - Perceptron](#1-linear-model---perceptron)
+- [2. Two Input Model with 1 Neuron](#2-two-input-model-with-1-neuron)
+- [3. Two Neuron Model](#3-two-neuron-model)
+- [4. Two Layers with Two Neurons Each](#4-two-layers-with-two-neurons-each)
+- [5. Cost Function](#5-cost-function)
+  - [5.1 Cost Functions ($C_x$)](#51-cost-functions-c_x)
+    - [5.1.1 Quadratic Cost](#511-quadratic-cost)
+    - [5.1.2 Cross-Entropy Cost](#512-cross-entropy-cost)
+- [6. Computing the Gradient ](#6-computing-the-gradient)
+  - [6.1 Gradient Descent](#61-gradient-descent)
+    - [6.1.1 Types of Gradient Descent](#611-types-of-gradient-descent)
+  - [6.2 Calculate the Gradient](#62-calculate-the-gradient)
+    - [6.2.1 Finite-Difference](#621-finite-difference)
+- [7. Activation Functions ](#7-activation-functions)
+  - [7.1 Types](#71-types)
+  - [7.2 Usages](#72-usages)
+- [8. Chain Rule and Partial Derivatives](#8-chain-rule-and-partial-derivatives)
+  - [8.1 Partial Derivatives](#81-partial-derivatives)
+- [9. Back Propagation](#9-back-propagation)
+  - [9.1 Derivatives of Activation Functions](#91-derivatives-of-activation-functions)
+- [10. Optimisation](#10-optimisation)
+  - [10.1 Stochastic Gradient Descent](#101-stochastic-gradient-descent)
+      - [Mini-Batch](#mini-batch)
+  - [10.2 Learning Rate ](#102-learning-rate)
+    - [10.2.1 Learning Rate Decay ](#1021-learning-rate-decay)
+    - [10.2.2 Learning Rate Scheduler ](#1022-learning-rate-scheduler)
+    - [10.2.3 Adaptive Learning Rate](#1023-adaptive-learning-rate)
+  - [10.3 Momentum ](#103-momentum)
+- [11. Data](#11-data)
+  - [11.1 Data Shuffling](#111-data-shuffling)
+  - [11.2 Data Batching ](#112-data-batching)
+</details>
+
 ## 1. Linear Model - Perceptron
 
 ![Perceptron](../../assets/perceptron.png)
@@ -60,7 +95,7 @@ Sometimes we write $z^i_j$ to represent $\sum_k(w^i_{jk} \times a^{i-1}_k) + b^i
 We can write this in a more concise manner using vectors and matrices for the transition from one layer to the next:
 
 $$
-\begin{align}
+\begin{align*}
 a^{(0)} =&  \sigma \left(
 \begin{bmatrix} 
 	w_{0,0} & w_{0,1} \\
@@ -90,7 +125,7 @@ W^{(0)} &= \begin{bmatrix}
 	b_{0} 
 	\end{bmatrix} \\
 	a^{(0)} &= \sigma(W^{(0)}X + b^{(0)})
-\end{align}
+\end{align*}
 $$
 
 $$
@@ -214,7 +249,7 @@ There are many ways to compute a gradient, one example is Finite-Difference or B
 #### 6.2.1 Finite-Difference
 $$
 \begin{align*}
-C'(w) = \lim_{\epsilon \to 0} \frac{C(w + \epsilon) - C(w)}{\epsilon}
+C'(w) = \lim_{\varepsilon \to 0} \frac{C(w + \varepsilon) - C(w)}{\varepsilon}
 \end{align*}
 $$
 
