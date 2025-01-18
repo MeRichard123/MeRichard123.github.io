@@ -1,0 +1,179 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>Using Vim</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><meta name="description" content="RichardMe123 personal site"><meta name="robots" content="index, nofollow"><meta name="author" content="Richard C"><link rel="canonical" href="https://merichard123.github.io/"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"><link rel="manifest" href="/favicon/site.webmanifest"><link rel="stylesheet" href="/style/global.css"><link rel="stylesheet" href="/style/home.css"><style>footer[data-astro-cid-k2f5zb5c]{text-align:center;margin-top:2.5rem;padding:2rem;background-color:#f8f8f8;font-family:JetBrains Mono,Lato,sans-serif}p[data-astro-cid-k2f5zb5c]{font-size:1.1rem}
+nav[data-astro-cid-lq7i5isa]{padding:1rem;background-color:#f5f5f5}a[data-astro-cid-lq7i5isa]{font-family:JetBrains Mono,Lato,sans-serif;text-decoration:none;color:#333}
+</style></head> <header> <nav data-astro-cid-lq7i5isa> <a href="/" data-astro-cid-lq7i5isa>&lt/back</a> </nav>  </header> <div class="notes-container"> <h1 class="notes-title">Using Vim</h1> <ul>
+<li>Open Vim: <code>vim filename</code></li>
+<li>Closing Vim:
+<ul>
+<li><code>:wq</code> -&gt; save and quit</li>
+<li><code>:q</code> -&gt;  quit and not save</li>
+<li><code>:w</code> -&gt; save and not quit</li>
+</ul>
+</li>
+</ul>
+<h3 id="movements">Movements</h3>
+<ul>
+<li>Hitting <kbd>gg</kbd> will take you to the top of file</li>
+<li><kbd>G</kbd> takes you to the bottom</li>
+<li><kbd>}</kbd> and <kbd>{</kbd> navigate code blocks</li>
+<li><kbd>o</kbd> adding a new line and put into insert mode</li>
+<li><kbd>O</kbd> adding a new line above and put into insert mode</li>
+<li><kbd>w</kbd> will jump to next word <kbd>b</kbd> will take you back</li>
+<li><code>:number</code> will take you to line number</li>
+<li><kbd>0</kbd> will take you to the start of the line</li>
+<li><kbd>0 + w</kbd>  or <kbd>^</kbd> will take you to the first word of a line</li>
+<li><code>h j k l</code> to move up down left and right</li>
+<li><kbd>a</kbd> move over by  1 and set insert mode</li>
+<li><kbd>A</kbd>  jump to end and set insert mode</li>
+</ul>
+<h3 id="editing">Editing</h3>
+<ul>
+<li>
+<p>Hitting “i” in command mode lets you insert</p>
+</li>
+<li>
+<p>Hitting <kbd>shift + i</kbd> will set insert mode at the beginning of the line</p>
+</li>
+<li>
+<p>Then <kbd>esc</kbd> puts you back into command mode</p>
+</li>
+<li>
+<p>Hitting <kbd>dd</kbd>  will delete a line and copy to clip board</p>
+</li>
+<li>
+<p>Hitting <kbd>d + }</kbd> will delete a whole block of code</p>
+</li>
+<li>
+<p>Hitting <kbd>10 dd</kbd> will delete 10 lines</p>
+</li>
+<li>
+<p>Hitting <code>u</code> will undo</p>
+</li>
+<li>
+<p>Hitting <kbd>ctrl + r</kbd> will redo</p>
+</li>
+<li>
+<p>Hitting <kbd>yy</kbd> will copy a line</p>
+</li>
+<li>
+<p><kbd>p</kbd> to paste bellow <kbd>P</kbd> to paste above</p>
+</li>
+<li>
+<p><kbd>x</kbd> remove a letter where the cursor is</p>
+</li>
+<li>
+<p><kbd>number x</kbd> remove number letters before cursor</p>
+</li>
+<li>
+<p><kbd>~</kbd> swap the case of the letter prefix with number for multiple characters</p>
+</li>
+<li>
+<p><kbd>.</kbd> redo</p>
+</li>
+<li>
+<p><kbd>$</kbd> will take you to the end of a line</p>
+</li>
+<li>
+<p><kbd>W</kbd> will jump spaces and <kbd>B</kbd> reverses that</p>
+</li>
+<li>
+<p><kbd>f + char</kbd> find and place cursor on char</p>
+</li>
+<li>
+<p><kbd>t + char</kbd>find and place cursor before char</p>
+</li>
+<li>
+<p><kbd>%</kbd> take you to and from closing brackets</p>
+</li>
+<li>
+<p><kbd>d + %</kbd> remove code between brackets</p>
+</li>
+<li>
+<p><kbd>c + w</kbd> change mode and word will remove a word and set insert mode</p>
+</li>
+<li>
+<p><kbd>D</kbd> remove everthing from cursor onwards</p>
+</li>
+<li>
+<p><kbd>c + t + char</kbd> edit from cursor to char</p>
+</li>
+<li>
+<p><kbd>C</kbd> change whole line</p>
+</li>
+<li>
+<p><kbd>d + t + char</kbd> delete from cursor to char</p>
+</li>
+<li>
+<p><kbd>*</kbd> take you to occurances of the word where your cursor is</p>
+</li>
+<li>
+<p><kbd>;</kbd> take you to next instance after using a find command</p>
+</li>
+<li>
+<p><kbd>r + char</kbd> replace letter at cursor with char prefix with number for multiple replaces</p>
+</li>
+<li>
+<p><kbd>R</kbd> allow to replace lots of letters into replace mode</p>
+</li>
+</ul>
+<ul>
+<li>Searches*</li>
+</ul>
+<ul>
+<li><kbd>/word</kbd> highlight all occurances of word</li>
+<li><kbd>?word</kbd> highlight all occurances form cursor backwards</li>
+<li><kbd>Enter</kbd> go to first occurance after / or ?</li>
+<li><kbd>n</kbd> go to next instance</li>
+<li><kbd>N</kbd> go to previous instance</li>
+<li><kbd>*</kbd> take you to the next occurance of the highlighted word</li>
+<li><kbd>#</kbd> next occurance of highlighted word</li>
+</ul>
+<h3 id="macros">Macros</h3>
+<ul>
+<li>Press <kbd>q</kbd> to start recording then select a hotkey. Now run some commands and hit <kbd>q</kbd> to end. Then hit <kbd>@ hotkey</kbd> to replay a command. Prefix <code>@</code> with a number to replace that many times</li>
+</ul>
+<h3 id="visual-mode-v">Visual Mode: <kbd>V</kbd></h3>
+<ul>
+<li>Select text with movement commands then you can hit:
+<ul>
+<li><kbd>d</kbd> to delete</li>
+<li>After selected <kbd>&gt;</kbd> or <kbd>&lt;</kbd> to indent code.</li>
+</ul>
+</li>
+<li><kbd>shift + v</kbd> selects the whole line and puts you into visual mode.</li>
+<li><kbd>v + move</kbd> select from cursor while move</li>
+</ul>
+<h4 id="visual-block-mode">Visual Block Mode</h4>
+<p><kbd>ctrl + v</kbd> enter visual block mode. Now you can select columns and hit <code>r</code> to replace things.
+In visual block mode hitting <kbd>shift i</kbd> will allow you to type and then after you hit <kbd>esc</kbd> the text will appear in all places selected</p>
+<p><em>NOTES EXTRA</em>:</p>
+<ul>
+<li><kbd>g_</kbd> moves to a non blank char at the end of a line</li>
+<li><kbd>CTRL  + D</kbd> move half way down the page</li>
+<li><kbd>CTRL + U</kbd> move half way up the page</li>
+<li><kbd>2w</kbd> allows us to move the cursor 2 words forward.
+<ul>
+<li>{Count}{Command} to repeat something</li>
+</ul>
+</li>
+<li>Use <strong><code>gd</code></strong> to jump to definition of whatever is under your cursor.</li>
+<li>Use <strong><code>gf</code></strong> to jump to a file in an import.</li>
+<li>Use <strong><code>&amp;lcub;line&amp;rcub;gg</code></strong> to go to a specific line.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="plaintext"><code><span class="line"><span>&amp;lcub;operator&amp;rcub;&amp;lcub;count&amp;rcub;&amp;lcub;motion&amp;rcub;</span></span>
+<span class="line"><span>&amp;lcub;count&amp;rcub;&amp;lcub;operator&amp;rcub;&amp;lcub;motion&amp;rcub;</span></span></code></pre>
+<p>For instance, the <code>d2w</code> combination allows you to <strong>delete two words</strong></p>
+<ul>
+<li><strong><code>c/hello</code></strong> changes everything until the first occurrence of <code>hello</code>.</li>
+<li><strong><code>ggyG</code></strong> copies a whole document</li>
+<li><strong><code>gUw</code></strong> capitalizes a word</li>
+<li><strong><code>daw</code></strong> to <strong>d</strong>elete <strong>a</strong> <strong>w</strong>ord (plus trailing whitespace)</li>
+<li><strong><code>ciw</code></strong> to <strong>c</strong>hange <strong>i</strong>nner <strong>w</strong>ord</li>
+<li><strong><code>das</code></strong> to <strong>d</strong>elete <strong>a</strong> <strong>s</strong>entence (<strong><code>dis</code></strong> to delete inner sentence)</li>
+<li><strong><code>da&quot;</code></strong> to delete something in double quotes including the quotes themselves (<strong><code>di&quot;</code></strong> deletes only the content <strong>i</strong>nside the quotes and spares the quotes)</li>
+<li><strong><code>ci&quot;</code></strong> to change something inside double quotes</li>
+<li><strong><code>dap</code></strong> to delete a paragraph</li>
+<li><strong><code>dab</code></strong> <strong><code>da(</code></strong> or <strong><code>da)</code></strong> to delete a block surrounded by <strong><code>(</code></strong></li>
+<li><strong><code>daB</code></strong> <strong><code>da&amp;lcub;</code></strong> or <strong><code>da&amp;rcub;</code></strong> to delete a block surrounded by <strong><code>&amp;lcub;</code></strong></li>
+<li><strong><code>dat</code></strong> to delete an HTML tag</li>
+<li><strong><code>cit</code></strong> to change the contents of an HTML tag</li>
+</ul> </div> <footer data-astro-cid-k2f5zb5c> <p data-astro-cid-k2f5zb5c>2025 &copy;  Richard</p> </footer>  </html>

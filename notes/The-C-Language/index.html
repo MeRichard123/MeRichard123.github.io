@@ -1,0 +1,417 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>The C Language</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><meta name="description" content="RichardMe123 personal site"><meta name="robots" content="index, nofollow"><meta name="author" content="Richard C"><link rel="canonical" href="https://merichard123.github.io/"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"><link rel="manifest" href="/favicon/site.webmanifest"><link rel="stylesheet" href="/style/global.css"><link rel="stylesheet" href="/style/home.css"><style>footer[data-astro-cid-k2f5zb5c]{text-align:center;margin-top:2.5rem;padding:2rem;background-color:#f8f8f8;font-family:JetBrains Mono,Lato,sans-serif}p[data-astro-cid-k2f5zb5c]{font-size:1.1rem}
+nav[data-astro-cid-lq7i5isa]{padding:1rem;background-color:#f5f5f5}a[data-astro-cid-lq7i5isa]{font-family:JetBrains Mono,Lato,sans-serif;text-decoration:none;color:#333}
+</style></head> <header> <nav data-astro-cid-lq7i5isa> <a href="/" data-astro-cid-lq7i5isa>&lt/back</a> </nav>  </header> <div class="notes-container"> <h1 class="notes-title">The C Language</h1> <details><summary><span style="font-weight:bold; font-size: 1.4rem;">Contents</span></summary><ul>
+<li><a href="#data-types">Data Types</a>
+<ul>
+<li><a href="#c-constants">C Constants </a></li>
+<li><a href="#casting">Casting</a></li>
+<li><a href="#booleans">Booleans</a></li>
+</ul>
+</li>
+<li><a href="#else-if">Else if </a>
+<ul>
+<li><a href="#c-ternary">C Ternary </a></li>
+<li><a href="#c-has-switch-case">C has switch case:</a></li>
+</ul>
+</li>
+<li><a href="#loops">Loops</a></li>
+<li><a href="#break-and-continue">Break and Continue</a></li>
+<li><a href="#arrays">Arrays</a>
+<ul>
+<li><a href="#2d-array">2D Array:</a></li>
+<li><a href="#string">String</a></li>
+<li><a href="#string-functions">String Functions:</a></li>
+<li><a href="#concatenate-strings">concatenate strings</a></li>
+</ul>
+</li>
+<li><a href="#user-input">User Input</a></li>
+<li><a href="#maths">Maths</a></li>
+</ul></details>
+<h3 id="data-types">Data Types</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Type</th><th>Description</th><th>Size</th><th>Values</th></tr></thead><tbody><tr><td><code>int</code></td><td>a whole number</td><td>2-4 Bytes</td><td>-2,147,483,648 to 2,147,483,647</td></tr><tr><td><code>float</code></td><td>a number with possible decimals</td><td>4 Bytes</td><td>6 decimal places</td></tr><tr><td><code>double</code></td><td>a number with possible decimals</td><td>8 Bytes</td><td>15 decimal places</td></tr><tr><td><code>char</code></td><td>stores one character (letter or number)</td><td>1 Byte</td><td>a single character</td></tr></tbody></table>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &lt;stdio.h&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">	int</span><span style="color:#E1E4E8"> day </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 3</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#B392F0">	printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;Hello World, today is the </span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">rd!&quot;</span><span style="color:#E1E4E8">, day);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>symbol</th><th>type</th></tr></thead><tbody><tr><td>%d or %i</td><td>int</td></tr><tr><td>%f</td><td>double or float</td></tr><tr><td>%c</td><td>char</td></tr></tbody></table>
+<h4 id="c-constants">C Constants</h4>
+<p>It is a best practice to use all upper case letters when declaring a constant:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#F97583"> int</span><span style="color:#E1E4E8"> DAYSINWEEK </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 7</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<h4 id="casting">Casting</h4>
+<p>We can cast varaibles from 1 type to another:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &lt;stdio.h&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">  double</span><span style="color:#E1E4E8"> testScore </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 95.7</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">  int</span><span style="color:#E1E4E8"> displayScore </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">)testScore;</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#B392F0">  printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;Great work, you got a </span><span style="color:#79B8FF">%d%%</span><span style="color:#9ECBFF"> on your test</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, displayScore);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Doing this for characters gives you the ASCII Codes:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> targetInt;</span></span>
+<span class="line"><span style="color:#F97583">char</span><span style="color:#E1E4E8"> sourceChar </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> &#39;a&#39;</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">targetInt </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">)sourceChar;</span><span style="color:#6A737D"> // 97</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// similarly</span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> sourceInt </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 65</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">char</span><span style="color:#E1E4E8"> targetChar;</span></span>
+<span class="line"><span style="color:#E1E4E8">targetChar </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">char</span><span style="color:#E1E4E8">)sourceInt;</span><span style="color:#6A737D"> // &#39;A&#39;</span></span></code></pre>
+<h4 id="booleans">Booleans</h4>
+<p>To use Booleans you have to import them since they were added in C99</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &lt;stdio.h&gt;</span></span>
+<span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &lt;stdbool.h&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">	// Create boolean variables  </span></span>
+<span class="line"><span style="color:#F97583">	bool</span><span style="color:#E1E4E8"> isProgrammingFun </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#F97583">	bool</span><span style="color:#E1E4E8"> isFishTasty </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#6A737D">	// Return boolean values  </span></span>
+<span class="line"><span style="color:#B392F0">	printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, isProgrammingFun);</span><span style="color:#6A737D">   // Returns 1 (true)  </span></span>
+<span class="line"><span style="color:#B392F0">	printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, isFishTasty);</span><span style="color:#6A737D">        // Returns 0 (false)</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="else-if">Else if</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (_condition1_) {  </span></span>
+<span class="line"><span style="color:#6A737D">  // block of code to be executed if condition1 is true_  </span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">else</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> (_condition2_) {  </span></span>
+<span class="line"><span style="color:#6A737D">  // block of code to be executed if the condition1 is false and condition2 is true_  </span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {  </span></span>
+<span class="line"><span style="color:#6A737D">  // block of code to be executed if the condition1 is false and condition2 is false_  </span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h4 id="c-ternary">C Ternary</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> time </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 20</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#E1E4E8">(time </span><span style="color:#F97583">&lt;</span><span style="color:#79B8FF"> 18</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">?</span><span style="color:#B392F0"> printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;Good day.&quot;</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">:</span><span style="color:#B392F0"> printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;Good evening.&quot;</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h4 id="c-has-switch-case">C has switch case:</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">switch</span><span style="color:#E1E4E8">(_expression_) {  </span></span>
+<span class="line"><span style="color:#F97583">  case</span><span style="color:#E1E4E8"> x:  </span></span>
+<span class="line"><span style="color:#6A737D">    // code block_  </span></span>
+<span class="line"><span style="color:#F97583">    break</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#F97583">  case</span><span style="color:#E1E4E8"> y:  </span></span>
+<span class="line"><span style="color:#6A737D">    // code block_  </span></span>
+<span class="line"><span style="color:#F97583">    break</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#F97583">  default</span><span style="color:#E1E4E8">:  </span></span>
+<span class="line"><span style="color:#6A737D">    // code block_  </span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="loops">Loops</h3>
+<p>While Loop:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#F97583">while</span><span style="color:#E1E4E8"> (i </span><span style="color:#F97583">&lt;</span><span style="color:#79B8FF"> 5</span><span style="color:#E1E4E8">) {  </span></span>
+<span class="line"><span style="color:#B392F0">  printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%d\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, i);  </span></span>
+<span class="line"><span style="color:#E1E4E8">  i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>Do While:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#F97583">do</span><span style="color:#E1E4E8"> {  </span></span>
+<span class="line"><span style="color:#B392F0">  printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%d\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, i);  </span></span>
+<span class="line"><span style="color:#E1E4E8">  i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#E1E4E8">}  </span></span>
+<span class="line"><span style="color:#F97583">while</span><span style="color:#E1E4E8"> (i </span><span style="color:#F97583">&lt;</span><span style="color:#79B8FF"> 5</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<h3 id="break-and-continue">Break and Continue</h3>
+<p>The <code>break</code> statement can also be used to jump out of a <strong>loop</strong>.
+The <code>continue</code> statement breaks one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.</p>
+<h3 id="arrays">Arrays</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> myNumbers</span><span style="color:#F97583">[]</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span><span style="color:#79B8FF">25</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">75</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">100</span><span style="color:#E1E4E8">};  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">myNumbers</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">]);  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">// Outputs 25</span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i;  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#F97583">for</span><span style="color:#E1E4E8"> (i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&lt;</span><span style="color:#79B8FF"> 4</span><span style="color:#E1E4E8">; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {  </span></span>
+<span class="line"><span style="color:#B392F0">  printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%d\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">myNumbers</span><span style="color:#E1E4E8">[i]);  </span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Declare an array of four integers:  </span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#FFAB70"> myNumbers</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">];  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">// Add elements  </span></span>
+<span class="line"><span style="color:#FFAB70">myNumbers</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 25</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#FFAB70">myNumbers</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 50</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#FFAB70">myNumbers</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 75</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#FFAB70">myNumbers</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 100</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<h4 id="2d-array">2D Array:</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#FFAB70"> matrix</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">][</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> { {</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">}, {</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">6</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">8</span><span style="color:#E1E4E8">} };</span></span></code></pre>
+<h4 id="string">String</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">char</span><span style="color:#E1E4E8"> greetings</span><span style="color:#F97583">[]</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> &quot;Hello World!&quot;</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, greetings);</span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%c</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">greetings</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">]);</span></span></code></pre>
+<p>You can also make a string from an array. But we have to specify a <code>\0</code> a null-termiator to tell C this is the end of the string.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">char</span><span style="color:#E1E4E8"> greetings</span><span style="color:#F97583">[]</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {</span><span style="color:#9ECBFF">&#39;H&#39;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&#39;e&#39;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&#39;l&#39;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&#39;l&#39;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&#39;o&#39;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&#39; &#39;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&#39;W&#39;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&#39;o&#39;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&#39;r&#39;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&#39;l&#39;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&#39;d&#39;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&#39;!&#39;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&#39;</span><span style="color:#79B8FF">\0</span><span style="color:#9ECBFF">&#39;</span><span style="color:#E1E4E8">};  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, greetings);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">char</span><span style="color:#E1E4E8"> greetings2</span><span style="color:#F97583">[]</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> &quot;Hello World!&quot;</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%lu\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">sizeof</span><span style="color:#E1E4E8">(greetings));</span><span style="color:#6A737D">   // Outputs 13  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%lu\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">sizeof</span><span style="color:#E1E4E8">(greetings2));</span><span style="color:#6A737D">  // Outputs 13</span></span></code></pre>
+<p>Getting the size counts the null terminator in both cases.</p>
+<h4 id="string-functions">String Functions:</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &lt;string.h&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">(){</span></span>
+<span class="line"><span style="color:#F97583">	char</span><span style="color:#E1E4E8"> alphabet</span><span style="color:#F97583">[]</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#B392F0">	printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">strlen</span><span style="color:#E1E4E8">(alphabet));</span></span>
+<span class="line"><span style="color:#F97583">	return</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>sizeof will always give you the memory in bytes</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">char</span><span style="color:#FFAB70"> alphabet</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">strlen</span><span style="color:#E1E4E8">(alphabet));</span><span style="color:#6A737D">   // 26  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">sizeof</span><span style="color:#E1E4E8">(alphabet));</span><span style="color:#6A737D">   // 50</span></span></code></pre>
+<h4 id="concatenate-strings">concatenate strings</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">char</span><span style="color:#FFAB70"> str1</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> &quot;Hello &quot;</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#F97583">char</span><span style="color:#E1E4E8"> str2</span><span style="color:#F97583">[]</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> &quot;World!&quot;</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">// Concatenate str2 to str1 (result is stored in str1)  </span></span>
+<span class="line"><span style="color:#B392F0">strcat</span><span style="color:#E1E4E8">(str1, str2);  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">// Print str1  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, str1);</span></span></code></pre>
+<p>Note that the size of <code>str1</code> should be large enough to store the result of the two strings combined (20 in our example).</p>
+<p>We can also Copy Strings:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">char</span><span style="color:#FFAB70"> str1</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> &quot;Hello World!&quot;</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#F97583">char</span><span style="color:#FFAB70"> str2</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">];  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">// Copy str1 to str2  </span></span>
+<span class="line"><span style="color:#B392F0">strcpy</span><span style="color:#E1E4E8">(str2, str1);  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">// Print str2  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, str2);</span></span></code></pre>
+<p>Compare Strings</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">char</span><span style="color:#E1E4E8"> str1</span><span style="color:#F97583">[]</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> &quot;Hello&quot;</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#F97583">char</span><span style="color:#E1E4E8"> str2</span><span style="color:#F97583">[]</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> &quot;Hello&quot;</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#F97583">char</span><span style="color:#E1E4E8"> str3</span><span style="color:#F97583">[]</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> &quot;Hi&quot;</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">// Compare str1 and str2, and print the result  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%d\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">strcmp</span><span style="color:#E1E4E8">(str1, str2));</span><span style="color:#6A737D">  // Returns 0 (the strings are equal)  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">// Compare str1 and str3, and print the result  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%d\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">strcmp</span><span style="color:#E1E4E8">(str1, str3));</span><span style="color:#6A737D">  // Returns -4 (the strings are not equal)</span></span></code></pre>
+<h2 id="user-input">User Input</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#6A737D">// Create an integer variable that will store the number we get from the user  </span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> myNum;  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">// Ask the user to type a number  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;Type a number: </span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">);  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">// Get and save the number the user types  </span></span>
+<span class="line"><span style="color:#B392F0">scanf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">&amp;</span><span style="color:#FFAB70">myNum</span><span style="color:#E1E4E8">);  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">// Output the number the user typed  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;Your number is: </span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, myNum);</span></span></code></pre>
+<p>The <code>scanf()</code> function takes two arguments: the format specifier of the variable (<code>%d</code> in the example above) and the memory address of the variable you want to store the output in.</p>
+<p>You can take multiple inputs:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> myNum;  </span></span>
+<span class="line"><span style="color:#F97583">char</span><span style="color:#E1E4E8"> myChar;  </span></span>
+<span class="line"><span style="color:#6A737D">// Ask the user to type a number AND a character  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;Type a number AND a character and press enter: </span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">);  </span></span>
+<span class="line"><span style="color:#6A737D">// Get and save the number AND character the user types  </span></span>
+<span class="line"><span style="color:#B392F0">scanf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%d</span><span style="color:#79B8FF"> %c</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">&amp;</span><span style="color:#FFAB70">myNum</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">&amp;</span><span style="color:#FFAB70">myChar</span><span style="color:#E1E4E8">); </span></span>
+<span class="line"><span style="color:#6A737D">// Print the number  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;Your number is: </span><span style="color:#79B8FF">%d\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, myNum);  </span></span>
+<span class="line"><span style="color:#6A737D">// Print the character  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;Your character is: </span><span style="color:#79B8FF">%c\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, myChar);</span></span></code></pre>
+<p>Getting strings doesn’t require an address we just need to allocate enough memory when we initalise to be able to store it</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#6A737D">// Create a string  </span></span>
+<span class="line"><span style="color:#F97583">char</span><span style="color:#FFAB70"> firstName</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">30</span><span style="color:#E1E4E8">];  </span></span>
+<span class="line"><span style="color:#6A737D">// Ask the user to input some text  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;Enter your first name: </span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">);  </span></span>
+<span class="line"><span style="color:#6A737D">// Get and save the text  </span></span>
+<span class="line"><span style="color:#B392F0">scanf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, firstName);  </span></span>
+<span class="line"><span style="color:#6A737D">// Output the text  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;Hello </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, firstName);</span></span></code></pre>
+<p>If your input is a string which is more than a word (split by a space) you have to use fgets</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">char</span><span style="color:#FFAB70"> fullName</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">30</span><span style="color:#E1E4E8">];  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;Type your full name: </span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">);  </span></span>
+<span class="line"><span style="color:#B392F0">fgets</span><span style="color:#E1E4E8">(fullName, </span><span style="color:#F97583">sizeof</span><span style="color:#E1E4E8">(fullName), stdin);  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;Hello </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, fullName);  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">// Type your full name: John Doe  </span></span>
+<span class="line"><span style="color:#6A737D">// Hello John Doe</span></span></code></pre>
+<p><code>fgets()</code> function to <strong>read a line of text</strong>. Note that you must include the following arguments: the name of the string variable, <code>sizeof</code>(<em>string_name</em>), and <code>stdin</code>
+Use the <code>scanf()</code> function to get a single word as input, and use <code>fgets()</code> for multiple words.</p>
+<h1 id="memory">Memory</h1>
+<p>The reference operator &amp; syntax gets the address of something in memory.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> myAge </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 43</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%p</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">&amp;</span><span style="color:#FFAB70">myAge</span><span style="color:#E1E4E8">);</span><span style="color:#6A737D"> // Outputs 0x7ffe5367e044</span></span></code></pre>
+<p>Note that <code>&amp;myAge</code> is often called a “pointer”. A pointer basically stores the memory address of a variable as its value. To print pointer values, we use the <code>%p</code> format specifier.</p>
+<p>* syntax is used to denote a variable which holds a pointer</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> myAge </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 43</span><span style="color:#E1E4E8">;</span><span style="color:#6A737D">     // An int variable  </span></span>
+<span class="line"><span style="color:#F97583">int*</span><span style="color:#E1E4E8"> ptr </span><span style="color:#F97583">=</span><span style="color:#F97583"> &amp;</span><span style="color:#E1E4E8">myAge;</span></span></code></pre>
+<p>If you are getting the value of a pointer you have to dereference it:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> myAge </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 43</span><span style="color:#E1E4E8">;</span><span style="color:#6A737D">     // Variable declaration  </span></span>
+<span class="line"><span style="color:#F97583">int*</span><span style="color:#E1E4E8"> ptr </span><span style="color:#F97583">=</span><span style="color:#F97583"> &amp;</span><span style="color:#E1E4E8">myAge;</span><span style="color:#6A737D">  // Pointer declaration  </span></span>
+<span class="line"><span style="color:#6A737D">// Reference: Output the memory address of myAge with the pointer (0x7ffe5367e044)  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%p\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, ptr);  </span></span>
+<span class="line"><span style="color:#6A737D">// Dereference: Output the value of myAge with the pointer (43)  </span></span>
+<span class="line"><span style="color:#B392F0">printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%d\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">*</span><span style="color:#FFAB70">ptr</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<p>Define Pointer:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">int*</span><span style="color:#E1E4E8"> myNum;</span><span style="color:#6A737D"> // Most used  </span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#F97583"> *</span><span style="color:#E1E4E8">myNum;  </span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#F97583"> *</span><span style="color:#E1E4E8"> myNum;</span></span></code></pre>
+<h1 id="functions">Functions</h1>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#6A737D">// Create a function  </span></span>
+<span class="line"><span style="color:#F97583">void</span><span style="color:#B392F0"> myFunction</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">char</span><span style="color:#FFAB70"> name</span><span style="color:#F97583">[]</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">int</span><span style="color:#FFAB70"> age</span><span style="color:#E1E4E8">) {  </span></span>
+<span class="line"><span style="color:#B392F0">  printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;Hello </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">. You are </span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF"> years old.</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, name, age);  </span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">() {  </span></span>
+<span class="line"><span style="color:#B392F0">  myFunction</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;Richard&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">18</span><span style="color:#E1E4E8">);</span><span style="color:#6A737D"> // call the function  </span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#E1E4E8">}  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">// Outputs &quot;I just got executed!&quot;</span></span></code></pre>
+<p>Pass arrays to a function</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">void</span><span style="color:#B392F0"> myFunction</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#FFAB70"> myNumbers</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">]) {  </span></span>
+<span class="line"><span style="color:#F97583">  for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i </span><span style="color:#F97583">&lt;</span><span style="color:#79B8FF"> 5</span><span style="color:#E1E4E8">; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {  </span></span>
+<span class="line"><span style="color:#B392F0">    printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%d\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, </span><span style="color:#FFAB70">myNumbers</span><span style="color:#E1E4E8">[i]);  </span></span>
+<span class="line"><span style="color:#E1E4E8">  }  </span></span>
+<span class="line"><span style="color:#E1E4E8">}  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">() {  </span></span>
+<span class="line"><span style="color:#F97583">  int</span><span style="color:#FFAB70"> myNumbers</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">30</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">40</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">50</span><span style="color:#E1E4E8">};  </span></span>
+<span class="line"><span style="color:#B392F0">  myFunction</span><span style="color:#E1E4E8">(myNumbers);  </span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h2 id="maths">Maths</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &lt;math.h&gt;</span><span style="color:#E1E4E8">  </span></span></code></pre>
+<h1 id="struct">Struct</h1>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#6A737D">// Create a structure called myStructure  </span></span>
+<span class="line"><span style="color:#F97583">struct</span><span style="color:#E1E4E8"> myStructure {  </span></span>
+<span class="line"><span style="color:#F97583">  int</span><span style="color:#E1E4E8"> myNum;  </span></span>
+<span class="line"><span style="color:#F97583">  char</span><span style="color:#E1E4E8"> myLetter;  </span></span>
+<span class="line"><span style="color:#E1E4E8">};  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">() {  </span></span>
+<span class="line"><span style="color:#6A737D">  // Create a structure variable of myStructure called **s1**  </span></span>
+<span class="line"><span style="color:#F97583">  struct</span><span style="color:#E1E4E8"> myStructure s1;  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">  // Assign values to members of s1  </span></span>
+<span class="line"><span style="color:#E1E4E8">  s1.myNum </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 13</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#E1E4E8">  s1.myLetter </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> &#39;B&#39;</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">  // Print values  </span></span>
+<span class="line"><span style="color:#B392F0">  printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;My number: </span><span style="color:#79B8FF">%d\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, s1.myNum);  </span></span>
+<span class="line"><span style="color:#B392F0">  printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;My letter: </span><span style="color:#79B8FF">%c\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, s1.myLetter);  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>When assiging a value to a string in a struct you have to copy the string into that memory address</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">struct</span><span style="color:#E1E4E8"> myStructure {  </span></span>
+<span class="line"><span style="color:#F97583">  int</span><span style="color:#E1E4E8"> myNum;  </span></span>
+<span class="line"><span style="color:#F97583">  char</span><span style="color:#E1E4E8"> myLetter;  </span></span>
+<span class="line"><span style="color:#F97583">  char</span><span style="color:#FFAB70"> myString</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">30</span><span style="color:#E1E4E8">];</span><span style="color:#6A737D"> // String  </span></span>
+<span class="line"><span style="color:#E1E4E8">};  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">() {  </span></span>
+<span class="line"><span style="color:#F97583">  struct</span><span style="color:#E1E4E8"> myStructure s1;  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">  // Assign a value to the string using the strcpy function  </span></span>
+<span class="line"><span style="color:#B392F0">  strcpy</span><span style="color:#E1E4E8">(s1.myString, </span><span style="color:#9ECBFF">&quot;Some text&quot;</span><span style="color:#E1E4E8">);  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">  // Print the value  </span></span>
+<span class="line"><span style="color:#B392F0">  printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;My string: </span><span style="color:#79B8FF">%s</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, s1.myString);  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>OR</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">struct</span><span style="color:#E1E4E8"> myStructure {  </span></span>
+<span class="line"><span style="color:#F97583">  int</span><span style="color:#E1E4E8"> myNum;  </span></span>
+<span class="line"><span style="color:#F97583">  char</span><span style="color:#E1E4E8"> myLetter;  </span></span>
+<span class="line"><span style="color:#F97583">  char</span><span style="color:#FFAB70"> myString</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">30</span><span style="color:#E1E4E8">];  </span></span>
+<span class="line"><span style="color:#E1E4E8">};  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">() {  </span></span>
+<span class="line"><span style="color:#6A737D">  // Create a structure variable and assign values to it  </span></span>
+<span class="line"><span style="color:#F97583">  struct</span><span style="color:#E1E4E8"> myStructure s1 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {</span><span style="color:#79B8FF">13</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&#39;B&#39;</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">&quot;Some text&quot;</span><span style="color:#E1E4E8">};  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#6A737D">  // Print values  </span></span>
+<span class="line"><span style="color:#B392F0">  printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%d</span><span style="color:#79B8FF"> %c</span><span style="color:#79B8FF"> %s</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, s1.myNum, s1.myLetter, s1.myString);  </span></span>
+<span class="line"><span style="color:#E1E4E8">  </span></span>
+<span class="line"><span style="color:#F97583">  return</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;  </span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>C has Enums too!</p>
+<p><code>(pointer_name)-&gt;(variable_name)</code></p>
+<p><strong>Operation:</strong> The -&gt; operator in C  gives the value held by variable_name to structure or union variable pointer_name.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="c"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &lt;stdio.h&gt;</span></span>
+<span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &lt;stdlib.h&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Creating the structure`</span></span>
+<span class="line"><span style="color:#F97583">struct</span><span style="color:#E1E4E8"> student {</span></span>
+<span class="line"><span style="color:#F97583">	char</span><span style="color:#FFAB70"> name</span><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">80</span><span style="color:#E1E4E8">];</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> age;</span></span>
+<span class="line"><span style="color:#F97583">    float</span><span style="color:#E1E4E8"> percentage;</span></span>
+<span class="line"><span style="color:#E1E4E8">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// Creating the structure object</span></span>
+<span class="line"><span style="color:#F97583">struct</span><span style="color:#E1E4E8"> student</span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> emp </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> NULL</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">    // Assigning memory to struct variable emp</span></span>
+<span class="line"><span style="color:#E1E4E8">	emp </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">struct</span><span style="color:#E1E4E8"> student</span><span style="color:#F97583">*</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#B392F0">	   malloc</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">sizeof</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">struct</span><span style="color:#E1E4E8"> student));</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // Assigning value to age variable</span></span>
+<span class="line"><span style="color:#E1E4E8">    emp-&gt;age </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 18</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    printf</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">%d</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">, emp-&gt;age);</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre> </div> <footer data-astro-cid-k2f5zb5c> <p data-astro-cid-k2f5zb5c>2025 &copy;  Richard</p> </footer>  </html>

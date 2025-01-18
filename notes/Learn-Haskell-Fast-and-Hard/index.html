@@ -1,0 +1,501 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>Learn Haskell Hard and Fast</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><meta name="description" content="RichardMe123 personal site"><meta name="robots" content="index, nofollow"><meta name="author" content="Richard C"><link rel="canonical" href="https://merichard123.github.io/"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"><link rel="manifest" href="/favicon/site.webmanifest"><link rel="stylesheet" href="/style/global.css"><link rel="stylesheet" href="/style/home.css"><style>footer[data-astro-cid-k2f5zb5c]{text-align:center;margin-top:2.5rem;padding:2rem;background-color:#f8f8f8;font-family:JetBrains Mono,Lato,sans-serif}p[data-astro-cid-k2f5zb5c]{font-size:1.1rem}
+nav[data-astro-cid-lq7i5isa]{padding:1rem;background-color:#f5f5f5}a[data-astro-cid-lq7i5isa]{font-family:JetBrains Mono,Lato,sans-serif;text-decoration:none;color:#333}
+</style></head> <header> <nav data-astro-cid-lq7i5isa> <a href="/" data-astro-cid-lq7i5isa>&lt/back</a> </nav>  </header> <div class="notes-container"> <h1 class="notes-title">Learn Haskell Hard and Fast</h1> <p><em>Notes from a Blog Post by <a href="https://yannesposito.com/Scratch/en/blog/Haskell-the-Hard-Way/">Yann Esposito</a></em></p>
+<details><summary><span style="font-weight:bold; font-size: 1.4rem;">Contents</span></summary><ul>
+<li><a href="#purity">Purity</a></li>
+<li><a href="#laziness">Laziness</a></li>
+<li><a href="#types">Types</a></li>
+<li><a href="#function-application">Function Application </a></li>
+<li><a href="#notation">Notation</a>
+<ul>
+<li><a href="#variable-binding">Variable Binding</a></li>
+</ul>
+</li>
+<li><a href="#hard-part-refactoring-a-function">Hard Part (Refactoring a Function)</a></li>
+<li><a href="#custom-types">Custom Types</a></li>
+<li><a href="#resursive-types">Resursive Types</a>
+<ul>
+<li><a href="#binary-trees">Binary Trees</a></li>
+</ul>
+</li>
+<li><a href="#infinite-structures">Infinite Structures</a></li>
+</ul></details>
+<h2 id="purity">Purity</h2>
+<ul>
+<li>Haskell Functions are pure they don’t modify the outside world.</li>
+<li>Applying a function on the same parameters will always return the same result.</li>
+</ul>
+<h2 id="laziness">Laziness</h2>
+<ul>
+<li>Haskell uses lazy evaluation and evaluates something when it is needed.
+<ul>
+<li>Hence infinte structures are possible</li>
+</ul>
+</li>
+</ul>
+<h2 id="types">Types</h2>
+<ul>
+<li>Types aren’t madatory because the compiler is smart enough to figure it out but they can be useful for debugging and for writing code in the first place.</li>
+<li>Haskell uses <strong>Parametric Polymorphism</strong> this means you can use general types and haskell will abide by its rules</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#B392F0">f</span><span style="color:#F97583"> ::</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8"> a</span></span>
+<span class="line"><span style="color:#E1E4E8">f </span><span style="color:#79B8FF">Age</span><span style="color:#79B8FF"> YearOfBirth</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> Age</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> YearOfBirth</span></span></code></pre>
+<p>Here a function f takes in two parameters of type a and returns a value also of type a.  Here we are multiplying hence a can be <code>Int</code>, <code>Integer</code> or <code>Float</code>. But also more complext custom types if in that case you have defined what happens when you mlutipy your custom types.</p>
+<p>We can also use typeclasses. A typeclass is a set of types. Num contains only the types that behave like numbers so our f type is more acurately defined as:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#B392F0">f</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> Num</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=&gt;</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8"> a</span></span></code></pre>
+<p>This means a belongs to the Typeclass Num.</p>
+<h2 id="function-application">Function Application</h2>
+<p>No function in Haskell ever has more than 1 argument. Arguments are applied partially. Therefore calling the function f will result in <code>(f 3) 4</code> calling f with 1 argument partially and then applying to the rest.</p>
+<p>We can use <code>\</code> as lambda functions. The <code>\</code> symbol kinda looks like <code>λ</code></p>
+<h2 id="notation">Notation</h2>
+<p>In the following the <code>⇔</code> symbol to states that two expression are equivalent. It is a meta notation, <code>⇔</code> does not exists in Haskell. I will also use <code>⇒</code> to show what the return value of an expression is.
+<strong>Arithmetic</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="plaintext"><code><span class="line"><span>3 + 2 * 6 / 3 ⇔ 3 + ((2 * 6) / 3)</span></span></code></pre>
+<p><strong>Logic</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="plaintext"><code><span class="line"><span>True || False ⇒ True</span></span>
+<span class="line"><span>True &amp;&amp; False ⇒ False</span></span>
+<span class="line"><span>True == False ⇒ False</span></span>
+<span class="line"><span>True /= False ⇒ True (Not Equal to)</span></span></code></pre>
+<p><strong>Powers</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="plaintext"><code><span class="line"><span>x^n     for n being an integral (Int or Integer)</span></span>
+<span class="line"><span>x**y    for y being any number (Float, Int, ect..)</span></span></code></pre>
+<p>You can also use Rational Numbers by importing a module <code>Import Data.Ratio</code></p>
+<p><strong>Lists</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="plaintext"><code><span class="line"><span>[]                      ⇔ empty list</span></span>
+<span class="line"><span>[1,2,3]                 ⇔ List of integral</span></span>
+<span class="line"><span>[&quot;foo&quot;,&quot;bar&quot;,&quot;baz&quot;]     ⇔ List of String</span></span>
+<span class="line"><span>1:[2,3]                 ⇔ [1,2,3], (:) prepend one element</span></span>
+<span class="line"><span>1:2:[]                  ⇔ [1,2]</span></span>
+<span class="line"><span>[1,2] ++ [3,4]          ⇔ [1,2,3,4], (++) concatenate</span></span>
+<span class="line"><span>[1,2,3] ++ [&quot;foo&quot;]      ⇔ ERROR String ≠ Integral</span></span>
+<span class="line"><span>[1..4]                  ⇔ [1,2,3,4]</span></span>
+<span class="line"><span>[1,3..10]               ⇔ [1,3,5,7,9]</span></span>
+<span class="line"><span>[2,3,5,7,11..100]       ⇔ ERROR! I am not so smart!</span></span>
+<span class="line"><span>[10,9..1]               ⇔ [10,9,8,7,6,5,4,3,2,1]</span></span></code></pre>
+<p><strong>Strings</strong>
+Haskell Strings are a list of Characters [Char]</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="plaintext"><code><span class="line"><span>&#39;a&#39; :: Char</span></span>
+<span class="line"><span>&quot;a&quot; :: [Char]</span></span>
+<span class="line"><span>&quot;&quot;  ⇔ []</span></span>
+<span class="line"><span>&quot;ab&quot; ⇔ [&#39;a&#39;,&#39;b&#39;] ⇔  &#39;a&#39;:&quot;b&quot; ⇔ &#39;a&#39;:[&#39;b&#39;] ⇔ &#39;a&#39;:&#39;b&#39;:[]</span></span>
+<span class="line"><span>&quot;abc&quot; ⇔ &quot;ab&quot;++&quot;c&quot;</span></span></code></pre>
+<p>In Real code you should use <code>Data.Text</code> or <code>Data.ByteString</code> for a stream of ASCII Characters.</p>
+<p><strong>Tuples</strong>
+Elements in a Tuple can have different types:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#6A737D">-- All these tuples are valid</span></span>
+<span class="line"><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">,</span><span style="color:#9ECBFF">&quot;foo&quot;</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">,</span><span style="color:#9ECBFF">&#39;a&#39;</span><span style="color:#E1E4E8">,[</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">])</span></span>
+<span class="line"><span style="color:#E1E4E8">((</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">,</span><span style="color:#9ECBFF">&quot;a&quot;</span><span style="color:#E1E4E8">),</span><span style="color:#9ECBFF">&quot;c&quot;</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">fst (x,y)       </span><span style="color:#F97583">⇒</span><span style="color:#E1E4E8">  x</span></span>
+<span class="line"><span style="color:#E1E4E8">snd (x,y)       </span><span style="color:#F97583">⇒</span><span style="color:#E1E4E8">  y</span></span></code></pre>
+<p><strong>Infix vs Prefix Notation</strong>
+In Infix you may define a square function like this:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#B392F0">square</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> Num</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=&gt;</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8"> a</span></span>
+<span class="line"><span style="color:#E1E4E8">square x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> x</span><span style="color:#F97583">^</span><span style="color:#79B8FF">2</span></span></code></pre>
+<p>In Prefix notation you may do it like so:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#E1E4E8">square&#39; x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (</span><span style="color:#B392F0">^</span><span style="color:#E1E4E8">) x </span><span style="color:#79B8FF">2</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">square&#39;&#39; x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">^</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">) x</span></span></code></pre>
+<p>You can also write point free code without explicit parameters. This is called η-reduction</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#E1E4E8">square&#39;&#39;&#39; </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">^</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<p>The Parameter is implied.</p>
+<p><strong>If statements can look like</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#B392F0">absolute</span><span style="color:#F97583"> ::</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">Ord</span><span style="color:#E1E4E8"> a, </span><span style="color:#F97583">Num</span><span style="color:#E1E4E8"> a) </span><span style="color:#F97583">=&gt;</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8"> a</span></span>
+<span class="line"><span style="color:#E1E4E8">absolute x </span><span style="color:#F97583">=</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">&gt;=</span><span style="color:#79B8FF"> 0</span><span style="color:#F97583"> then</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">else</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8">x</span></span></code></pre>
+<p>or</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#E1E4E8">absolute&#39; x</span></span>
+<span class="line"><span style="color:#F97583">    |</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">&gt;=</span><span style="color:#79B8FF"> 0</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> x</span></span>
+<span class="line"><span style="color:#F97583">    |</span><span style="color:#E1E4E8"> otherwise </span><span style="color:#F97583">=</span><span style="color:#F97583"> -</span><span style="color:#E1E4E8">x</span></span></code></pre>
+<p>In the second example indentation is important.</p>
+<h4 id="variable-binding">Variable Binding</h4>
+<p><strong>Let Binding</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#F97583">let</span></span>
+<span class="line"><span style="color:#E1E4E8">  var1 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> expression</span></span>
+<span class="line"><span style="color:#E1E4E8">  var2 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> another expression</span></span>
+<span class="line"><span style="color:#E1E4E8">  var3 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> stuff</span></span>
+<span class="line"><span style="color:#F97583">in</span></span>
+<span class="line"><span style="color:#E1E4E8">  result expression</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">-- for example:</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">main </span><span style="color:#F97583">=</span><span style="color:#F97583"> let</span><span style="color:#E1E4E8"> m </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> n </span><span style="color:#F97583">+</span><span style="color:#79B8FF"> 2</span></span>
+<span class="line"><span style="color:#E1E4E8">           n </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 37</span></span>
+<span class="line"><span style="color:#F97583">       in</span><span style="color:#E1E4E8"> print m</span></span></code></pre>
+<h2 id="hard-part-refactoring-a-function">Hard Part (Refactoring a Function)</h2>
+<p>Recursion is generally perceived as slow in imperative languages. But this is generally not the case in functional programming. Most of the time Haskell will handle recursive functions efficiently.</p>
+<p>One way we can define an even sum is like so:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#B392F0">evenSum</span><span style="color:#F97583"> ::</span><span style="color:#E1E4E8"> [</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">-&gt;</span><span style="color:#F97583"> Integer</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">evenSum l </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> accumSum </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8"> l</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">accumSum n l </span><span style="color:#F97583">=</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> l </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> []</span></span>
+<span class="line"><span style="color:#F97583">                  then</span><span style="color:#E1E4E8"> n</span></span>
+<span class="line"><span style="color:#F97583">                  else</span><span style="color:#F97583"> let</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> head l</span></span>
+<span class="line"><span style="color:#E1E4E8">                           xs </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> tail l</span></span>
+<span class="line"><span style="color:#F97583">                       in</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> even x</span></span>
+<span class="line"><span style="color:#F97583">                              then</span><span style="color:#E1E4E8"> accumSum (n</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">x) xs</span></span>
+<span class="line"><span style="color:#F97583">                              else</span><span style="color:#E1E4E8"> accumSum n xs</span></span></code></pre>
+<p>However this required two functions. We can use where and let to make it neater</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#B392F0">evenSum</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> Integral</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=&gt;</span><span style="color:#E1E4E8"> [a] </span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8"> a</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">evenSum l </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> accumSum </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8"> l</span></span>
+<span class="line"><span style="color:#F97583">    where</span><span style="color:#E1E4E8"> accumSum n l </span><span style="color:#F97583">=</span></span>
+<span class="line"><span style="color:#F97583">            if</span><span style="color:#E1E4E8"> l </span><span style="color:#F97583">==</span><span style="color:#79B8FF"> []</span></span>
+<span class="line"><span style="color:#F97583">                then</span><span style="color:#E1E4E8"> n</span></span>
+<span class="line"><span style="color:#F97583">                else</span><span style="color:#F97583"> let</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> head l</span></span>
+<span class="line"><span style="color:#E1E4E8">                         xs </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> tail l</span></span>
+<span class="line"><span style="color:#F97583">                     in</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> even x</span></span>
+<span class="line"><span style="color:#F97583">                            then</span><span style="color:#E1E4E8"> accumSum (n</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">x) xs</span></span>
+<span class="line"><span style="color:#F97583">                            else</span><span style="color:#E1E4E8"> accumSum n xs</span></span></code></pre>
+<p>Pattern matching allows us to remove the <code>let ... in</code> structure</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#E1E4E8">evenSum l </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> accumSum </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8"> l</span></span>
+<span class="line"><span style="color:#F97583">    where</span></span>
+<span class="line"><span style="color:#E1E4E8">        accumSum n </span><span style="color:#79B8FF">[]</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> n</span></span>
+<span class="line"><span style="color:#E1E4E8">        accumSum n (x</span><span style="color:#F97583">:</span><span style="color:#E1E4E8">xs) </span><span style="color:#F97583">=</span></span>
+<span class="line"><span style="color:#F97583">             if</span><span style="color:#E1E4E8"> even x</span></span>
+<span class="line"><span style="color:#F97583">                then</span><span style="color:#E1E4E8"> accumSum (n</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">x) xs</span></span>
+<span class="line"><span style="color:#F97583">                else</span><span style="color:#E1E4E8"> accumSum n xs</span></span></code></pre>
+<p>converting to a point-free or n-reduced solution.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#B392F0">evenSum</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> Integral</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=&gt;</span><span style="color:#E1E4E8"> [a] </span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8"> a</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">evenSum </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> accumSum </span><span style="color:#79B8FF">0</span></span>
+<span class="line"><span style="color:#F97583">    where</span></span>
+<span class="line"><span style="color:#E1E4E8">        accumSum n </span><span style="color:#79B8FF">[]</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> n</span></span>
+<span class="line"><span style="color:#E1E4E8">        accumSum n (x</span><span style="color:#F97583">:</span><span style="color:#E1E4E8">xs) </span><span style="color:#F97583">=</span></span>
+<span class="line"><span style="color:#F97583">             if</span><span style="color:#E1E4E8"> even x</span></span>
+<span class="line"><span style="color:#F97583">                then</span><span style="color:#E1E4E8"> accumSum (n</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">x) xs</span></span>
+<span class="line"><span style="color:#F97583">                else</span><span style="color:#E1E4E8"> accumSum n xs</span></span></code></pre>
+<p>Higher Order functions make our lives easier!</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#E1E4E8">evenSum l </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> mysum </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8"> (filter even l)</span></span>
+<span class="line"><span style="color:#F97583">    where</span></span>
+<span class="line"><span style="color:#E1E4E8">      mysum n </span><span style="color:#79B8FF">[]</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> n</span></span>
+<span class="line"><span style="color:#E1E4E8">      mysum n (x</span><span style="color:#F97583">:</span><span style="color:#E1E4E8">xs) </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> mysum (n</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">x) xs</span></span></code></pre>
+<p>Even is bult in so we can filter out the even numbers of l. We can use a fold to make it even neater.
+foldl’ is a strict type version of fold from Data.List</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#B392F0"> Data.List</span></span>
+<span class="line"><span style="color:#E1E4E8">evenSum l </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> foldl&#39; mysum </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8"> (filter even l)</span></span>
+<span class="line"><span style="color:#F97583">  where</span><span style="color:#E1E4E8"> mysum acc value </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> acc </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> value</span></span></code></pre>
+<p>Finally writing a neater reduce and n-reduce</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#B392F0"> Data.List</span><span style="color:#E1E4E8"> (</span><span style="color:#B392F0">foldl&#39;</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#B392F0">evenSum</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> Integral</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=&gt;</span><span style="color:#E1E4E8"> [a] </span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8"> a</span></span>
+<span class="line"><span style="color:#E1E4E8">evenSum </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (foldl&#39; (</span><span style="color:#B392F0">+</span><span style="color:#E1E4E8">) </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">.</span><span style="color:#E1E4E8"> (filter even)</span></span></code></pre>
+<p>Haskell has a built in sum function so we can:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#B392F0">evenSum</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> Integral</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=&gt;</span><span style="color:#E1E4E8"> [a] </span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8"> a</span></span>
+<span class="line"><span style="color:#E1E4E8">evenSum </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> sum </span><span style="color:#F97583">.</span><span style="color:#E1E4E8"> (filter even)</span></span></code></pre>
+<h2 id="custom-types">Custom Types</h2>
+<p>Haskell types are <em>Strong</em> and <em>Static</em> this helps you avoid mistakes. Haskell can infer types of you write a square function where the body is <code>x * x</code> Haskell will assume x can be any Numberal Type.
+Even a Complex number!!</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#B392F0"> Data.Complex</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">square x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> x</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">square (</span><span style="color:#79B8FF">2</span><span style="color:#F97583"> :+</span><span style="color:#79B8FF"> 1</span><span style="color:#E1E4E8">) </span><span style="color:#6A737D">-- x :+ y is the notation for (x + iy)</span></span></code></pre>
+<p><strong>Construction of Types</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#F97583">type</span><span style="color:#F97583"> Colour</span><span style="color:#F97583"> =</span><span style="color:#F97583"> String</span></span>
+<span class="line"><span style="color:#F97583">type</span><span style="color:#F97583"> Name</span><span style="color:#F97583"> =</span><span style="color:#F97583"> String</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">showInfos</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> Name</span><span style="color:#F97583"> -&gt;</span><span style="color:#F97583"> Colour</span><span style="color:#F97583"> -&gt;</span><span style="color:#F97583"> String</span></span>
+<span class="line"><span style="color:#E1E4E8">showInfos name colour </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> &quot;Name:&quot;</span><span style="color:#F97583"> ++</span><span style="color:#E1E4E8"> name</span></span>
+<span class="line"><span style="color:#F97583">						++</span><span style="color:#9ECBFF"> &quot;, Colour: &quot;</span><span style="color:#F97583"> ++</span><span style="color:#E1E4E8"> colour</span></span></code></pre>
+<p>however if you swap the name and colour parameters it will still complile as Haskell will treat them identical they are both type string. To fix this we can make a data type:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#F97583">data</span><span style="color:#F97583"> Name</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> NameConstr</span><span style="color:#F97583"> String</span></span>
+<span class="line"><span style="color:#F97583">data</span><span style="color:#F97583"> Colour</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> ColourConstr</span><span style="color:#F97583"> String</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">showInfos</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> Name</span><span style="color:#F97583"> -&gt;</span><span style="color:#F97583"> Colour</span><span style="color:#F97583"> -&gt;</span><span style="color:#F97583"> String</span></span>
+<span class="line"><span style="color:#E1E4E8">showInfos (</span><span style="color:#79B8FF">NameConstr</span><span style="color:#E1E4E8"> name) (</span><span style="color:#79B8FF">ColourConstr</span><span style="color:#E1E4E8"> colour) </span><span style="color:#F97583">=</span></span>
+<span class="line"><span style="color:#9ECBFF">		&quot;Name: &quot;</span><span style="color:#F97583"> ++</span><span style="color:#E1E4E8"> name </span><span style="color:#F97583">++</span><span style="color:#9ECBFF"> &quot;, Colour: &quot;</span><span style="color:#F97583"> ++</span><span style="color:#E1E4E8"> colour</span></span></code></pre>
+<p>This time we cannot swap the name and colour around.
+<strong>Constructors</strong> are also functions:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#79B8FF">NameConstr</span><span style="color:#F97583">  ::</span><span style="color:#F97583"> String</span><span style="color:#F97583"> -&gt;</span><span style="color:#F97583"> Name</span></span>
+<span class="line"><span style="color:#79B8FF">ColorConstr</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> String</span><span style="color:#F97583"> -&gt;</span><span style="color:#F97583"> Color</span></span></code></pre>
+<p><strong>Data Syntax</strong> we can define Data like so:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#F97583">data</span><span style="color:#F97583"> TypeName</span><span style="color:#F97583"> =</span><span style="color:#79B8FF">   ConstructorName</span><span style="color:#E1E4E8">  [types]</span></span>
+<span class="line"><span style="color:#F97583">                |</span><span style="color:#79B8FF"> ConstructorName2</span><span style="color:#E1E4E8"> [types]</span></span>
+<span class="line"><span style="color:#F97583">                |</span><span style="color:#E1E4E8"> ...</span></span></code></pre>
+<p>The convention is to call those DataTypeName and DataTypeConstructor.  We can also use a record syntax:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#F97583">data</span><span style="color:#F97583"> DataTypeName</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> DataConstructor</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">                      field1 </span><span style="color:#F97583">::</span><span style="color:#E1E4E8"> [type of field1]</span></span>
+<span class="line"><span style="color:#E1E4E8">                    , field2 </span><span style="color:#F97583">::</span><span style="color:#E1E4E8"> [type of field2]</span></span>
+<span class="line"><span style="color:#F97583">                    ...</span></span>
+<span class="line"><span style="color:#E1E4E8">                    , fieldn </span><span style="color:#F97583">::</span><span style="color:#E1E4E8"> [type of fieldn] }</span></span></code></pre>
+<p>Use this as follows:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#F97583">data</span><span style="color:#F97583"> Complex</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=</span><span style="color:#F97583"> Num</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=&gt;</span><span style="color:#79B8FF"> Complex</span><span style="color:#E1E4E8"> { real </span><span style="color:#F97583">::</span><span style="color:#E1E4E8"> a, img </span><span style="color:#F97583">::</span><span style="color:#E1E4E8"> a}</span></span>
+<span class="line"><span style="color:#E1E4E8">c </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> Complex</span><span style="color:#79B8FF"> 1.0</span><span style="color:#79B8FF"> 2.0</span></span>
+<span class="line"><span style="color:#E1E4E8">z </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> Complex</span><span style="color:#E1E4E8"> { real </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 3</span><span style="color:#E1E4E8">, img </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 4</span><span style="color:#E1E4E8"> }</span></span>
+<span class="line"><span style="color:#E1E4E8">real c </span><span style="color:#F97583">⇒</span><span style="color:#79B8FF"> 1.0</span></span>
+<span class="line"><span style="color:#E1E4E8">img z </span><span style="color:#F97583">⇒</span><span style="color:#79B8FF"> 4</span></span></code></pre>
+<h2 id="resursive-types">Resursive Types</h2>
+<p>We can define our own more verbose lists:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#F97583">data</span><span style="color:#F97583"> List</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> Empty</span><span style="color:#F97583"> |</span><span style="color:#79B8FF"> Cons</span><span style="color:#E1E4E8"> a (</span><span style="color:#F97583">List</span><span style="color:#E1E4E8"> a)</span></span>
+<span class="line"><span style="color:#F97583">			  deriving</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">Show</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">Read</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">Eq</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">Ord</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<p>deriving means haskell will add the specified functions for you!</p>
+<h3 id="binary-trees">Binary Trees</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#B392F0"> Data.List</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">data</span><span style="color:#F97583"> BinTree</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> Empty</span></span>
+<span class="line"><span style="color:#F97583">                 |</span><span style="color:#79B8FF"> Node</span><span style="color:#E1E4E8"> a (</span><span style="color:#F97583">BinTree</span><span style="color:#E1E4E8"> a) (</span><span style="color:#F97583">BinTree</span><span style="color:#E1E4E8"> a)</span></span>
+<span class="line"><span style="color:#F97583">                              deriving</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">Eq</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">Ord</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<p>We can make a function convert a list to a tree:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#B392F0">treeFromList</span><span style="color:#F97583"> ::</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">Ord</span><span style="color:#E1E4E8"> a) </span><span style="color:#F97583">=&gt;</span><span style="color:#E1E4E8"> [a] </span><span style="color:#F97583">-&gt;</span><span style="color:#F97583"> BinTree</span><span style="color:#E1E4E8"> a</span></span>
+<span class="line"><span style="color:#E1E4E8">treeFromList </span><span style="color:#79B8FF">[]</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> Empty</span></span>
+<span class="line"><span style="color:#E1E4E8">treeFromList (x</span><span style="color:#F97583">:</span><span style="color:#E1E4E8">xs) </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> Node</span><span style="color:#E1E4E8"> x (treeFromList (filter (</span><span style="color:#F97583">&lt;</span><span style="color:#E1E4E8">x) xs))</span></span>
+<span class="line"><span style="color:#E1E4E8">                             (treeFromList (filter (</span><span style="color:#F97583">&gt;</span><span style="color:#E1E4E8">x) xs))</span></span></code></pre>
+<ul>
+<li>an empty list will be converted to an empty tree.</li>
+<li>a list <code>(x:xs)</code> will be converted to a tree where:
+<ul>
+<li>The root is <code>x</code></li>
+<li>Its left subtree is the tree created from members of the list <code>xs</code> which are strictly inferior to <code>x</code> and the right subtree is the tree created from members of the list <code>xs</code> which are strictly superior to <code>x</code>.
+We didn’t specify show so that we can make our own:</li>
+</ul>
+</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#6A737D">-- declare BinTree a to be an instance of Show</span></span>
+<span class="line"><span style="color:#F97583">instance</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">Show</span><span style="color:#E1E4E8"> a) </span><span style="color:#F97583">=&gt;</span><span style="color:#F97583"> Show</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">BinTree</span><span style="color:#E1E4E8"> a) </span><span style="color:#F97583">where</span></span>
+<span class="line"><span style="color:#6A737D">  -- will start by a &#39;&lt;&#39; before the root</span></span>
+<span class="line"><span style="color:#6A737D">  -- and put a : a begining of line</span></span>
+<span class="line"><span style="color:#E1E4E8">  show t </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> &quot;&lt; &quot;</span><span style="color:#F97583"> ++</span><span style="color:#E1E4E8"> replace </span><span style="color:#9ECBFF">&#39;</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">&#39;</span><span style="color:#9ECBFF"> &quot;</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">: &quot;</span><span style="color:#E1E4E8"> (treeshow </span><span style="color:#9ECBFF">&quot;&quot;</span><span style="color:#E1E4E8"> t)</span></span>
+<span class="line"><span style="color:#F97583">    where</span></span>
+<span class="line"><span style="color:#6A737D">    -- treeshow pref Tree</span></span>
+<span class="line"><span style="color:#6A737D">    --   shows a tree and starts each line with pref</span></span>
+<span class="line"><span style="color:#6A737D">    -- We don&#39;t display the Empty tree</span></span>
+<span class="line"><span style="color:#E1E4E8">    treeshow pref </span><span style="color:#79B8FF">Empty</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> &quot;&quot;</span></span>
+<span class="line"><span style="color:#6A737D">    -- Leaf</span></span>
+<span class="line"><span style="color:#E1E4E8">    treeshow pref (</span><span style="color:#79B8FF">Node</span><span style="color:#E1E4E8"> x </span><span style="color:#79B8FF">Empty</span><span style="color:#79B8FF"> Empty</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=</span></span>
+<span class="line"><span style="color:#E1E4E8">                  (pshow pref x)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    -- Right branch is empty</span></span>
+<span class="line"><span style="color:#E1E4E8">    treeshow pref (</span><span style="color:#79B8FF">Node</span><span style="color:#E1E4E8"> x left </span><span style="color:#79B8FF">Empty</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=</span></span>
+<span class="line"><span style="color:#E1E4E8">                  (pshow pref x) </span><span style="color:#F97583">++</span><span style="color:#9ECBFF"> &quot;</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#F97583"> ++</span></span>
+<span class="line"><span style="color:#E1E4E8">                  (showSon pref </span><span style="color:#9ECBFF">&quot;`--&quot;</span><span style="color:#9ECBFF"> &quot;   &quot;</span><span style="color:#E1E4E8"> left)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    -- Left branch is empty</span></span>
+<span class="line"><span style="color:#E1E4E8">    treeshow pref (</span><span style="color:#79B8FF">Node</span><span style="color:#E1E4E8"> x </span><span style="color:#79B8FF">Empty</span><span style="color:#E1E4E8"> right) </span><span style="color:#F97583">=</span></span>
+<span class="line"><span style="color:#E1E4E8">                  (pshow pref x) </span><span style="color:#F97583">++</span><span style="color:#9ECBFF"> &quot;</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#F97583"> ++</span></span>
+<span class="line"><span style="color:#E1E4E8">                  (showSon pref </span><span style="color:#9ECBFF">&quot;`--&quot;</span><span style="color:#9ECBFF"> &quot;   &quot;</span><span style="color:#E1E4E8"> right)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    -- Tree with left and right children non empty</span></span>
+<span class="line"><span style="color:#E1E4E8">    treeshow pref (</span><span style="color:#79B8FF">Node</span><span style="color:#E1E4E8"> x left right) </span><span style="color:#F97583">=</span></span>
+<span class="line"><span style="color:#E1E4E8">                  (pshow pref x) </span><span style="color:#F97583">++</span><span style="color:#9ECBFF"> &quot;</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#F97583"> ++</span></span>
+<span class="line"><span style="color:#E1E4E8">                  (showSon pref </span><span style="color:#9ECBFF">&quot;|--&quot;</span><span style="color:#9ECBFF"> &quot;|  &quot;</span><span style="color:#E1E4E8"> left) </span><span style="color:#F97583">++</span><span style="color:#9ECBFF"> &quot;</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#F97583"> ++</span></span>
+<span class="line"><span style="color:#E1E4E8">                  (showSon pref </span><span style="color:#9ECBFF">&quot;`--&quot;</span><span style="color:#9ECBFF"> &quot;   &quot;</span><span style="color:#E1E4E8"> right)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    -- shows a tree using some prefixes to make it nice</span></span>
+<span class="line"><span style="color:#E1E4E8">    showSon pref before next t </span><span style="color:#F97583">=</span></span>
+<span class="line"><span style="color:#E1E4E8">                  pref </span><span style="color:#F97583">++</span><span style="color:#E1E4E8"> before </span><span style="color:#F97583">++</span><span style="color:#E1E4E8"> treeshow (pref </span><span style="color:#F97583">++</span><span style="color:#E1E4E8"> next) t</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    -- pshow replaces &quot;\n&quot; by &quot;\n&quot;++pref</span></span>
+<span class="line"><span style="color:#E1E4E8">    pshow pref x </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> replace </span><span style="color:#9ECBFF">&#39;</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">&#39;</span><span style="color:#E1E4E8"> (</span><span style="color:#9ECBFF">&quot;</span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">pref) (show x)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    -- replaces one char by another string</span></span>
+<span class="line"><span style="color:#E1E4E8">    replace c new string </span><span style="color:#F97583">=</span></span>
+<span class="line"><span style="color:#E1E4E8">      concatMap (change c new) string</span></span>
+<span class="line"><span style="color:#F97583">      where</span></span>
+<span class="line"><span style="color:#E1E4E8">          change c new x</span></span>
+<span class="line"><span style="color:#F97583">              |</span><span style="color:#E1E4E8"> x </span><span style="color:#F97583">==</span><span style="color:#E1E4E8"> c </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> new</span></span>
+<span class="line"><span style="color:#F97583">              |</span><span style="color:#E1E4E8"> otherwise </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> x</span><span style="color:#F97583">:</span><span style="color:#79B8FF">[]</span><span style="color:#6A737D"> -- &quot;x&quot;</span></span></code></pre>
+<p>Now the formatting will be a lot nicer:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#E1E4E8">main </span><span style="color:#F97583">=</span><span style="color:#F97583"> do</span></span>
+<span class="line"><span style="color:#E1E4E8">  putStrLn </span><span style="color:#9ECBFF">&quot;Int binary tree:&quot;</span></span>
+<span class="line"><span style="color:#E1E4E8">  print </span><span style="color:#F97583">$</span><span style="color:#E1E4E8"> treeFromList [</span><span style="color:#79B8FF">7</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">8</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">6</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">21</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">12</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">23</span><span style="color:#E1E4E8">]</span></span></code></pre>
+<p>Gives us:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="plaintext"><code><span class="line"><span>Int binary tree:</span></span>
+<span class="line"><span>&lt; 7</span></span>
+<span class="line"><span>: |--2</span></span>
+<span class="line"><span>: |  |--1</span></span>
+<span class="line"><span>: |  `--4</span></span>
+<span class="line"><span>: |     |--3</span></span>
+<span class="line"><span>: |     `--6</span></span>
+<span class="line"><span>: `--8</span></span>
+<span class="line"><span>:    `--21</span></span>
+<span class="line"><span>:       |--12</span></span>
+<span class="line"><span>:       `--23</span></span></code></pre>
+<h2 id="infinite-structures">Infinite Structures</h2>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#6A737D">-- numbers = [1,2,..]</span></span>
+<span class="line"><span style="color:#B392F0">numbers</span><span style="color:#F97583"> ::</span><span style="color:#E1E4E8"> [</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">numbers </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#F97583">:</span><span style="color:#E1E4E8">map (</span><span style="color:#79B8FF">1</span><span style="color:#F97583">+</span><span style="color:#E1E4E8">) numbers</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">take&#39; n </span><span style="color:#79B8FF">[]</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> []</span></span>
+<span class="line"><span style="color:#E1E4E8">take&#39; </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8"> l </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> []</span></span>
+<span class="line"><span style="color:#E1E4E8">take&#39; n (x</span><span style="color:#F97583">:</span><span style="color:#E1E4E8">xs) </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> x</span><span style="color:#F97583">:</span><span style="color:#E1E4E8">take&#39; (n</span><span style="color:#F97583">-</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">) xs</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">main </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> print </span><span style="color:#F97583">$</span><span style="color:#E1E4E8"> take&#39; </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8"> numbers</span></span></code></pre>
+<p><code>numbers</code> is an infinite structure which is defined by the previous digit being incremented by 1 each time. This will give you all the natural numbers from 0 to infinity.  <code>take</code> will give you the first 10 and will only evaluate those hence there is no issue with exceeding the recursion stack.
+In Haskell you can define infinite lists like so:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">1</span><span style="color:#F97583">..</span><span style="color:#E1E4E8">]   </span><span style="color:#F97583">⇔</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">4</span><span style="color:#F97583">...</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">[</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">3</span><span style="color:#F97583">..</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">⇔</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">7</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">9</span><span style="color:#E1E4E8">,</span><span style="color:#79B8FF">11</span><span style="color:#F97583">...</span><span style="color:#E1E4E8">]</span></span></code></pre>
+<h1 id="side-effects">Side Effects</h1>
+<p>Basic IO looks like an imperative program:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#B392F0">f</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> IO</span><span style="color:#E1E4E8"> a</span></span>
+<span class="line"><span style="color:#E1E4E8">f </span><span style="color:#F97583">=</span><span style="color:#F97583"> do</span></span>
+<span class="line"><span style="color:#E1E4E8">  x </span><span style="color:#F97583">&lt;-</span><span style="color:#E1E4E8"> action1</span></span>
+<span class="line"><span style="color:#E1E4E8">  action2 x</span></span>
+<span class="line"><span style="color:#E1E4E8">  y </span><span style="color:#F97583">&lt;-</span><span style="color:#E1E4E8"> action3</span></span>
+<span class="line"><span style="color:#E1E4E8">  action4 x y</span></span></code></pre>
+<p>The &lt;- is used to set values.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#E1E4E8">main </span><span style="color:#F97583">=</span><span style="color:#F97583"> do</span></span>
+<span class="line"><span style="color:#E1E4E8">	varaible </span><span style="color:#F97583">&lt;-</span><span style="color:#E1E4E8"> action</span></span></code></pre>
+<p>Side Effects come with <em>Error Detection</em> for which we use <code>Data.Maybe</code></p>
+<p>Without error detection we can write:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#B392F0">toList</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> String</span><span style="color:#F97583"> -&gt;</span><span style="color:#E1E4E8"> [</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">toList input </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> read (</span><span style="color:#9ECBFF">&quot;[&quot;</span><span style="color:#F97583"> ++</span><span style="color:#E1E4E8"> input </span><span style="color:#F97583">++</span><span style="color:#9ECBFF"> &quot;]&quot;</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">main </span><span style="color:#F97583">=</span><span style="color:#F97583"> do</span></span>
+<span class="line"><span style="color:#E1E4E8">  putStrLn </span><span style="color:#9ECBFF">&quot;Enter a list of numbers (separated by comma):&quot;</span></span>
+<span class="line"><span style="color:#E1E4E8">  input </span><span style="color:#F97583">&lt;-</span><span style="color:#E1E4E8"> getLine</span></span>
+<span class="line"><span style="color:#E1E4E8">  print </span><span style="color:#F97583">$</span><span style="color:#E1E4E8"> sum (toList input)</span></span></code></pre>
+<p>However if the user enters anything weird such as “foo” not comma separated it will break.
+We can write code using Maybe to catch this.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#B392F0">maybeRead</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> Read</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=&gt;</span><span style="color:#F97583"> String</span><span style="color:#F97583"> -&gt;</span><span style="color:#F97583"> Maybe</span><span style="color:#E1E4E8"> a</span></span>
+<span class="line"><span style="color:#E1E4E8">maybeRead s </span><span style="color:#F97583">=</span><span style="color:#F97583"> case</span><span style="color:#E1E4E8"> reads s </span><span style="color:#F97583">of</span></span>
+<span class="line"><span style="color:#E1E4E8">                  [(x,</span><span style="color:#9ECBFF">&quot;&quot;</span><span style="color:#E1E4E8">)]    </span><span style="color:#F97583">-&gt;</span><span style="color:#79B8FF"> Just</span><span style="color:#E1E4E8"> x</span></span>
+<span class="line"><span style="color:#E1E4E8">                  _           </span><span style="color:#F97583">-&gt;</span><span style="color:#79B8FF"> Nothing</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">getListFromString</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> String</span><span style="color:#F97583"> -&gt;</span><span style="color:#F97583"> Maybe</span><span style="color:#E1E4E8"> [</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">getListFromString str </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> maybeRead </span><span style="color:#F97583">$</span><span style="color:#9ECBFF"> &quot;[&quot;</span><span style="color:#F97583"> ++</span><span style="color:#E1E4E8"> str </span><span style="color:#F97583">++</span><span style="color:#9ECBFF"> &quot;]&quot;</span><span style="color:#E1E4E8">     </span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">main</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> IO</span><span style="color:#79B8FF"> ()</span></span>
+<span class="line"><span style="color:#E1E4E8">main </span><span style="color:#F97583">=</span><span style="color:#F97583"> do</span></span>
+<span class="line"><span style="color:#E1E4E8">  putStrLn </span><span style="color:#9ECBFF">&quot;Enter a list of numbers (separated by comma):&quot;</span></span>
+<span class="line"><span style="color:#E1E4E8">  input </span><span style="color:#F97583">&lt;-</span><span style="color:#E1E4E8"> getLine</span></span>
+<span class="line"><span style="color:#F97583">  let</span><span style="color:#E1E4E8"> maybeList </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> getListFromString input </span><span style="color:#F97583">in</span></span>
+<span class="line"><span style="color:#F97583">      case</span><span style="color:#E1E4E8"> maybeList </span><span style="color:#F97583">of</span></span>
+<span class="line"><span style="color:#79B8FF">          Just</span><span style="color:#E1E4E8"> l  </span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8"> print (sum l)</span></span>
+<span class="line"><span style="color:#79B8FF">          Nothing</span><span style="color:#F97583"> -&gt;</span><span style="color:#E1E4E8"> error </span><span style="color:#9ECBFF">&quot;Bad format. Good Bye.&quot;</span></span></code></pre>
+<p>If we get an error this time we get a nicer error message.
+If we want to loop until we get the right number then we can exctract the getting of the input into a function.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#B392F0">askUser</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> IO</span><span style="color:#E1E4E8"> [</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">askUser </span><span style="color:#F97583">=</span><span style="color:#F97583"> do</span></span>
+<span class="line"><span style="color:#E1E4E8">  putStrLn </span><span style="color:#9ECBFF">&quot;Enter a list of numbers (separated by comma):&quot;</span></span>
+<span class="line"><span style="color:#E1E4E8">  input </span><span style="color:#F97583">&lt;-</span><span style="color:#E1E4E8"> getLine</span></span>
+<span class="line"><span style="color:#F97583">  let</span><span style="color:#E1E4E8"> maybeList </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> getListFromString input </span><span style="color:#F97583">in</span></span>
+<span class="line"><span style="color:#F97583">      case</span><span style="color:#E1E4E8"> maybeList </span><span style="color:#F97583">of</span></span>
+<span class="line"><span style="color:#79B8FF">          Just</span><span style="color:#E1E4E8"> l  </span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8"> return l</span></span>
+<span class="line"><span style="color:#79B8FF">          Nothing</span><span style="color:#F97583"> -&gt;</span><span style="color:#E1E4E8"> askUser</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">main</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> IO</span><span style="color:#79B8FF"> ()</span></span>
+<span class="line"><span style="color:#E1E4E8">main </span><span style="color:#F97583">=</span><span style="color:#F97583"> do</span></span>
+<span class="line"><span style="color:#E1E4E8">	list </span><span style="color:#F97583">&lt;-</span><span style="color:#E1E4E8"> askUser</span></span>
+<span class="line"><span style="color:#E1E4E8">	print </span><span style="color:#F97583">$</span><span style="color:#E1E4E8"> sum list</span></span></code></pre>
+<p>We typically want to split side effects from pure code. The main function can often look like this:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#E1E4E8">main w0 </span><span style="color:#F97583">=</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> (v1,w1) </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> action1 w0 </span><span style="color:#F97583">in</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> (v2,w2) </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> action2 v1 w1 </span><span style="color:#F97583">in</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> (v3,w3) </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> action3 v2 w2 </span><span style="color:#F97583">in</span></span>
+<span class="line"><span style="color:#E1E4E8">    action4 v3 w3</span></span></code></pre>
+<p>This has a lot of temp variables which are just passed to the next function. We can use bind (&gt;&gt;=) to remove the temp varaibles.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#E1E4E8">main </span><span style="color:#F97583">=</span></span>
+<span class="line"><span style="color:#E1E4E8">  action1 </span><span style="color:#F97583">&gt;&gt;=</span><span style="color:#E1E4E8"> action2 </span><span style="color:#F97583">&gt;&gt;=</span><span style="color:#E1E4E8"> action3 </span><span style="color:#F97583">&gt;&gt;=</span><span style="color:#E1E4E8"> action4</span></span></code></pre>
+<p>or using the arrow syntax</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#E1E4E8">main </span><span style="color:#F97583">=</span><span style="color:#F97583"> do</span></span>
+<span class="line"><span style="color:#E1E4E8">  v1 </span><span style="color:#F97583">&lt;-</span><span style="color:#E1E4E8"> action1</span></span>
+<span class="line"><span style="color:#E1E4E8">  v2 </span><span style="color:#F97583">&lt;-</span><span style="color:#E1E4E8"> action2 v1</span></span>
+<span class="line"><span style="color:#E1E4E8">  v3 </span><span style="color:#F97583">&lt;-</span><span style="color:#E1E4E8"> action3 v2</span></span>
+<span class="line"><span style="color:#E1E4E8">  action4 v3</span></span></code></pre>
+<p>In Haskell the main function is assumed to change the state of the world. Something like <code>main :: World -&gt; World</code>
+Haskell considers the state of the world as an input to the main function. The actual type of main is closer to:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#B392F0">main</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> World</span><span style="color:#F97583"> -&gt;</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">()</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">World</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<p>The () is a unit type.
+All functions with a side effect have a type of <code>World -&gt; (a, World)</code> where <code>a</code> is the type of the result. For instance getChar has a type of <code>World -&gt; (Char, World)</code></p>
+<p>The Haskell compiler will at each step provide a pointer to a real world id.
+We can define the type of askUser as:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#B392F0">askUser</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> World</span><span style="color:#F97583"> -&gt;</span><span style="color:#E1E4E8"> ([</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">], </span><span style="color:#F97583">World</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">askUser w0 </span><span style="color:#F97583">=</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> (_,w1)     </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> putStrLn </span><span style="color:#9ECBFF">&quot;Enter a list of numbers:&quot;</span><span style="color:#F97583"> in</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> (input,w2) </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> getLine w1 </span><span style="color:#F97583">in</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> (l,w3)     </span><span style="color:#F97583">=</span><span style="color:#F97583"> case</span><span style="color:#E1E4E8"> getListFromString input </span><span style="color:#F97583">of</span></span>
+<span class="line"><span style="color:#79B8FF">                      Just</span><span style="color:#E1E4E8"> l   </span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8"> (l,w2)</span></span>
+<span class="line"><span style="color:#79B8FF">                      Nothing</span><span style="color:#F97583">  -&gt;</span><span style="color:#E1E4E8"> askUser w2</span></span>
+<span class="line"><span style="color:#F97583">    in</span></span>
+<span class="line"><span style="color:#E1E4E8">        (l,w3)</span></span></code></pre>
+<p>Each line above looks like this: <code>let (y,w&#39;) = action x w in</code>  each time the output of a function is <code>(answer, newWorldValue)</code> hence each function must have a type similar to:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#B392F0">f</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> World</span><span style="color:#F97583"> -&gt;</span><span style="color:#E1E4E8"> (a, </span><span style="color:#F97583">World</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<p>We can remove temp varaibles by defining a bind:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#B392F0">bind</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> IO</span><span style="color:#E1E4E8"> a</span></span>
+<span class="line"><span style="color:#F97583">        -&gt;</span><span style="color:#E1E4E8"> (a </span><span style="color:#F97583">-&gt;</span><span style="color:#F97583"> IO</span><span style="color:#E1E4E8"> b)</span></span>
+<span class="line"><span style="color:#F97583">        -&gt;</span><span style="color:#F97583"> IO</span><span style="color:#E1E4E8"> b</span></span></code></pre>
+<p>A pattern from the askUser funtion was:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#E1E4E8">pattern1 w0 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583"> let</span><span style="color:#E1E4E8"> (x,w1) </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> action1 w0 </span><span style="color:#F97583">in</span></span>
+<span class="line"><span style="color:#F97583"> let</span><span style="color:#E1E4E8"> (y,w2) </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> action2 x w1 </span><span style="color:#F97583">in</span></span>
+<span class="line"><span style="color:#E1E4E8"> (y,w2)</span></span></code></pre>
+<p>The types for these are:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#B392F0">action1</span><span style="color:#F97583">  ::</span><span style="color:#F97583"> IO</span><span style="color:#E1E4E8"> a</span></span>
+<span class="line"><span style="color:#B392F0">action2</span><span style="color:#F97583">  ::</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">-&gt;</span><span style="color:#F97583"> IO</span><span style="color:#E1E4E8"> b</span></span>
+<span class="line"><span style="color:#B392F0">pattern1</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> IO</span><span style="color:#E1E4E8"> b</span></span></code></pre>
+<p>Which looks very much like the bind function. The goal is to hide the World from the function.
+If we have this function:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> (line1,w1) </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> getLine w0 </span><span style="color:#F97583">in</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> (line2,w2) </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> getLine w1 </span><span style="color:#F97583">in</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">()</span><span style="color:#E1E4E8">,w3) </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> print (line1 </span><span style="color:#F97583">++</span><span style="color:#E1E4E8"> line2) </span><span style="color:#F97583">in</span></span>
+<span class="line"><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">()</span><span style="color:#E1E4E8">,w3)</span></span></code></pre>
+<p>We can write this using bind:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#E1E4E8">(res,w3) </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (bind getLine (</span><span style="color:#F97583">\</span><span style="color:#E1E4E8">line1 </span><span style="color:#F97583">-&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">             (bind getLine (</span><span style="color:#F97583">\</span><span style="color:#E1E4E8">line2 </span><span style="color:#F97583">-&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">               print (line1 </span><span style="color:#F97583">++</span><span style="color:#E1E4E8"> line2))))) w0</span></span></code></pre>
+<p>Haskell uses &gt;&gt;= for bind so we can write:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#E1E4E8">(res,w3) </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (getLine </span><span style="color:#F97583">&gt;&gt;=</span></span>
+<span class="line"><span style="color:#E1E4E8">           (</span><span style="color:#F97583">\</span><span style="color:#E1E4E8">line1 </span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8"> getLine </span><span style="color:#F97583">&gt;&gt;=</span></span>
+<span class="line"><span style="color:#E1E4E8">           (</span><span style="color:#F97583">\</span><span style="color:#E1E4E8">line2 </span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8"> print (line1 </span><span style="color:#F97583">++</span><span style="color:#E1E4E8"> line2)))) w0</span></span></code></pre>
+<p><strong>Syntactic Sugar</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#F97583">do</span></span>
+<span class="line"><span style="color:#E1E4E8">  x </span><span style="color:#F97583">&lt;-</span><span style="color:#E1E4E8"> action1</span></span>
+<span class="line"><span style="color:#E1E4E8">  y </span><span style="color:#F97583">&lt;-</span><span style="color:#E1E4E8"> action2</span></span>
+<span class="line"><span style="color:#E1E4E8">  z </span><span style="color:#F97583">&lt;-</span><span style="color:#E1E4E8"> action3</span></span>
+<span class="line"><span style="color:#F97583">  ...</span></span></code></pre>
+<p>is replaced by:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#E1E4E8">action1 </span><span style="color:#F97583">&gt;&gt;=</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">\</span><span style="color:#E1E4E8">x </span><span style="color:#F97583">-&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">action2 </span><span style="color:#F97583">&gt;&gt;=</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">\</span><span style="color:#E1E4E8">y </span><span style="color:#F97583">-&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">action3 </span><span style="color:#F97583">&gt;&gt;=</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">\</span><span style="color:#E1E4E8">z </span><span style="color:#F97583">-&gt;</span></span>
+<span class="line"><span style="color:#F97583">...</span></span>
+<span class="line"><span style="color:#E1E4E8">)))</span></span></code></pre>
+<p>For lines not using the &lt;- we can use the &gt;&gt; operator</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#F97583">do</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#E1E4E8">	action1</span></span>
+<span class="line"><span style="color:#E1E4E8">	action2</span></span>
+<span class="line"><span style="color:#E1E4E8">	action3</span></span></code></pre>
+<p>is converted to;</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#E1E4E8">action1 </span><span style="color:#F97583">&gt;&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">action2 </span><span style="color:#F97583">&gt;&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">action3</span></span></code></pre>
+<p>Finally we can traslate the askUser function</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#B392F0">askUser</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> IO</span><span style="color:#E1E4E8"> [</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">askUser </span><span style="color:#F97583">=</span><span style="color:#F97583"> do</span></span>
+<span class="line"><span style="color:#E1E4E8">  putStrLn </span><span style="color:#9ECBFF">&quot;Enter a list of numbers (separated by commas):&quot;</span></span>
+<span class="line"><span style="color:#E1E4E8">  input </span><span style="color:#F97583">&lt;-</span><span style="color:#E1E4E8"> getLine</span></span>
+<span class="line"><span style="color:#F97583">  let</span><span style="color:#E1E4E8"> maybeList </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> getListFromString input </span><span style="color:#F97583">in</span></span>
+<span class="line"><span style="color:#F97583">      case</span><span style="color:#E1E4E8"> maybeList </span><span style="color:#F97583">of</span></span>
+<span class="line"><span style="color:#79B8FF">          Just</span><span style="color:#E1E4E8"> l  </span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8"> return l</span></span>
+<span class="line"><span style="color:#79B8FF">          Nothing</span><span style="color:#F97583"> -&gt;</span><span style="color:#E1E4E8"> askUser</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">main</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> IO</span><span style="color:#79B8FF"> ()</span></span>
+<span class="line"><span style="color:#E1E4E8">main </span><span style="color:#F97583">=</span><span style="color:#F97583"> do</span></span>
+<span class="line"><span style="color:#E1E4E8">  list </span><span style="color:#F97583">&lt;-</span><span style="color:#E1E4E8"> askUser</span></span>
+<span class="line"><span style="color:#E1E4E8">  print </span><span style="color:#F97583">$</span><span style="color:#E1E4E8"> sum list</span></span></code></pre>
+<p>Is translated into:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="haskell"><code><span class="line"><span style="color:#F97583">import</span><span style="color:#B392F0"> Data.Maybe</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">maybeRead</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> Read</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=&gt;</span><span style="color:#F97583"> String</span><span style="color:#F97583"> -&gt;</span><span style="color:#F97583"> Maybe</span><span style="color:#E1E4E8"> a</span></span>
+<span class="line"><span style="color:#E1E4E8">maybeRead s </span><span style="color:#F97583">=</span><span style="color:#F97583"> case</span><span style="color:#E1E4E8"> reads s </span><span style="color:#F97583">of</span></span>
+<span class="line"><span style="color:#E1E4E8">                  [(x,</span><span style="color:#9ECBFF">&quot;&quot;</span><span style="color:#E1E4E8">)]    </span><span style="color:#F97583">-&gt;</span><span style="color:#79B8FF"> Just</span><span style="color:#E1E4E8"> x</span></span>
+<span class="line"><span style="color:#E1E4E8">                  _           </span><span style="color:#F97583">-&gt;</span><span style="color:#79B8FF"> Nothing</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">getListFromString</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> String</span><span style="color:#F97583"> -&gt;</span><span style="color:#F97583"> Maybe</span><span style="color:#E1E4E8"> [</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">getListFromString str </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> maybeRead </span><span style="color:#F97583">$</span><span style="color:#9ECBFF"> &quot;[&quot;</span><span style="color:#F97583"> ++</span><span style="color:#E1E4E8"> str </span><span style="color:#F97583">++</span><span style="color:#9ECBFF"> &quot;]&quot;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">askUser</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> IO</span><span style="color:#E1E4E8"> [</span><span style="color:#F97583">Integer</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">askUser </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#E1E4E8">    putStrLn </span><span style="color:#9ECBFF">&quot;Enter a list of numbers (sep. by commas):&quot;</span><span style="color:#F97583"> &gt;&gt;</span></span>
+<span class="line"><span style="color:#E1E4E8">    getLine </span><span style="color:#F97583">&gt;&gt;=</span><span style="color:#F97583"> \</span><span style="color:#E1E4E8">input </span><span style="color:#F97583">-&gt;</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> maybeList </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> getListFromString input </span><span style="color:#F97583">in</span></span>
+<span class="line"><span style="color:#F97583">      case</span><span style="color:#E1E4E8"> maybeList </span><span style="color:#F97583">of</span></span>
+<span class="line"><span style="color:#79B8FF">        Just</span><span style="color:#E1E4E8"> l </span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8"> return l</span></span>
+<span class="line"><span style="color:#79B8FF">        Nothing</span><span style="color:#F97583"> -&gt;</span><span style="color:#E1E4E8"> askUser</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">main</span><span style="color:#F97583"> ::</span><span style="color:#F97583"> IO</span><span style="color:#79B8FF"> ()</span></span>
+<span class="line"><span style="color:#E1E4E8">main </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> askUser </span><span style="color:#F97583">&gt;&gt;=</span></span>
+<span class="line"><span style="color:#F97583">  \</span><span style="color:#E1E4E8">list </span><span style="color:#F97583">-&gt;</span><span style="color:#E1E4E8"> print </span><span style="color:#F97583">$</span><span style="color:#E1E4E8"> sum list</span></span></code></pre>
+<h1 id="monads">Monads</h1>
+<p>IO is a monad.  This means it has access to syntactic sugar using <code>do</code> notation. Monads are about sequencing not always effects.  Monads implement bind and return <strong>Maybe is a Monad</strong>. There is also a list monad which is useful sometimes.</p> </div> <footer data-astro-cid-k2f5zb5c> <p data-astro-cid-k2f5zb5c>2025 &copy;  Richard</p> </footer>  </html>

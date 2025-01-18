@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>Clean Code</title><link rel="icon" type="image/x-icon" href="/favicon.ico"><meta name="description" content="RichardMe123 personal site"><meta name="robots" content="index, nofollow"><meta name="author" content="Richard C"><link rel="canonical" href="https://merichard123.github.io/"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"><link rel="manifest" href="/favicon/site.webmanifest"><link rel="stylesheet" href="/style/global.css"><link rel="stylesheet" href="/style/home.css"><style>footer[data-astro-cid-k2f5zb5c]{text-align:center;margin-top:2.5rem;padding:2rem;background-color:#f8f8f8;font-family:JetBrains Mono,Lato,sans-serif}p[data-astro-cid-k2f5zb5c]{font-size:1.1rem}
+nav[data-astro-cid-lq7i5isa]{padding:1rem;background-color:#f5f5f5}a[data-astro-cid-lq7i5isa]{font-family:JetBrains Mono,Lato,sans-serif;text-decoration:none;color:#333}
+</style></head> <header> <nav data-astro-cid-lq7i5isa> <a href="/" data-astro-cid-lq7i5isa>&lt/back</a> </nav>  </header> <div class="notes-container"> <h1 class="notes-title">Clean Code</h1> <p><a href="https://www.youtube.com/watch?v=7EmboKQH8lM">full video</a></p>
+<p>Uncle Bob likes OOP</p>
+<h3 id="speed-and-efficiency">Speed and efficiency</h3>
+<p>Kent Beck wrote a book called “implementation patterns”. He said that good code is built on a “fragile premise”</p>
+<p>Porgrammers are slow because they start of going really fast implementing features left right and center. After a year or so the code becomes so messy that touching even a single line of code could release a deamon because they write messy. As a result adding new features is slow because it is hard to work out what is going on with the code.
+Eventually the team will bottom out and can’t add more features fast enough. So what do managers do? They add more people. These new people need to be trained by the seniors and they learn from the current code base which is still a mess and the team is slowed down even more.
+If we didn’t make a mess adding new features will be fast. The desire to go fast is what drives messy code.
+No one writes clean code off the bat. You should then spend the same amount of time refactoring as you took to write the code.
+** Refactoring time == time taken to write in the first place **
+&gt; The Only way to go fast is to go well</p>
+<h3 id="one-thing">One Thing</h3>
+<p>A function should do one thing and one thing well.
+Every line of a function should be at the same level of abstraction.
+<strong>The Rule of Functions:</strong></p>
+<ol>
+<li>They should be small</li>
+<li>They should be smaller than that</li>
+</ol>
+<p>A Functions does one thing if you cannot exctract a meaningful function from it.
+You continue naming them and extracting into modules or classes.<br/>
+All large functions are really classes with little functions inside them, you can turn it OOP.
+The indent level shouldn’t be greater than one or two.
+Number Arugments:</p>
+<ul>
+<li>0 is good</li>
+<li>1 is not too bad</li>
+<li>2 is ok</li>
+<li>3 ummm there’s lots of ways to order 3 arguments so no more than 3 please.
+You shouldn’t pass booleans into functions. Because if you pass booleans there must be an <code>if</code> statement so you can separate this into functions. You shouldn’t pass output arguments - ones which are only passed in to output it.</li>
+</ul>
+<p>&gt; Clean code is simple and direct, clean code reads like well-written prose
+&gt; — Grady Booch</p>
+<p>&gt; Clean code awalys looks like it was written by someone who cares
+&gt;  — Michael Feathers</p>
+<p>&gt; You know you are working on clean code when each routine you read turns out to be exactly what you expected…
+&gt; — Ward Cunningham</p>
+<p>It is more important to communicate code to your peers than the computer. It is better to write code which your peers understand rather than code which works and only the computer understands.</p>
+<p>Explainatory Variable - one who’s only purpose is to explain the data it holds</p>
+<h3 id="open-close-principle">Open-Close Principle</h3>
+<p>A system should be open for extention and closed for modification. You can do this with abstract base classes -&gt; avoid switch statements.</p>
+<h4 id="side-effects">Side Effects</h4>
+<ul>
+<li>Try to group side effects</li>
+<li>Garbage Collections -&gt; something which is implemented to avoid having to do memory management. Most high-level languages have this build in. The order of function calls is important.</li>
+</ul>
+<h5 id="command-query-separation">Command Query Separation</h5>
+<p>A Function which returns <code>void</code> must have a side effect. A function which returns a value shouldn’t change the state of the system.
+It is better to use an exception than to return an error code.
+<em>Keep your code D.R.Y</em></p>
+<p><a href="https://www.youtube.com/watch?v=2a_ytyt9sf8">Part Two</a></p> </div> <footer data-astro-cid-k2f5zb5c> <p data-astro-cid-k2f5zb5c>2025 &copy;  Richard</p> </footer>  </html>
