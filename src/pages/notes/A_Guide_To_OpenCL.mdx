@@ -223,6 +223,7 @@ void kernel simple_add(global const int* A, global const int* B, global int* C)
 - Kernels are written in OpenCL C
 - A Kernel must return void. 
 - The `global` keyword means it is pointing to global memory.
+
 You may also see this written as:
 ```cl
 void __kernel simple_add(global const int* A, global const int* B, global int* C) 
@@ -232,6 +233,7 @@ void __kernel simple_add(global const int* A, global const int* B, global int* C
 };
 ```
 These are the same semantically. 
+
 7. Select kernels to execute from the programs
 	-  We need to build the kernel by reading it from the given `.cl` file.
 	- Then, push it into the source object.
@@ -260,7 +262,7 @@ These are the same semantically.
 ```
 
 8. _Enqueue_ kernels into the command queue for execution
-	- Execute the Kernel by Enqueueing it.
+    - Execute the Kernel by Enqueueing it.
 	- A program can have many entry points or kernels. 
 ```cpp
     // Create a Kernel from the program
