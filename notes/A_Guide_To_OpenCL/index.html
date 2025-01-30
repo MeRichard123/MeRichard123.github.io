@@ -1,0 +1,345 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>A Beginners Guide to OpenCL | Notes </title><meta name="title" content="A Beginners Guide to OpenCL | Richard's Notes"><meta name="description" content="A Beginners Guide to OpenCL Programming and Parallel Programming"><meta name="keywords" content="notes, OpenCL, Parallel Programming, C++"><meta name="robots" content="index, follow"><meta name="language" content="English"><meta name="author" content="Richard C"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://merichard123.github.io/"><meta property="twitter:title" content="A Beginners Guide to OpenCL | Richard's Notes"><meta property="twitter:description" content="A Beginners Guide to OpenCL Programming and Parallel Programming"><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="canonical" href="https://merichard123.github.io/"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"><link rel="manifest" href="/favicon/site.webmanifest"><link rel="stylesheet" href="/style/global.css"><link rel="stylesheet" href="/style/home.css"><style>footer[data-astro-cid-k2f5zb5c]{text-align:center;margin-top:2.5rem;padding:2rem;background-color:#f8f8f8;font-family:JetBrains Mono,Lato,sans-serif}p[data-astro-cid-k2f5zb5c]{font-size:1.1rem}
+nav[data-astro-cid-lq7i5isa]{padding:1rem;background-color:#f5f5f5}a[data-astro-cid-lq7i5isa]{font-family:JetBrains Mono,Lato,sans-serif;text-decoration:none;color:#333}
+</style></head> <header> <nav data-astro-cid-lq7i5isa> <a href="/" data-astro-cid-lq7i5isa>&lt/back</a> </nav>  </header> <div class="notes-container"> <h1 class="notes-title">A Beginners Guide to OpenCL</h1> <details><summary><span style="font-weight:bold; font-size: 1.4rem;">Contents</span></summary><ul>
+<li><a href="#how-does-opencl-work">How does OpenCL Work?</a>
+<ul>
+<li><a href="#executing-an-opencl-program">Executing an OpenCL Program</a></li>
+<li><a href="#sequence-for-executing-an-opencl-program-1">Sequence for Executing an OpenCL Program [1]</a></li>
+</ul>
+</li>
+<li><a href="#kernels">Kernels</a></li>
+<li><a href="#opencl-programming-model">OpenCL Programming Model</a>
+<ul>
+<li><a href="#platform-model">Platform Model </a></li>
+<li><a href="#execution-model">Execution Model</a></li>
+<li><a href="#memory-model">Memory Model</a></li>
+</ul>
+</li>
+<li><a href="#opencl-programming">OpenCL Programming</a>
+<ul>
+<li><a href="#writing-the-kernel">Writing the Kernel</a></li>
+<li><a href="#sources">Sources </a></li>
+</ul>
+</li>
+</ul></details>
+<blockquote>
+<p>Skip <a href="#opencl-programming">here</a> if you only care about the code.</p>
+</blockquote>
+<ul>
+<li>OpenCL stands for Open Computing Language - an open standard for cross-platform, Parallel Programming.</li>
+<li>OpenCL is a <em>programming framework</em> and <em>runtime</em> that enables a programmer to create small kernel programs (kernels) compiled and executed in parallel on any processor.</li>
+<li>Some Processors Include CPU, GPU, DSP, FPGA, and Tensor Processors.</li>
+<li>Because it works with many types, it is often called a solution for <strong>Heterogeneous Parallel Programming</strong>.</li>
+</ul>
+<p><strong>Definitions:</strong></p>
+<ul>
+<li><strong>Platform</strong>: The OpenCL platform is a specific implementation of the standard by individual hardware vendors.
+<ul>
+<li>One Single Computer may serve several OpenCL platforms/implementations.</li>
+<li>For example, the Intel Platform supports the CPU, and the GPU is supported by AMD.</li>
+</ul>
+</li>
+<li><strong>Device</strong> (or kernel) is an actual hardware device supporting OpenCL.
+<ul>
+<li>A Device will run its code on ‘Computing Units’.</li>
+<li>e.g. a single core of a modern CPU, which consists of ‘Processing Elements’</li>
+<li>Each Platform can support multiple devices.</li>
+</ul>
+</li>
+<li><strong>Contexts</strong>: Multiple devices from the same platform can then be assembled into different ‘Contexts’, which enable flexible configurations on machines with multiple devices (e.g. 4 GPUs).</li>
+<li><strong>Queue</strong> is associated with a specific context (i.e., a specific device) and allows a programmer to interact with the device.
+<ul>
+<li>We send commands to the queue; a command can request a copy operation between the host and the device.</li>
+</ul>
+</li>
+<li><strong>Events</strong> - OpenCL enables profiling using events; these are attached to different queue commands and collect info about timings.</li>
+</ul>
+<h2 id="how-does-opencl-work">How does OpenCL Work?</h2>
+<p>OpenCL contains two APIs:</p>
+<ul>
+<li>The <em>Platform Layer API</em> runs on the Host CPU.
+<ul>
+<li>It discovers what processors or compute devices are available.</li>
+<li>We can use this to query what devices we want to run our code on.</li>
+</ul>
+</li>
+<li>The <em>Runtime API</em> compiles kernels for the device.
+<ul>
+<li>It will also gather the execution results.</li>
+</ul>
+</li>
+</ul>
+<h3 id="executing-an-opencl-program">Executing an OpenCL Program</h3>
+<ul>
+<li>A Kernel Program is a basic unit of executable code (a function).</li>
+<li>Kernels can execute with <strong>data</strong> or <strong>task-parallelism</strong>.</li>
+<li>An OpenCL program is a collection of Kernels and functions.</li>
+<li>A Command Queue is used by the Host Application to send kernels and data transfer functions to a device for execution.
+<ul>
+<li>When we enqueue a command onto the queue, it may execute in parallel.</li>
+<li>It can be executed in-order or out-of-order.</li>
+<li>A Device may have multiple command Queues.</li>
+</ul>
+</li>
+</ul>
+<details><p><summary>In-Order vs Out-of-Order Execution</summary>
+<strong>In-Order Execution</strong>: Instructions go through fetch-decode-execute in the order the compiler generates them. Top to bottom, one stalls, and they all stall.
+<strong>Out-of-Order Execution</strong>: Instructions are fetched in the compiler-generated order but they may be executed in a different order, independent instructions can run in parallel and if one stalls the others can still pass.</p></details>
+<p><img src="/_astro/OpenCLStructure.DXI67xwv_2jpMTE.webp" alt="OpenCL structure" width="2374" height="1734" loading="lazy" decoding="async"></p>
+<h3 id="sequence-for-executing-an-opencl-program-1">Sequence for Executing an OpenCL Program [1]</h3>
+<ol>
+<li>Query for available OpenCL platforms and devices</li>
+<li>Create a context for one or more OpenCL devices in a platform</li>
+<li>Create and build programs for OpenCL devices in the context</li>
+<li>Select kernels to execute from the programs</li>
+<li>Create memory objects for kernels to operate on</li>
+<li>Create command queues to execute commands on an OpenCL device</li>
+<li><em>Enqueue</em> data transfer commands into the memory objects if needed</li>
+<li><em>Enqueue</em> kernels into the command queue for execution</li>
+<li><em>Enqueue</em> commands to transfer data back to the host, if needed</li>
+</ol>
+<h2 id="kernels">Kernels</h2>
+<ul>
+<li>An OpenCL app is split into host code and kernel code.</li>
+<li>Host code written in C or C++, and Kernel code is written in OpenCL C.</li>
+<li>Kernels can be compiled in two ways:
+<ul>
+<li><em>Online Compilation</em>: Ingested and Compiled by the OpenCL driver during execution.</li>
+<li><em>Offline Compilation</em>: the Kernel is pre-compiled into a binary.</li>
+</ul>
+</li>
+</ul>
+<h2 id="opencl-programming-model">OpenCL Programming Model</h2>
+<p>There are three models we need to be aware of:</p>
+<ul>
+<li>The Platform Model</li>
+<li>Execution Model</li>
+<li>Memory Model</li>
+</ul>
+<h3 id="platform-model">Platform Model</h3>
+<ul>
+<li>The Platform Model describes how OpenCL understands the Compute Resources in a System.</li>
+<li>A <em>host</em> is connected to one or more OpenCL compute devices (CDs).</li>
+<li>Each CD is a collection of multiple Processing Elements (PEs).</li>
+<li>Processing Elements execute code with SIMD or SPMD.</li>
+</ul>
+<p><img src="/_astro/hostcd.j2e1calE_Z2sXbJ5.webp" alt="OpenCL Platform Model" width="2684" height="1344" loading="lazy" decoding="async"></p>
+<p>A Compute Device could be the GPU.</p>
+<h3 id="execution-model">Execution Model</h3>
+<p>The <code>clEnqueueNDRangeKernel</code> command allows a single kernel program to be initiated to operate in parallel across a data structure structure.</p>
+<ul>
+<li><code>NDRange</code> is an N-Dimensional (ND) structure that holds the work items.</li>
+<li>For using a 2D image, the image size would be the <code>NDRange</code>, and each pixel is a work-item that a copy of the kernel running on a single processing element will operate on</li>
+<li>We specify a <code>work-group</code> size representing groups of individual work items in an NDRange.</li>
+<li>Work items in the same work group can share local memory.</li>
+</ul>
+<p><img src="/_astro/ndrange.ZFQ2gPb__1hTUej.webp" alt="NDRange" width="1398" height="1270" loading="lazy" decoding="async"></p>
+<h3 id="memory-model">Memory Model</h3>
+<p>Several memory types in OpenCL form a hierarchy:</p>
+<ol>
+<li>Host Memory - on the host CPU</li>
+<li>Global/Constant memory - available to all CUs in a CD.</li>
+<li>Local Memory - available to all PEs in a CU.</li>
+<li>Private Memory - available to a single PE.</li>
+</ol>
+<p><img src="/_astro/memorymodel.CDEo44ic_ZbpKra.webp" alt="Memory Model OpenCL" width="1401" height="1454" loading="lazy" decoding="async"></p>
+<h2 id="opencl-programming">OpenCL Programming</h2>
+<p>First, we need to import the necessary libraries:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &lt;CL/opencl.hpp&gt;</span></span>
+<span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &lt;iostream&gt;</span></span>
+<span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &lt;fstream&gt;</span></span>
+<span class="line"><span style="color:#F97583">#include</span><span style="color:#9ECBFF"> &lt;string&gt;</span></span></code></pre>
+<p>Following the steps from above in our main function:</p>
+<ol>
+<li>Query for available OpenCL platforms and devices</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#B392F0"> main</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">    // Store the Platform ID</span></span>
+<span class="line"><span style="color:#E1E4E8">    cl_platform_id platform_id;</span></span>
+<span class="line"><span style="color:#6A737D">    // Get the first Available Platform</span></span>
+<span class="line"><span style="color:#B392F0">    clGetPlatformIDs</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">&amp;</span><span style="color:#E1E4E8">platform_id, </span><span style="color:#79B8FF">NULL</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // Optionally: get the name of the platform</span></span>
+<span class="line"><span style="color:#F97583">    char</span><span style="color:#E1E4E8"> platformName[</span><span style="color:#79B8FF">128</span><span style="color:#E1E4E8">];</span></span>
+<span class="line"><span style="color:#B392F0">    clGetPlatformInfo</span><span style="color:#E1E4E8">(platform_id, </span></span>
+<span class="line"><span style="color:#E1E4E8">		      CL_PLATFORM_NAME, </span></span>
+<span class="line"><span style="color:#F97583">		      sizeof</span><span style="color:#E1E4E8">(platformName), </span></span>
+<span class="line"><span style="color:#E1E4E8">		      platformName, </span><span style="color:#79B8FF">NULL</span></span>
+<span class="line"><span style="color:#E1E4E8">		      ); </span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // Store the Device ID</span></span>
+<span class="line"><span style="color:#E1E4E8">    cl_device_id device_id;</span></span>
+<span class="line"><span style="color:#6A737D">    // Get the first GPU available on a given platform</span></span>
+<span class="line"><span style="color:#B392F0">    clGetDeviceIDs</span><span style="color:#E1E4E8">(platform_id, CL_DEVICE_TYPE_GPU, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">&amp;</span><span style="color:#E1E4E8">device_id, </span><span style="color:#79B8FF">NULL</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // Optionally: get the name of the Device</span></span>
+<span class="line"><span style="color:#F97583">    char</span><span style="color:#E1E4E8"> deviceName[</span><span style="color:#79B8FF">128</span><span style="color:#E1E4E8">];</span></span>
+<span class="line"><span style="color:#B392F0">    clGetDeviceInfo</span><span style="color:#E1E4E8">(device_id, </span></span>
+<span class="line"><span style="color:#E1E4E8">		    CL_DEVICE_NAME, </span></span>
+<span class="line"><span style="color:#F97583">		    sizeof</span><span style="color:#E1E4E8">(deviceName), </span></span>
+<span class="line"><span style="color:#E1E4E8">		    deviceName, </span><span style="color:#79B8FF">NULL</span></span>
+<span class="line"><span style="color:#E1E4E8">		    );</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">    std</span><span style="color:#E1E4E8">::cout </span><span style="color:#F97583">&lt;&lt;</span><span style="color:#9ECBFF"> &quot;Current Device is: &quot;</span><span style="color:#F97583"> &lt;&lt;</span><span style="color:#E1E4E8"> deviceName </span><span style="color:#F97583">&lt;&lt;</span><span style="color:#B392F0"> std</span><span style="color:#E1E4E8">::endl;</span></span>
+<span class="line"><span style="color:#E1E4E8">	</span></span>
+<span class="line"><span style="color:#B392F0">    std</span><span style="color:#E1E4E8">::cout </span><span style="color:#F97583">&lt;&lt;</span><span style="color:#9ECBFF"> &quot;Current Platform is: &quot;</span><span style="color:#F97583"> &lt;&lt;</span><span style="color:#E1E4E8"> platformName </span><span style="color:#F97583">&lt;&lt;</span><span style="color:#B392F0"> std</span><span style="color:#E1E4E8">::endl;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">    ...</span></span></code></pre>
+<p>Alternatively, we can get these from a list:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#B392F0">    cl</span><span style="color:#E1E4E8">::vector</span><span style="color:#F97583">&lt;</span><span style="color:#B392F0">cl</span><span style="color:#E1E4E8">::Platform</span><span style="color:#F97583">&gt;</span><span style="color:#E1E4E8"> platformList;</span></span>
+<span class="line"><span style="color:#B392F0">    cl</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">Platform</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">get</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">&amp;</span><span style="color:#E1E4E8">platformList);</span></span></code></pre>
+<ol start="2">
+<li>Create a context for one or more OpenCL devices in a platform
+<ul>
+<li>Contexts manage objects in the OpenCL Runtime:</li>
+<li>Objects like Command Queues, Memory, Programs, Kernel</li>
+<li>All the OpenCL work happens in a Context.</li>
+<li>A context can have multiple devices.</li>
+</ul>
+</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#B392F0">    cl</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">Device</span><span style="color:#B392F0"> device</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">device_id</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">    cl</span><span style="color:#E1E4E8">::Context context </span><span style="color:#F97583">=</span><span style="color:#B392F0"> cl</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">Context</span><span style="color:#E1E4E8">({ device });</span></span></code></pre>
+<ol start="3">
+<li>Create command queues to execute commands on an OpenCL device
+<ul>
+<li>This is how we push commands onto the device.</li>
+<li>These are called streams in Cuda.</li>
+</ul>
+</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#B392F0">    cl</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">CommandQueue</span><span style="color:#B392F0"> queue</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">context</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">device</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<ol start="4">
+<li>Next, we define the source of code which will run on the device
+<ul>
+<li>This will store the Kernel.</li>
+<li>The <code>Sources</code> data structure lets us store and manage kernel source code before executing it.</li>
+</ul>
+</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#B392F0">    cl</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">Program</span><span style="color:#E1E4E8">::Sources sources;</span></span></code></pre>
+<ol start="5">
+<li>Create memory objects for kernels to operate on.
+<ul>
+<li>_h stands for host (it is on the host)</li>
+</ul>
+</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> SIZE </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 10</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> A_h[] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> { </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">4</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">6</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">7</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">8</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">9</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8"> };</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> B_h[] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> { </span><span style="color:#79B8FF">11</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">12</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">13</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">15</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">16</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">17</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">18</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">19</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">20</span><span style="color:#E1E4E8"> };</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // We need to allocate a memory buffer on the device itself (_d is device)</span></span>
+<span class="line"><span style="color:#6A737D">    // A buffer can be of several types:</span></span>
+<span class="line"><span style="color:#6A737D">    // - CL_MEM_READ_ONLY</span></span>
+<span class="line"><span style="color:#6A737D">    // - CL_MEM_WRITE_ONLY</span></span>
+<span class="line"><span style="color:#B392F0">    cl</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">Buffer</span><span style="color:#B392F0"> A_d</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">context</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">CL_MEM_READ_WRITE</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">sizeof</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">*</span><span style="color:#FFAB70"> SIZE</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">    cl</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">Buffer</span><span style="color:#B392F0"> B_d</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">context</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">CL_MEM_READ_WRITE</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">sizeof</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">*</span><span style="color:#FFAB70"> SIZE</span><span style="color:#E1E4E8">);	</span></span>
+<span class="line"><span style="color:#B392F0">    cl</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">Buffer</span><span style="color:#B392F0"> C_d</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">context</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">CL_MEM_READ_WRITE</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">sizeof</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">*</span><span style="color:#FFAB70"> SIZE</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<ol start="6">
+<li><em>Enqueue</em> data transfer commands into the memory objects if needed
+<ul>
+<li>Writing into Device Memory</li>
+<li>We can execute commands on a device</li>
+<li>We can also initialise vectors A_d using values from A_h</li>
+</ul>
+</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#E1E4E8">    queue.</span><span style="color:#B392F0">enqueueWriteBuffer</span><span style="color:#E1E4E8">(A_d, CL_TRUE, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">sizeof</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> SIZE, A_h);</span></span>
+<span class="line"><span style="color:#E1E4E8">    queue.</span><span style="color:#B392F0">enqueueWriteBuffer</span><span style="color:#E1E4E8">(B_d, CL_TRUE, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">sizeof</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> SIZE, B_h);</span></span></code></pre>
+<h3 id="writing-the-kernel">Writing the Kernel</h3>
+<blockquote>
+<p>kernels.cl</p>
+</blockquote>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="plaintext"><code><span class="line"><span>void kernel simple_add(global const int* A, global const int* B, global int* C) </span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    int id = get_global_id(0);</span></span>
+<span class="line"><span>    C[id] = A[id] + B[id];</span></span>
+<span class="line"><span>};</span></span></code></pre>
+<ul>
+<li>Kernels are written in OpenCL C</li>
+<li>A Kernel must return void.</li>
+<li>The <code>global</code> keyword means it is pointing to global memory.
+You may also see this written as:</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="plaintext"><code><span class="line"><span>void __kernel simple_add(global const int* A, global const int* B, global int* C) </span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    int id = get_global_id(0);</span></span>
+<span class="line"><span>    C[id] = A[id] + B[id];</span></span>
+<span class="line"><span>};</span></span></code></pre>
+<p>These are the same semantically.
+7. Select kernels to execute from the programs</p>
+<ul>
+<li>We need to build the kernel by reading it from the given <code>.cl</code> file.</li>
+<li>Then, push it into the source object.</li>
+<li>We also need a program associated with the source.</li>
+<li>The Program is then built for a particular device.</li>
+<li>A <strong>Program</strong> is an OpenCL program consisting of one or more kernels.</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#6A737D">    // Read the Kernel file as a string</span></span>
+<span class="line"><span style="color:#B392F0">    std</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">ifstream</span><span style="color:#B392F0"> file</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;kernels.cl&quot;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#B392F0">    std</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">string</span><span style="color:#B392F0"> kernel_code</span><span style="color:#E1E4E8">((</span><span style="color:#B392F0">std</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">istreambuf_iterator</span><span style="color:#E1E4E8">&lt;</span><span style="color:#F97583">char</span><span style="color:#E1E4E8">&gt;(file)),</span></span>
+<span class="line"><span style="color:#E1E4E8">			        (</span><span style="color:#B392F0">std</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">istreambuf_iterator</span><span style="color:#E1E4E8">&lt;</span><span style="color:#F97583">char</span><span style="color:#E1E4E8">&gt;()));</span></span>
+<span class="line"><span style="color:#E1E4E8">    sources.</span><span style="color:#B392F0">push_back</span><span style="color:#E1E4E8">({ kernel_code.</span><span style="color:#B392F0">c_str</span><span style="color:#E1E4E8">(), kernel_code.</span><span style="color:#B392F0">length</span><span style="color:#E1E4E8">() });</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // Next we create a program which links </span></span>
+<span class="line"><span style="color:#6A737D">    // the OpenCL code to the context</span></span>
+<span class="line"><span style="color:#B392F0">    cl</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">Program</span><span style="color:#B392F0"> program</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">context</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">sources</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // Building the Program</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (program.</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">({ device }) </span><span style="color:#F97583">!=</span><span style="color:#E1E4E8"> CL_SUCCESS) </span></span>
+<span class="line"><span style="color:#E1E4E8">    {</span></span>
+<span class="line"><span style="color:#B392F0">	    std</span><span style="color:#E1E4E8">::cout </span><span style="color:#F97583">&lt;&lt;</span><span style="color:#9ECBFF"> &quot;Error Building: &quot;</span><span style="color:#E1E4E8"> </span></span>
+<span class="line"><span style="color:#F97583">		&lt;&lt;</span><span style="color:#E1E4E8"> program.getBuildInfo</span><span style="color:#F97583">&lt;</span><span style="color:#E1E4E8">CL_PROGRAM_BUILD_LOG</span><span style="color:#F97583">&gt;</span><span style="color:#E1E4E8">(device) </span></span>
+<span class="line"><span style="color:#F97583">		&lt;&lt;</span><span style="color:#B392F0"> std</span><span style="color:#E1E4E8">::endl;</span></span>
+<span class="line"><span style="color:#B392F0">	    exit</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span></code></pre>
+<ol start="8">
+<li><em>Enqueue</em> kernels into the command queue for execution
+<ul>
+<li>Execute the Kernel by Enqueueing it.</li>
+<li>A program can have many entry points or kernels.</li>
+</ul>
+</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#6A737D">    // Create a Kernel from the program</span></span>
+<span class="line"><span style="color:#B392F0">    cl</span><span style="color:#E1E4E8">::Kernel simple_add </span><span style="color:#F97583">=</span><span style="color:#B392F0"> cl</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">Kernel</span><span style="color:#E1E4E8">(program, </span><span style="color:#9ECBFF">&quot;simple_add&quot;</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#6A737D">    // Add all the data as arguments to the kernel</span></span>
+<span class="line"><span style="color:#E1E4E8">    simple_add.</span><span style="color:#B392F0">setArg</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, A_d);</span></span>
+<span class="line"><span style="color:#E1E4E8">    simple_add.</span><span style="color:#B392F0">setArg</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, B_d);</span></span>
+<span class="line"><span style="color:#E1E4E8">    simple_add.</span><span style="color:#B392F0">setArg</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">, C_d);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // - We want to run the simple_add kernel</span></span>
+<span class="line"><span style="color:#6A737D">    // - Global Offset: start kernel from 0 (NullRange)</span></span>
+<span class="line"><span style="color:#6A737D">    // - Global Work Size: How many work-items or threads we run </span></span>
+<span class="line"><span style="color:#6A737D">    // - Local Work Size: work-group size -&gt; OpenCL chooses the size (NullRange)</span></span>
+<span class="line"><span style="color:#E1E4E8">    queue.</span><span style="color:#B392F0">enqueueNDRangeKernel</span><span style="color:#E1E4E8">(simple_add, </span></span>
+<span class="line"><span style="color:#B392F0">			       cl</span><span style="color:#E1E4E8">::NullRange, </span></span>
+<span class="line"><span style="color:#B392F0">			       cl</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">NDRange</span><span style="color:#E1E4E8">(SIZE), </span></span>
+<span class="line"><span style="color:#B392F0">			       cl</span><span style="color:#E1E4E8">::NullRange</span></span>
+<span class="line"><span style="color:#E1E4E8">			       );</span></span>
+<span class="line"><span style="color:#E1E4E8">	</span></span></code></pre>
+<ol start="9">
+<li><em>Enqueue</em> commands to transfer data back to the host, if needed</li>
+</ol>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> C_h[SIZE];</span></span>
+<span class="line"><span style="color:#6A737D">    // Read the final buffer</span></span>
+<span class="line"><span style="color:#6A737D">    // - Read from C_d </span></span>
+<span class="line"><span style="color:#6A737D">    // - Set Blocking or Non-Blocking</span></span>
+<span class="line"><span style="color:#6A737D">    // - Start Reading at 0</span></span>
+<span class="line"><span style="color:#6A737D">    // - Read 4 Bytes * SIZE</span></span>
+<span class="line"><span style="color:#6A737D">    // - Destination pointer (read into)</span></span>
+<span class="line"><span style="color:#E1E4E8">    queue.</span><span style="color:#B392F0">enqueueReadBuffer</span><span style="color:#E1E4E8">(C_d, CL_TRUE, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">, </span><span style="color:#F97583">sizeof</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> SIZE, C_h);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // output the final array</span></span>
+<span class="line"><span style="color:#B392F0">    std</span><span style="color:#E1E4E8">::cout </span><span style="color:#F97583">&lt;&lt;</span><span style="color:#9ECBFF"> &quot; result: </span><span style="color:#79B8FF">\n</span><span style="color:#9ECBFF">&quot;</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">    for</span><span style="color:#E1E4E8"> (</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> i </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">; i</span><span style="color:#F97583">&lt;</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">; i</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#B392F0">	    std</span><span style="color:#E1E4E8">::cout </span><span style="color:#F97583">&lt;&lt;</span><span style="color:#E1E4E8"> C_h[i] </span><span style="color:#F97583">&lt;&lt;</span><span style="color:#9ECBFF"> &quot; &quot;</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#B392F0">    std</span><span style="color:#E1E4E8">::cout </span><span style="color:#F97583">&lt;&lt;</span><span style="color:#B392F0"> std</span><span style="color:#E1E4E8">::endl;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="sources">Sources</h3>
+<ol>
+<li><a href="https://github.com/KhronosGroup/OpenCL-Guide/">https://github.com/KhronosGroup/OpenCL-Guide/</a></li>
+<li><a href="https://www.codeproject.com/articles/92788/introductory-tutorial-to-opencl">https://www.codeproject.com/articles/92788/introductory-tutorial-to-opencl</a></li>
+</ol> </div> <footer data-astro-cid-k2f5zb5c> <p data-astro-cid-k2f5zb5c>2025 &copy;  Richard</p> </footer>  </html>
