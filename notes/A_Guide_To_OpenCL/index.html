@@ -259,16 +259,17 @@ nav[data-astro-cid-lq7i5isa]{padding:1rem;background-color:#f5f5f5}a[data-astro-
 <ul>
 <li>Kernels are written in OpenCL C</li>
 <li>A Kernel must return void.</li>
-<li>The <code>global</code> keyword means it is pointing to global memory.
-You may also see this written as:</li>
+<li>The <code>global</code> keyword means it is pointing to global memory.</li>
 </ul>
+<p>You may also see this written as:</p>
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="plaintext"><code><span class="line"><span>void __kernel simple_add(global const int* A, global const int* B, global int* C) </span></span>
 <span class="line"><span>{</span></span>
 <span class="line"><span>    int id = get_global_id(0);</span></span>
 <span class="line"><span>    C[id] = A[id] + B[id];</span></span>
 <span class="line"><span>};</span></span></code></pre>
-<p>These are the same semantically.
-7. Select kernels to execute from the programs</p>
+<p>These are the same semantically.</p>
+<ol start="7">
+<li>Select kernels to execute from the programs
 <ul>
 <li>We need to build the kernel by reading it from the given <code>.cl</code> file.</li>
 <li>Then, push it into the source object.</li>
@@ -276,6 +277,8 @@ You may also see this written as:</li>
 <li>The Program is then built for a particular device.</li>
 <li>A <strong>Program</strong> is an OpenCL program consisting of one or more kernels.</li>
 </ul>
+</li>
+</ol>
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8;overflow-x:auto" tabindex="0" data-language="cpp"><code><span class="line"><span style="color:#6A737D">    // Read the Kernel file as a string</span></span>
 <span class="line"><span style="color:#B392F0">    std</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">ifstream</span><span style="color:#B392F0"> file</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">&quot;kernels.cl&quot;</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#B392F0">    std</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">string</span><span style="color:#B392F0"> kernel_code</span><span style="color:#E1E4E8">((</span><span style="color:#B392F0">std</span><span style="color:#E1E4E8">::</span><span style="color:#B392F0">istreambuf_iterator</span><span style="color:#E1E4E8">&lt;</span><span style="color:#F97583">char</span><span style="color:#E1E4E8">&gt;(file)),</span></span>
