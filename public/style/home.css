@@ -13,6 +13,17 @@ h1 {
   }
 }
 
+code:not(pre > code) {
+  @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+  font-family: "JetBrains Mono", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  background-color: #f3eeee;
+  border-radius: 5px;
+  padding: 1px 4px;
+  color: hsl(0, 68%, 55%);
+}
+
 .notes-container {
   margin: 0 auto 110px auto;
   max-width: 100ch;

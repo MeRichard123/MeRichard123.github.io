@@ -1,0 +1,84 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<script>
+    const chars = [
+        "𐂀","𐂁","𐂂","𐂃","𐂄","𐂅","𐂆","𐂇","𐂈","𐂉","𐂊","𐂋","𐂌","𐂍","𐂎","𐂏","𐂐","𐂑","𐂒","𐂓","𐂔","𐂕","𐂖","𐂗","𐂘","𐂙","𐂚","𐂛","𐂜","𐂝","𐂞","𐂟","𐂠","𐂡","𐂢","𐂣","𐂤","𐂥","𐂦","𐂧","𐂨","𐂩","𐂪","𐂫","𐂬","𐂭","𐂮","𐂯","𐂰","𐂱","𐂲","𐂳","𐂴","𐂵","𐂶","𐂷","𐂸","𐂹","𐂺","𐂻","𐂼","𐂽","𐂾","𐂿","𐃀","𐃁","𐃂","𐃃","𐃄","𐃅","𐃆","𐃇","𐃈","𐃉","𐃊","𐃋","𐃌","𐃍","𐃎","𐃏","𐃐","𐃑","𐃒","𐃓","𐃔","𐃕","𐃖","𐃗","𐃘","𐃙","𐃚","𐃛","𐃜","𐃝","𐃞","𐃟","𐃠","𐃡","𐃢","𐃣","𐃤","𐃥","𐃦","𐃧","𐃨","𐃩","𐃪","𐃫","𐃬","𐃭","𐃮","𐃯","𐃰","𐃱","𐃲","𐃳","𐃴","𐃵","𐃶","𐃷","𐃸","𐃹","𐃺","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
+    ];
+
+    const trainbutton = document.querySelector(".buttons a:first-child");
+    const msg = document.querySelector(".msg");
+
+    if (!trainbutton) {
+        throw new Error("Train button not found");
+    }
+    trainbutton.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (!msg) {
+            throw new Error("Message not found");
+        }
+        let interval = setInterval(() => {
+            msg.textContent = Array.from(
+                { length: 5 },
+                () => chars[Math.floor(Math.random() * chars.length)],
+            ).join(" ");
+        }, 500);
+        setTimeout(() => {
+            clearInterval(interval);
+            msg.textContent = "CUDA error: Out of memory";
+        }, 8000);
+    });
+</script>
+
+<Layout title="404">
+    <div class="page">
+        <div class="div">
+            <h1 class="msg">𐂨 𐂦 𐂢 𐂆 𐂋</h1>
+            <p><span>WARNING</span>: Unknown language detected.</p>
+            <p>The AI model is unable to parse this page.</p>
+            <p>
+                Would you like to attempt a translation or <br /> return to a safer
+                linguistic zone?
+            </p>
+            <div class="buttons">
+                <a href="">🧠 Train a new model</a>
+                <a href="/">🌍 Fallback to a known language</a>
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: calc(100vh - 13rem);
+        text-align: center;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .buttons a {
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        background-color: #f0f0f0;
+        color: #333;
+        text-decoration: none;
+    }
+    .buttons a:hover {
+        background-color: #e0e0e0;
+    }
+
+    span {
+        font-weight: bold;
+        color: red;
+    }
+</style>
