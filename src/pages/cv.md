@@ -101,3 +101,9 @@ future development. These included AR (Augmented Reality) and AI (Artificial Int
 - French – 7
 - Maths – 9
 - English – 6
+
+### References
+---
+References can be available upon request from the following people:
+
+University Reference - Alex Dickinson (Digital Sky Studios), AlexxDickinson@outlook.com
