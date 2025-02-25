@@ -1,0 +1,75 @@
+---
+const { title } = Astro.props;
+import Footer from "../components/footer.astro";
+import TopBar from "../components/TopBar.astro";
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+		<title>{title}</title>
+		<meta name="description" content="Richard Coric's personal website" />
+		<meta name="author" content="Richard Coric" />
+		<meta name="keywords" content="Software Engineer, Research Student, AI developer, NLP, Research" />
+	</head>
+    <header>
+        <TopBar />
+    </header>
+	<body>
+		<div class="container">
+			<slot />
+		</div>
+	</body>
+    <Footer />
+</html>
+
+<style is:global>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		font-family: 'JetBrains Mono', "Lato", sans-serif;
+	}
+	.container {
+		max-width: 90ch;
+		margin: 0 auto;
+		padding: 6rem 1rem 0 1rem;
+	}
+    h1, h3 {
+        text-align: center;
+    }
+    h3 {
+        margin-top: 2rem;
+    }
+    p > span {
+        display: block;
+        text-align: center;
+    } 
+
+    .right {
+        text-align: right;
+    }
+
+    @media print {
+        .container {
+            padding: 0;
+        }
+        * {
+            font-size: 90%;
+        }
+        footer {
+            display: none;
+        }
+        header {
+            display: none;
+        }
+    }
+</style>
+
