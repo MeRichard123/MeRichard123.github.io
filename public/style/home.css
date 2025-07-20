@@ -13,6 +13,10 @@ h1 {
   }
 }
 
+pre > code {
+  border-radius: 10px !important;
+}
+
 code:not(pre > code) {
   @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
   font-family: "JetBrains Mono", serif;
@@ -220,6 +224,12 @@ table {
     margin: 20px;
   }
 }
+details {
+  background-color: #f3eeee;
+  border-radius: 5px;
+  padding: 1px 5px;
+}
+
 .blog-list * {
   box-sizing: border-box;
   margin: 0;
@@ -270,4 +280,42 @@ table {
   cursor: pointer;
   padding: 10px 0;
   border-bottom: 0.5px solid #ddd;
+}
+
+.blog-container {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 800px;
+  font-family: "Jetbrains Mono", "Courier New", Courier, monospace;
+  text-align: left;
+  font-size: 90%;
+  min-height: 80vh;
+}
+
+h1.blog-title {
+  text-align: left !important;
+}
+
+.info {
+  font-size: 0.8em;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+blockquote {
+  padding-left: 20px;
+  position: relative;
+}
+blockquote::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 3px;
+  background-color: black;
+  left: 0;
+  top: 0;
+}
+
+p {
+  line-height: 1.6rem;
 }/*# sourceMappingURL=home.css.map */

@@ -4,18 +4,30 @@ interface Post {
     id: number;
     title: string;
     readable_publish_date: string;
+    published_timestamp: string;
     description: string;
     tag_list: string[];
     url: string;
+    draft?: boolean;
 }
 
-const BlogFeed = () => {
+const BlogFeed = ({otherBlogs}: any) => {
     const [data, setData] = useState([]);
     useEffect(() => {
         (async () => {
             const response = await fetch("https://dev.to/api/articles?username=merichard123")
             const responseData = await response.json();
-            console.log(responseData);
+            responseData.push(...Object.values(otherBlogs).map((blog: any) => ({
+                id: blog.id,
+                title: blog.frontmatter.title,
+                published_timestamp: blog.frontmatter.date,
+                readable_publish_date: blog.frontmatter.date,
+                description: blog.frontmatter.description || '',
+                tag_list: blog.frontmatter.tags || ["blog"],
+                url: `/blog/${blog.frontmatter.url}`,
+                draft: blog.frontmatter.draft || false
+            })));
+            responseData.sort((a: Post, b: Post) => new Date(b.published_timestamp).getTime() - new Date(a.published_timestamp).getTime());
             setData(responseData);
         })()
     }, [])
@@ -23,7 +35,7 @@ const BlogFeed = () => {
         <React.Fragment>
             {!data?.length && <h2 className="post-loader">Loading Posts....</h2>}
             <ol className="blog-list">
-            {data?.map((post: Post) => (
+            {data?.filter((post: Post) => !post.draft).map((post: Post) => (
                 <li className='blog-item' key={post.id}>
                 <a href={post.url} target="_blank"
                 className='blog-link'

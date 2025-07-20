@@ -1,0 +1,81 @@
+---
+import Footer from "../components/footer.astro";
+import TopBar from "../components/TopBar.astro";
+
+let { frontmatter } = Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+
+        <title>{frontmatter.title} | Notes</title>
+        <meta name="title" content=`${frontmatter.title} | Richard's Notes` />
+        <meta name="description" content=`${frontmatter.description}` />
+        <meta name="keywords" content=`notes, ${frontmatter.keywords}` />
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="English" />
+        <meta name="author" content="Richard C" />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+            property="twitter:url"
+            content="https://merichard123.github.io/"
+        />
+        <meta
+            property="twitter:title"
+            content=`${frontmatter.title} | Richard's Notes`
+        />
+        <meta
+            property="twitter:description"
+            content=`${frontmatter.description}`
+        />
+
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="canonical" href="https://merichard123.github.io/" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/favicon/apple-touch-icon.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/favicon/site.webmanifest" />
+        <link rel="stylesheet" href="/style/global.css" />
+        <link rel="stylesheet" href="/style/home.css" />
+    </head>
+    <header>
+        <TopBar />
+    </header>
+    <body>
+        <div class="blog-container">
+            <h1 class="blog-title">{frontmatter.title}</h1>
+            <div class="info">
+                <p class="blog-date">Date: {frontmatter.date}</p>
+            </div>
+            {frontmatter.draft ? (
+                <div class="draft-warning">
+                    This post is coming soon
+                </div>
+            ) : (
+                <slot />
+            )}
+        </div>
+    </body>
+    <Footer />
+</html>

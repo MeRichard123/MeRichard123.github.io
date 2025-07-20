@@ -1,0 +1,37 @@
+.blog-container {
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 800px;
+    font-family: "Jetbrains Mono", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 90%;
+    min-height: 80vh;
+}
+
+h1.blog-title {
+    text-align: left !important;
+}
+
+.info {
+    font-size: 0.8em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+blockquote {
+    padding-left: 20px;
+    position: relative;
+    &::before {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 3px;
+        background-color: black;
+        left: 0;
+        top: 0;
+    }
+}
+
+p {
+    line-height: 1.6rem;
+}

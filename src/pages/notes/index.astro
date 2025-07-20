@@ -1,7 +1,6 @@
 ---
 let title = 'RichardMe123 | Notes';
 import Layout from '../../layouts/Layout.astro';
-import { fs } from '@zenfs/core'; 
 
 const matches = await import.meta.glob('../notes/*.mdx', { eager: true });
 const posts = Object.values(matches);

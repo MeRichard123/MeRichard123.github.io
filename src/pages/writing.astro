@@ -1,13 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Blogs from "../components/Blogs.tsx";
+
+const matches = await import.meta.glob('./blog/*.md', { eager: true });
+const posts = Object.values(matches);
 ---
 
 <Layout title="RichardMe123 | Writing">
 <div class="container">
 	<h1>Writing</h1>
-	<p>Here you can find some of the things I have written about. Links will be directed to Dev.To</p>
-    <Blogs client:load/>
+	<p>Here you can find some of the things I have written about. Some links will be directed to Dev.To</p>
+    <Blogs client:load otherBlogs={posts}/>
 </div>
 </Layout>
 

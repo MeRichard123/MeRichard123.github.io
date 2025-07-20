@@ -3,9 +3,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import avatar from "../assets/photo.jpg";
 import A from "../components/A.astro";
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <BaseLayout title="RichardMe123">
@@ -13,25 +10,27 @@ import A from "../components/A.astro";
 		<div class="left">
 			<h1>Richard Coric</h1>
 			<p>
-				Hi, My name is Richard. I am an aspiring Research Student, with
-				a goal to pursue a Masters in Computer Science. You can see some
-				of the things I have done <A link="https://richardcoric.dev"
-					>here</A
+				Hi, My name is Richard. I’m a Research Student at the
+				University of Lincoln part of the MLEARN group, where I am being
+				advised by Dr Heriberto Cuayahuitl Portilla. I am intrested in
+				all things Language, NLP, LLMs, and the low-level technicals of
+				just about anything. You can see some of the things I have done <A
+					link="https://richardcoric.dev">here</A
 				>.
 			</p>
 			<p>
-				I am currently in my final undergraduate year at the University
-				of Lincoln, studying a BSc in Computer Science. At the moment I
-				am working on my dissertation and looking for spare time to work
-				on some side projects.
+				Before that, I did my Undergraduate in Computer Science in the
+				School of Engineering & Physical Sciences at Lincoln, also
+				advised by Dr Heriberto.
 			</p>
 			<div class="links">
 				<a href="/notes">notes</a> /
 				<a href="/writing">writing</a> /
 				<A link="https://x.com/Richard5977">twitter</A> /
 				<A link="https://github.com/MeRichard123">github</A> /
-				<A link="https://www.linkedin.com/in/richardcoric/">linkedin</A> /
-				<a href="/cv">CV</a> 
+				<A link="https://www.linkedin.com/in/richardcoric/">linkedin</A>
+				/
+				<a href="/cv">CV</a>
 			</div>
 		</div>
 		<div class="right">
@@ -42,11 +41,18 @@ import A from "../components/A.astro";
 	</div>
 	<div class="information">
 		<h2>research</h2>
-		<ul>
+		<ul class="research-list">
 			<li>
-				"Emulating Lua Execution through different Recurrent Neural
-				Networks Architectures: A Comparative Study in Example-Based
-				Learning" - 2024/25 (Bsc)
+				<a href="#" class="invisible">
+					"LLM-Based Diagnostic & Prognostic Report Generation Using
+					MIMIC-III and other Medical Datasets" - 2025/26 (MRes)
+				</a>
+			</li>
+			<li>
+				<a href="/blog/dissertation" class="invisible">
+					"Example-Driven Emulation of Lua Execution with Recurrent
+					Neural Networks" <br /> - 2024/25 (Bsc)
+				</a>
 			</li>
 		</ul>
 		<h2>bio</h2>
