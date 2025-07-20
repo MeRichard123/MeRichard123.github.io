@@ -2,6 +2,7 @@ html, body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 a {
@@ -20,4 +21,32 @@ img {
     max-width: 100%;
     height: auto;
     object-fit: contain;
+}
+
+a.invisible {
+    text-decoration: none; 
+    position: relative;
+    width: 100%;
+}
+
+a.invisible::after {
+   content: url("/src/assets/extern.svg");
+   position: absolute;
+   top: 50%;
+   right: -20px;
+   width: 5px;
+   height: 5px;
+}
+
+.research-list li {
+    margin-bottom: 1rem;
+}
+
+.draft-warning {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    text-align: center;
 }
