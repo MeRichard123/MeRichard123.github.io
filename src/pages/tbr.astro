@@ -1,0 +1,51 @@
+---
+import Layout from "../layouts/Layout.astro";
+import books from "../assets/output.json";
+---
+
+<Layout>
+    <div class="container">
+        <h1>TBR Wishlist - Total {books.length}</h1>
+        <div class="book-list">
+          {books.map((book) => (
+            <div class="book-item">
+              <h2>{book.title}</h2>
+              <p>{book.author}</p>
+              <img src={`/screenshots/${book.coverScreenshot}`} alt="">
+            </div>
+          ))}
+        </div>
+    </div>
+</Layout>
+
+<style>
+.container {
+    max-width: 90ch;
+    margin: 0 auto;
+    padding: 6rem 1rem 0 1rem;
+}
+
+.book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.book-item {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.book-item h2 {
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+}
+
+.book-item img {
+    max-width: 100%;
+    border-radius: 4px;
+}
+
+</style>
