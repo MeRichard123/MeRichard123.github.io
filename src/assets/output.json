@@ -1,5 +1,54 @@
 [
-  
+  {
+    "title": "Madonna in a Fur Coat",
+    "author": "Sabahattin Ali",
+    "coverScreenshot": "madonna-in-a-fur-coat-sabahattin-ali.png"
+  },
+  {
+    "title": "Kairos",
+    "author": "Jenny Erpenbeck",
+    "coverScreenshot": "kairos-jenny-erpenbeck.png"
+  },
+  {
+    "title": "Last Summer in the City",
+    "author": "Gianfranco Calligarich",
+    "coverScreenshot": "last-summer-in-the-city-gianfranco-calligarich.png"
+  },
+  {
+    "title": "Martyr!",
+    "author": "Kaveh Akbar",
+    "coverScreenshot": "martyr-kaveh-akbar.png"
+  },
+  {
+    "title": "The Safe Keep",
+    "author": "Yael van der Wouden",
+    "coverScreenshot": "the-safe-keep-yael-van-der-wouden.png"
+  },
+  {
+    "title": "Boulder",
+    "author": "Eva Baltasar",
+    "coverScreenshot": "boulder-eva-baltasar.png"
+  },
+  {
+    "title": "Doppelganger",
+    "author": "Naomi Klein",
+    "coverScreenshot": "doppelganger-naomi-klein.png"
+  },
+  {
+    "title": "If Beale Street Could Talk",
+    "author": "James Baldwin",
+    "coverScreenshot": "if-beale-street-could-talk-james-baldwin.png"
+  },
+  {
+    "title": "The Virgin Suicides",
+    "author": "Jeffrey Eugenides",
+    "coverScreenshot": "the-virgin-suicides-jeffrey-eugenides.png"
+  },
+  {
+    "title": "Blue Sisters",
+    "author": "Coco Mellors",
+    "coverScreenshot": "blue-sisters-coco-mellors.png"
+  }, 
     {
       "title": "It",
       "author": "Stephen King",
