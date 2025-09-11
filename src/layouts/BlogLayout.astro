@@ -33,7 +33,7 @@ let { frontmatter } = Astro.props;
         />
 
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="canonical" href="https://merichard123.github.io/" />
+        <link rel="canonical" href=`https://merichard123.github.io/notes/${frontmatter.slug}` />
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"
