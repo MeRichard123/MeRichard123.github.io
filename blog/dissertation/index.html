@@ -1,5 +1,79 @@
-<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>Example-Driven Emulation of Lua Execution with Recurrent Neural Networks | Notes</title><meta name="title" content="Example-Driven Emulation of Lua Execution with Recurrent Neural Networks | Richard's Notes"><meta name="description" content="undefined"><meta name="keywords" content="notes, undefined"><meta name="robots" content="index, follow"><meta name="language" content="English"><meta name="author" content="Richard C"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://merichard123.github.io/"><meta property="twitter:title" content="Example-Driven Emulation of Lua Execution with Recurrent Neural Networks | Richard's Notes"><meta property="twitter:description" content="undefined"><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="canonical" href="https://merichard123.github.io/notes/undefined"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"><link rel="manifest" href="/favicon/site.webmanifest"><link rel="stylesheet" href="/style/global.css"><link rel="stylesheet" href="/style/home.css"><style>footer[data-astro-cid-k2f5zb5c]{text-align:center;margin-top:2.5rem;padding:2rem;background-color:#f8f8f8;font-family:JetBrains Mono,Lato,sans-serif}nav[data-astro-cid-k2f5zb5c]{text-align:left}p[data-astro-cid-k2f5zb5c]{font-size:1.1rem}
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>Can Small RNNs Replace Compilers? My Journey into Neural Lua Emulation | Notes</title><meta name="title" content="Can Small RNNs Replace Compilers? My Journey into Neural Lua Emulation | Richard's Notes"><meta name="description" content="undefined"><meta name="keywords" content="notes, undefined"><meta name="robots" content="index, follow"><meta name="language" content="English"><meta name="author" content="Richard C"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://merichard123.github.io/"><meta property="twitter:title" content="Can Small RNNs Replace Compilers? My Journey into Neural Lua Emulation | Richard's Notes"><meta property="twitter:description" content="undefined"><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="canonical" href="https://merichard123.github.io/notes/undefined"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"><link rel="manifest" href="/favicon/site.webmanifest"><link rel="stylesheet" href="/style/global.css"><link rel="stylesheet" href="/style/home.css"><style>footer[data-astro-cid-k2f5zb5c]{text-align:center;margin-top:2.5rem;padding:2rem;background-color:#f8f8f8;font-family:JetBrains Mono,Lato,sans-serif}nav[data-astro-cid-k2f5zb5c]{text-align:left}p[data-astro-cid-k2f5zb5c]{font-size:1.1rem}
 nav[data-astro-cid-lq7i5isa]{padding:1rem;background-color:#f5f5f5}a[data-astro-cid-lq7i5isa]{font-family:JetBrains Mono,Lato,sans-serif;text-decoration:none;color:#333}
-</style></head> <header> <nav data-astro-cid-lq7i5isa> <a href="/" data-astro-cid-lq7i5isa>&lt/back</a> </nav>  </header> <div class="blog-container"> <h1 class="blog-title">Example-Driven Emulation of Lua Execution with Recurrent Neural Networks</h1> <div class="info"> <p class="blog-date">Date: 18 May 2025</p> </div> <div class="draft-warning">
-This post is coming soon
-</div> </div> <footer data-astro-cid-k2f5zb5c> <p data-astro-cid-k2f5zb5c>2025 &copy;  Richard</p> <nav data-astro-cid-k2f5zb5c> <ul data-astro-cid-k2f5zb5c> <li data-astro-cid-k2f5zb5c><a href="/" data-astro-cid-k2f5zb5c>Home</a></li> <li data-astro-cid-k2f5zb5c><a href="/notes" data-astro-cid-k2f5zb5c>Notes</a></li> <li data-astro-cid-k2f5zb5c><a href="/writing" data-astro-cid-k2f5zb5c>Writing</a></li> <li data-astro-cid-k2f5zb5c><a href="/tbr" data-astro-cid-k2f5zb5c>TBR</a></li> </ul> </nav> </footer>  </html>
+</style></head> <header> <nav data-astro-cid-lq7i5isa> <a href="/" data-astro-cid-lq7i5isa>&lt/back</a> </nav>  </header> <div class="blog-container"> <h1 class="blog-title">Can Small RNNs Replace Compilers? My Journey into Neural Lua Emulation</h1> <div class="info"> <p class="blog-date">Date: 23 Sep 2025</p> </div> <blockquote>
+<p>This post is an overview of my undergraduate dissertation, the entire paper can be found <a href="/Dissertation%20-%20Richard%20Coric%20(26414124).pdf">here</a>.</p>
+</blockquote>
+<h2 id="abstract">Abstract</h2>
+<p>I recently completed my undergraduate dissertation, examining whether small language models like RNNs could tackle complex tasks of emulating a compiler. Traditionally, a strict deterministic compiler has compiled programs, which can be expensive to implement and run, making them unsuitable for in-editor REPL tools such as Quokka. Previous work involving Codex and AlphaCode used transformer models with expensive inference times. This study evaluated Recurrent Neural Networks (RNNs), both standard and minimal, for Lua emulation by learning semantic embeddings, Mixture of Experts, and Attention. Standard models overfit the mark, struggle with meaningful patterns, and fail on complex examples. Minimal RNN architectures generalise better due to implicit regularisation. However, the study was still limited by dataset size and quality, leading to over-fitting.</p>
+<h2 id="introduction">Introduction</h2>
+<p>Most programs are written by a programmer in a text editor, and then they are compiled or interpreted depending on the language. Both methods involve a piece of software called Lexer, which takes the lexemes of the language and converts them into tokens. Tokens are then used for lexical analysis, where these tokens are converted into an internal representation (IR) or an Abstract Syntax tree (AST). Additionally, programs contain data such as variables that hold a range of different types and are stored in symbol tables and scope chains. Commonly, this IR is parsed by a virtual machine (VM), which emulates compiler operations like branching and arithmetic.</p>
+<p>Traditional code generation involves rule-based VMs that emit machine code from IR or syntax trees, leading to strict and deterministic compilers, which we may want in most cases. However, what if, rather than a rule-based compiler that emits machine code, we want to infer the compiler from program-output examples of code? This research explored this idea - via language modelling - whether small models like RNNs can still be helpful for such an application.</p>
+<h2 id="method">Method</h2>
+<p>The approach centered on training five different RNN architectures to learn Lua program execution from input-output examples. Rather than hand-coding compilation rules, I wanted to see if these models could learn to predict program outputs directly from semantic patterns.</p>
+<h3 id="architecture-selection">Architecture Selection</h3>
+<p>I tested five main architectures:</p>
+<ul>
+<li><strong>Standard RNN</strong>: The baseline recurrent model</li>
+<li><strong>LSTM</strong>: Long Short-Term Memory with gating mechanisms</li>
+<li><strong>GRU</strong>: Gated Recurrent Unit, a simplified LSTM variant</li>
+<li><strong>MinLSTM &#x26; MinGRU</strong>: Recently introduced minimal architectures that remove hidden state dependencies, allowing for parallel training</li>
+</ul>
+<p>The minimal architectures were particularly interesting because they use parallel prefix scanning instead of sequential processing, potentially offering both training efficiency and better generalisation.</p>
+<h3 id="data-and-tokenisation">Data and tokenisation</h3>
+<p>Creating a suitable dataset proved challenging. Most available Lua code consists of large embedded systems or configuration files - not ideal for input-output learning. I generated 677 Lua program examples using ChatGPT, covering simple operations like string manipulation to more complex programs with loops and functions.</p>
+<p>The key innovation was semantic tokenisation using Tree-sitter to parse Abstract Syntax Trees. Instead of raw code tokens, I converted programs into semantic tokens like <code>STRING(hello)</code> and <code>FUNCTION_CALL(print)</code>. This approach strips away syntactic noise while preserving semantic meaning, helping models focus on what the code actually does rather than how it’s written.</p>
+<h3 id="training-enhancements">Training Enhancements</h3>
+<p>To improve performance, I incorporated:</p>
+<ul>
+<li><strong>Mixture of Experts (MoE)</strong>: Dense expert networks that specialise in different aspects of Lua execution</li>
+<li><strong>Attention mechanisms</strong>: Allowing models to focus on relevant input tokens</li>
+<li><strong>Curriculum learning</strong>: Training on increasingly complex programs</li>
+<li><strong>Extensive regularisation</strong>: Label smoothing, dropout, L2 regularisation, and teacher forcing to combat overfitting</li>
+</ul>
+<h2 id="results">Results</h2>
+<p>The results revealed both the promise and limitations of small models for compiler emulation.</p>
+<h3 id="performance-hierarchy">Performance Hierarchy</h3>
+<p>Standard RNN architectures performed poorly across the board:</p>
+<ul>
+<li><strong>Standard RNN</strong>: Achieved 0.00 on both Exact Match and Pass@1 metrics, with the highest perplexity (13.5), indicating the model was essentially guessing</li>
+<li><strong>GRU and LSTM</strong>: Showed marginal improvements with lower perplexity (2.8-5.7), but still failed to produce correct outputs</li>
+<li><strong>Minimal architectures</strong>: Demonstrated significant improvements, with MinGRU achieving a 10× better F1 score (0.0391 vs ~0.001-0.01 for standard models)</li>
+</ul>
+<p>The MinGRU with 2 experts was the standout performer, achieving 0.0115 on Exact Match and 1.1494 on Pass@1, meaning it correctly predicted some complete program outputs.</p>
+<h3 id="inference-speed-advantage">Inference Speed Advantage</h3>
+<p>One clear win for RNN models was inference speed. While transformer baselines (StarCoder2, Qwen 2.5 Coder) took 4-5 seconds per inference, RNN models completed the same task in 0.009-0.027 seconds - nearly 200× faster.</p>
+<h3 id="baseline-comparison">Baseline Comparison</h3>
+<p>The performance gap with large language models was stark:</p>
+<ul>
+<li><strong>Qwen 2.5 Coder</strong>: 91.8% Exact Match, 97.4% Sentence Similarity</li>
+<li><strong>Best RNN (MinGRU)</strong>: 1.15% Exact Match, 70.3% Sentence Similarity</li>
+</ul>
+<p>However, this comparison isn’t entirely fair given the massive difference in model size and training data.</p>
+<h2 id="discussion">Discussion</h2>
+<h3 id="why-minimal-architectures-worked-better">Why Minimal Architectures Worked Better</h3>
+<p>The superior performance of MinGRU and MinLSTM likely stems from implicit regularisation effects. Simpler architectures are less prone to overfitting and may have better gradient flow properties. The removal of complex gating mechanisms seems to help rather than hurt performance on this task.</p>
+<h3 id="the-overfitting-problem">The Overfitting Problem</h3>
+<p>All models showed clear signs of overfitting, with validation loss consistently higher than training loss despite extensive regularisation attempts. The 677-sample dataset was simply too small for these models to learn meaningful generalisation patterns.</p>
+<h3 id="dataset-quality-issues">Dataset Quality Issues</h3>
+<p>Using ChatGPT for data generation created its own limitations. The generated programs, while syntactically correct, lacked the diversity and complexity of real-world code. The models learned shallow token-level patterns rather than deep semantic understanding.</p>
+<h3 id="mixture-of-experts-insights">Mixture of Experts Insights</h3>
+<p>MoE showed promise in reducing training loss but had limited impact on generalisation. Interestingly, using more than 2 experts actually hurt performance, likely due to sparsity issues in small models.</p>
+<h3 id="real-world-implications">Real-World Implications</h3>
+<p>Despite the limitations, the dramatic inference speed advantage suggests potential applications in:</p>
+<ul>
+<li>Embedded systems with strict latency requirements</li>
+<li>Real-time code completion tools</li>
+<li>Educational environments where immediate feedback is crucial</li>
+</ul>
+<h2 id="closing-thoughts">Closing Thoughts</h2>
+<p>This research highlighted both the potential and current limitations of using small models for compiler-like tasks. While RNNs couldn’t match large language models in accuracy, they demonstrated compelling advantages in inference speed and training efficiency.</p>
+<p>The key insight is that minimal RNN architectures offer a sweet spot - simpler than traditional RNNs but more effective for this task. The implicit regularisation from architectural simplicity proved more valuable than complex gating mechanisms.</p>
+<p>However, the fundamental challenge remains data quality and quantity. Future work should focus on:</p>
+<ul>
+<li>Larger, more diverse datasets with instruct-style formatting</li>
+<li>Encoder-decoder architectures to separate understanding from generation</li>
+<li>Reinforcement learning to reward correct execution semantics</li>
+<li>Pre-training on general programming tasks before fine-tuning on execution</li>
+</ul>
+<p>While we’re not ready to replace traditional compilers with neural networks, this exploration revealed interesting trade-offs between model complexity, inference speed, and accuracy. In applications where sub-millisecond inference matters more than perfect accuracy, small RNNs might still have a role to play.</p>
+<p>The journey from deterministic compilation to learned execution is far from over, but understanding these fundamental trade-offs brings us one step closer to more adaptive programming tools.</p> </div> <footer data-astro-cid-k2f5zb5c> <p data-astro-cid-k2f5zb5c>2025 &copy;  Richard</p> <nav data-astro-cid-k2f5zb5c> <ul data-astro-cid-k2f5zb5c> <li data-astro-cid-k2f5zb5c><a href="/" data-astro-cid-k2f5zb5c>Home</a></li> <li data-astro-cid-k2f5zb5c><a href="/notes" data-astro-cid-k2f5zb5c>Notes</a></li> <li data-astro-cid-k2f5zb5c><a href="/writing" data-astro-cid-k2f5zb5c>Writing</a></li> <li data-astro-cid-k2f5zb5c><a href="/tbr" data-astro-cid-k2f5zb5c>TBR</a></li> </ul> </nav> </footer>  </html>
