@@ -1,4 +1,184 @@
 [
+{
+  "title": "Boy Parts",
+  "author": "Eliza Clark",
+  "coverScreenshot": "boy-parts-eliza-clark.png"
+},
+{
+  "title": "Normal People",
+  "author": "Sally Rooney",
+  "coverScreenshot": "normal-people-sally-rooney.png"
+},
+{
+  "title": "If We Were Villains",
+  "author": "M.L. Rio",
+  "coverScreenshot": "if-we-were-villains-ml-rio.png"
+},
+{
+  "title": "The Atlas Six",
+  "author": "Olivie Blake",
+  "coverScreenshot": "the-atlas-six-olivie-blake.png"
+},
+{
+  "title": "The Cloisters",
+  "author": "Katy Hays",
+  "coverScreenshot": "the-cloisters-katy-hays.png"
+},
+{
+  "title": "Vicious",
+  "author": "V.E. Schwab",
+  "coverScreenshot": "vicious-ve-schwab.png"
+},
+{
+  "title": "You've Found Oliver",
+  "author": "Dustin Thao",
+  "coverScreenshot": "youve-found-oliver-dustin-thao.png"
+},
+{
+  "title": "This Book Kills",
+  "author": "Ravena Guron",
+  "coverScreenshot": "this-book-kills-ravena-guron.png"
+},
+{
+  "title": "The Maidens",
+  "author": "Alex Michaelides",
+  "coverScreenshot": "the-maidens-alex-michaelides.png"
+},
+{
+  "title": "Atlas of Unknowable Things: A Novel",
+  "author": "McCormick Templeman",
+  "coverScreenshot": "atlas-of-unknowable-things-a-novel-mccormick-templeman.png"
+},
+{
+  "title": "Days at the Torunka Café",
+  "author": "Satoshi Yagisawa",
+  "coverScreenshot": "days-at-the-torunka-cafe-satoshi-yagisawa.png"
+},
+{
+  "title": "The Surrogate Mother",
+  "author": "Freida McFadden",
+  "coverScreenshot": "the-surrogate-mother-freida-mcfadden.png"
+},
+{
+  "title": "Howl's Moving Castle",
+  "author": "Diana Wynne Jones",
+  "coverScreenshot": "howls-moving-castle-diana-wynne-jones.png"
+},
+{
+  "title": "Blood Over Bright Haven",
+  "author": "M.L. Wang",
+  "coverScreenshot": "blood-over-bright-haven-ml-wang.png"
+},
+{
+  "title": "Flashlight",
+  "author": "Susan Choi",
+  "coverScreenshot": "flashlight-susan-choi.png"
+},
+{
+  "title": "A Clockwork Orange",
+  "author": "Anthony Burgess",
+  "coverScreenshot": "a-clockwork-orange-anthony-burgess.png"
+},
+{
+  "title": "Since the World Is Ending",
+  "author": "Indyana Schneider",
+  "coverScreenshot": "since-the-world-is-ending-indyana-schneider.png"
+},
+{
+  "title": "The Naturals",
+  "author": "Jennifer Lynn Barnes",
+  "coverScreenshot": "the-naturals-jennifer-lynn-barnes.png"
+},
+{
+  "title": "The Trap",
+  "author": "Catherine Ryan Howard",
+  "coverScreenshot": "the-trap-catherine-ryan-howard.png"
+},
+{
+  "title": "Dark Matter",
+  "author": "Blake Crouch",
+  "coverScreenshot": "dark-matter-blake-crouch.png"
+},
+{
+  "title": "A Short Stay in Hell",
+  "author": "Steven L. Peck",
+  "coverScreenshot": "a-short-stay-in-hell-steven-l-peck.png"
+},
+{
+  "title": "Circe",
+  "author": "Madeline Miller",
+  "coverScreenshot": "circe-madeline-miller.png"
+},
+{
+  "title": "No Escape: A claustrophobic, closed-room Gothic horror",
+  "author": "M.A. Bennett",
+  "coverScreenshot": "no-escape-a-claustrophobic-closed-room-gothic-horror-ma-bennett.png"
+},
+{
+  "title": "Cleopatra and Frankenstein",
+  "author": "Coco Mellors",
+  "coverScreenshot": "cleopatra-and-frankenstein-coco-mellors.png"
+},
+{
+  "title": "Hot Wax",
+  "author": "M.L. Rio",
+  "coverScreenshot": "hot-wax-ml-rio.png"
+},
+{
+  "title": "We All Looked Up",
+  "author": "Tommy Wallach",
+  "coverScreenshot": "we-all-looked-up-tommy-wallach.png"
+},
+{
+  "title": "The Invisible Life of Addie LaRue",
+  "author": "V.E. Schwab",
+  "coverScreenshot": "the-invisible-life-of-addie-larue-ve-schwab.png"
+},
+{
+  "title": "Violets",
+  "author": "Kyung-sook Shin",
+  "coverScreenshot": "violets-kyung-sook-shin.png"
+},
+{
+  "title": "Concerning My Daughter",
+  "author": "Kim Hye-jin",
+  "coverScreenshot": "concerning-my-daughter-kim-hye-jin.png"
+},
+{
+  "title": "Beauty and Sadness",
+  "author": "Yasunari Kawabata",
+  "coverScreenshot": "beauty-and-sadness-yasunari-kawabata.png"
+},
+{
+  "title": "Notes of a Crocodile",
+  "author": "Qiu Miaojin",
+  "coverScreenshot": "notes-of-a-crocodile-qiu-miaojin.png"
+},
+{
+  "title": "The Secret History",
+  "author": "Donna Tartt",
+  "coverScreenshot": "the-secret-history-donna-tartt.png"
+},
+{
+  "title": "Digital Fortress",
+  "author": "Dan Brown",
+  "coverScreenshot": "digital-fortress-dan-brown.png"
+},
+{
+  "title": "Origin",
+  "author": "Dan Brown",
+  "coverScreenshot": "origin-dan-brown.png"
+},
+{
+  "title": "Gunk",
+  "author": "Saba Sams",
+  "coverScreenshot": "gunk-saba-sams.png"
+},
+{
+  "title": "The Great Gatsby",
+  "author": "F. Scott Fitzgerald",
+  "coverScreenshot": "the-great-gatsby-f-scott-fitzgerald.png"
+},
   {
     "title": "Madonna in a Fur Coat",
     "author": "Sabahattin Ali",
@@ -93,11 +273,6 @@
       "title": "Strange Pictures",
       "author": "Uketsu",
       "coverScreenshot": "strange-pictures-uketsu.png"
-    },
-    {
-      "title": "Evenings & Weekends",
-      "author": "Oisín McKenna",
-      "coverScreenshot": "evenings-weekends-oisin-mckenna.png"
     },
   {
     "title": "Private Lives",
@@ -213,11 +388,6 @@
     "title": "The Three Lives of Cate Kay",
     "author": "Kate Fagan",
     "coverScreenshot": "the-three-lives-of-cate-kay-kate-fagan.png"
-  },
-  {
-    "title": "Orbital",
-    "author": "Samantha Harvey",
-    "coverScreenshot": "orbital-samantha-harvey.png"
   },
   {
     "title": "Around the World in Eighty Days",

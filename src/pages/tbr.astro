@@ -11,7 +11,7 @@ import books from "../assets/output.json";
             <div class="book-item">
               <h2>{book.title}</h2>
               <p>{book.author}</p>
-              <img src={`/screenshots/${book.coverScreenshot}`} alt="">
+              <img loading="lazy" src={`/screenshots/${book.coverScreenshot}`} alt="">
             </div>
           ))}
         </div>
@@ -36,16 +36,81 @@ import books from "../assets/output.json";
     border-radius: 8px;
     padding: 1rem;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .book-item h2 {
-    font-size: 1.25rem;
+    font-size: 1.25rem; 
+    line-height: 1.2;
     margin: 0.5rem 0;
+    min-height: 3rem;
+    max-height: 3rem;
+    overflow-wrap: anywhere;
+    overflow: hidden;
+}
+
+
+.book-item p {
+    margin: 0 0 0.5rem 0;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 1.2em;
 }
 
 .book-item img {
-    max-width: 100%;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
     border-radius: 4px;
 }
 
 </style>
+
+<script is:inline>
+    // Reduce title font-size per card so long titles fit within two lines
+    const shrinkTitles = () => {
+        const titles = document.querySelectorAll('.book-item h2');
+        titles.forEach((el) => {
+            const maxHeight = parseFloat(getComputedStyle(el).maxHeight || getComputedStyle(el).minHeight) || 48; 
+            let fontSize = parseFloat(getComputedStyle(el).fontSize);
+            const minSize = 12;
+            let safety = 20; // prevent infinite loops
+            while (el.scrollHeight > maxHeight && fontSize > minSize && safety-- > 0) {
+                fontSize -= 1;
+                el.style.fontSize = fontSize + 'px';
+            }
+        });
+    };
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', shrinkTitles, { once: true });
+    } else {
+        shrinkTitles();
+    }
+    // Re-run on resize to adjust when grid width changes
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            // Reset sizes and recompute
+            document.querySelectorAll('.book-item h2').forEach((el) => {
+                el.style.fontSize = '';
+            });
+            shrinkTitles();
+        }, 150);
+    });
+    // Optional: if Astro islands dynamically hydrate components later, you can observe
+    const observer = new MutationObserver((mutations) => {
+        for (const m of mutations) {
+            if (m.addedNodes && m.addedNodes.length) {
+                shrinkTitles();
+                break;
+            }
+        }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+    // Disconnect after a short period to avoid overhead (most content is static)
+    setTimeout(() => observer.disconnect(), 5000);
+</script>
