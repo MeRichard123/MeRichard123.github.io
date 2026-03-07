@@ -33,7 +33,10 @@ let { frontmatter } = Astro.props;
         />
 
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="canonical" href=`https://merichard123.github.io/notes/${frontmatter.slug}` />
+        <link
+            rel="canonical"
+            href=`https://merichard123.github.io/notes/${frontmatter.slug}`
+        />
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"
@@ -68,14 +71,22 @@ let { frontmatter } = Astro.props;
             <div class="info">
                 <p class="blog-date">Date: {frontmatter.date}</p>
             </div>
-            {frontmatter.draft ? (
-                <div class="draft-warning">
-                    This post is coming soon
-                </div>
-            ) : (
-                <slot />
-            )}
+            {
+                frontmatter.draft ? (
+                    <div class="draft-warning">This post is coming soon</div>
+                ) : (
+                    <slot />
+                )
+            }
         </div>
     </body>
     <Footer />
+
+
+    <style is:global>
+        ::selection {
+            background-color: hsl(158, 53%, 56%);
+            color: black;
+        }
+    </style>
 </html>

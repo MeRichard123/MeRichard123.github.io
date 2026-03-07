@@ -36,7 +36,6 @@ const { title } = Astro.props;
 	</body>
 	<Footer />
 
-
 	<style>
 		html,
 		body {
@@ -46,4 +45,12 @@ const { title } = Astro.props;
 			font-family: "JetBrains Mono", "Lato", sans-serif;
 		}
 	</style>
+
+	<style is:global>
+		::selection {
+			background-color: hsl(158, 53%, 56%);
+			color: black;
+		}
+	</style>
+
 </html>
