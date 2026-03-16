@@ -3,6 +3,7 @@ html, body {
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  background-color: #f0e6dc;
 }
 
 a {
