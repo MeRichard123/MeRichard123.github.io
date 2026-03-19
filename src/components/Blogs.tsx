@@ -36,25 +36,25 @@ const BlogFeed = ({otherBlogs}: any) => {
             {!data?.length && <h2 className="post-loader">Loading Posts....</h2>}
             <ol className="blog-list">
             {data?.filter((post: Post) => !post.draft).map((post: Post) => (
-                <li className='blog-item' key={post.id}>
-                <a href={post.url} target="_blank"
-                className='blog-link'
-                rel="noreferrer noopener">
-                    <div className="blog">
-                        <h2 className="blog__title">{post.title}</h2>
-                        <div className="bottom">
-                        <p className="blog__date">{post.readable_publish_date}</p>
-                        <span className='divider'>|</span>
-                        <div className="ui-tag__wrapper tags">
-                            {post.tag_list.slice(0,2).map((tag) => (
-                                <div className="ui-tag" key={tag}>
-                                    <span className="tag-title">{tag},</span>
+                <li className='blog-item' key={post.id || post.url}>
+                    <a href={post.url} target="_blank"
+                    className='blog-link'
+                    rel="noreferrer noopener">
+                        <div className="blog">
+                            <h2 className="blog__title">{post.title}</h2>
+                            <div className="bottom">
+                            <p className="blog__date">{post.readable_publish_date}</p>
+                            <span className='divider'>|</span>
+                            <div className="ui-tag__wrapper tags">
+                                {post.tag_list.slice(0,2).map((tag) => (
+                                    <div className="ui-tag" key={tag}>
+                                        <span className="tag-title">{tag},</span>
+                                    </div>
+                                ))}
                                 </div>
-                            ))}
-                            </div>
-                        </div>                
-                    </div>
-                </a>
+                            </div>                
+                        </div>
+                    </a>
                 </li>
             ))}  
             </ol>
