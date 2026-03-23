@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><title>Choosing a Stats Test | Notes</title><meta name="title" content="Choosing a Stats Test | Richard's Notes"><meta name="description" content="A guide to choosing a stats test for your data."><meta name="keywords" content="notes, stats, statistics, test, choosing, guide"><meta name="robots" content="index, follow"><meta name="language" content="English"><meta name="author" content="Richard C"><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://merichard123.github.io/"><meta property="twitter:title" content="Choosing a Stats Test | Richard's Notes"><meta property="twitter:description" content="A guide to choosing a stats test for your data."><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="canonical" href="https://merichard123.github.io/"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet"><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"><link rel="manifest" href="/favicon/site.webmanifest"><link rel="stylesheet" href="/style/global.css"><link rel="stylesheet" href="/style/home.css"><style>footer[data-astro-cid-k2f5zb5c]{text-align:center;margin-top:2.5rem;padding:2rem;background-color:#dfd4c9;font-family:JetBrains Mono,Lato,sans-serif}nav[data-astro-cid-k2f5zb5c]{text-align:left}p[data-astro-cid-k2f5zb5c]{font-size:1.1rem}
+nav[data-astro-cid-lq7i5isa]{padding:1rem;background-color:transparent}a[data-astro-cid-lq7i5isa]{font-family:JetBrains Mono,Lato,sans-serif;text-decoration:none;color:#333}
+::selection{background-color:#53ca9f;color:#000}
+</style></head> <header> <nav data-astro-cid-lq7i5isa> <a href="/" data-astro-cid-lq7i5isa>&lt/back</a> </nav>  </header> <div class="notes-container"> <h1 class="notes-title">Choosing a Stats Test</h1> <h3 id="inferential-statistics">Inferential Statistics</h3>
+<ul>
+<li>Studies are conducted to test a hypothesis and to derive inferences from sample results about the population.</li>
+<li>The goal is to assess differences between groups (comparison), establish an association between two variables (correlation), predict one variable (regression), or look for agreement between measures (agreement).</li>
+</ul>
+<h3 id="paired-vs-unpaired">Paired vs unpaired</h3>
+<ul>
+<li>Observations made on the same individual (before and after) are usually matched or <strong>paired</strong>.
+<ul>
+<li>Data are considered paired if the values in one set are likely to be influenced by those in the other.</li>
+</ul>
+</li>
+<li>Comparisons made between individuals are <strong>unpaired</strong> or unmatched.</li>
+</ul>
+<h3 id="types-of-data">Types of Data</h3>
+<ul>
+<li>The test chosen will depend on the type of data: categorical (normal or ordinal) or numerical (skewed or normally distributed).</li>
+<li>Tests used to analyse normally distributed data are known as <strong>parametric</strong> tests.</li>
+<li>and have a <strong>nonparametric</strong> counterpart used for distribution-free data.</li>
+<li>Parametric Tests:
+<ul>
+<li>Assume that the sample data is normally distributed.</li>
+<li><a href="#normality-testing">Normality Testing</a> can confirm this assumption.</li>
+<li>And that it has the same characteristics as the population.</li>
+<li>more powerful and better able to detect differences between groups.</li>
+</ul>
+</li>
+<li>Nonparametric tests:
+<ul>
+<li>Make no normality assumption.</li>
+<li>less efficient at identifying significant differences.</li>
+</ul>
+</li>
+<li>Time-to-event data require a specialised analysis, known as survival analysis.</li>
+</ul>
+<h3 id="how-many-measurements">How many measurements?</h3>
+<ul>
+<li>The test also depends on whether two or more than two measurements are being compared.</li>
+<li>This includes more than two groups (unmatched data) or more than two measurements in a group (matched data).</li>
+</ul>
+<h3 id="test-for-comparison">Test for Comparison</h3>
+<p>Table 1:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Type of Data</th><th>Two Groups</th><th>More than two Groups</th></tr></thead><tbody><tr><td>Nominal</td><td>Chi-square test or Fisher’s exact test</td><td>”</td></tr><tr><td>Ordinal or Skewed</td><td>Mann–Whitney U-test (Wilcoxon rank sum test)</td><td>Kruskal–Wallis test*</td></tr><tr><td>Normally distributed</td><td>Unpaired t-test</td><td>Analysis of variance (ANOVA)*</td></tr></tbody></table>
+<p>* To be followed by post hoc testing</p>
+<p>Table 2:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Type of Data</th><th>Two Groups</th><th>More than two groups</th></tr></thead><tbody><tr><td>Nominal</td><td>McNemar’s Test</td><td>Cochran’s Q</td></tr><tr><td>Ordinal or Skewed</td><td>Wilcoxon signed rank test</td><td>Friedman test*</td></tr><tr><td>Normally distributed</td><td>Paired t-test</td><td>Repeated measures (ANOVA)*</td></tr></tbody></table>
+<ul>
+<li>Table 1 lists tests used for comparing unpaired data.</li>
+<li>Table 2 lists tests commonly used for paired data</li>
+</ul>
+<h3 id="tests-for-association">Tests for Association</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Type of Data</th><th>Test</th></tr></thead><tbody><tr><td><strong>Correlation</strong></td><td></td></tr><tr><td>Both variables normally distributed</td><td>Pearson’s correlation coefficient</td></tr><tr><td>One or both variables ordinal or skewed</td><td>Spearman’s or Kendall’s correlation coefficient</td></tr><tr><td>Nominal data</td><td>Chi-square test; odds ratio or relative risk (for binary outcomes)</td></tr><tr><td><strong>Regression</strong></td><td></td></tr><tr><td>Continuous outcome</td><td>Linear regression analysis</td></tr><tr><td>Categorical outcome (binary)</td><td>Logistic regression analysis</td></tr></tbody></table>
+<ul>
+<li>The above lists test used to determine the association between variables.</li>
+<li>Correlation determines the strength of the relationship between two variables.</li>
+<li>Regression allows us to predict one variable from another.</li>
+</ul>
+<h3 id="tests-for-agreement-between-measures">Tests for Agreement between Measures</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>Type of Data</th><th>Test</th></tr></thead><tbody><tr><td>Categorical data</td><td>Cohen’s kappa</td></tr><tr><td>Numerical data</td><td>Intraclass correlation coefficient (numerical) and Bland–Altman plot (graphical display)</td></tr></tbody></table>
+<h2 id="normality-testing">Normality Testing</h2>
+<ul>
+<li>We can test normality either <strong>analytically</strong> or <strong>graphically</strong>.</li>
+<li>The most common normality tests are:
+<ul>
+<li>Kolmogorov-Smirnov Test</li>
+<li>Shapiro-Wilk Test</li>
+<li>Anderson-Darling Test</li>
+</ul>
+</li>
+<li>Where <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">H_0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.08125em">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em"><span style="top:-2.55em;margin-left:-0.0813em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span></span></span></span> is that the data is normally distributed.</li>
+<li>The test will give a <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em"></span><span class="mord mathnormal">p</span></span></span></span>-value which will allow us to reject or not reject the null hypothesis.</li>
+</ul>
+<h3 id="issues">Issues</h3>
+<ul>
+<li>The <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em"></span><span class="mord mathnormal">p</span></span></span></span>-value depends on the sample size.</li>
+<li>So for small sample sizes, the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em"></span><span class="mord mathnormal">p</span></span></span></span>-value may be much larger than <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.05</mn></mrow><annotation encoding="application/x-tex">0.05</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em"></span><span class="mord">0.05</span></span></span></span>, but for large samples it could be a lot smaller.</li>
+<li>To avoid this people tend to use graphical methods.</li>
+</ul>
+<h3 id="graphical-tests">Graphical Tests</h3>
+<ul>
+<li>We can test graphically using Q-Q plots or histograms.</li>
+<li>A Quantile-Quantile plot (Q-Q) compares theoretical quantiles that the data should have if they were perfectly normal.</li>
+<li>If the data were perfectly normally distributed, all points would lie on the line.</li>
+<li>The further the data deviate from the line, the less normally distributed they are.</li>
+</ul>
+<p>Resources:</p>
+<ul>
+<li><a href="https://learningstatisticswithr.com/book">https://learningstatisticswithr.com/book</a></li>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8327789/">https://pmc.ncbi.nlm.nih.gov/articles/PMC8327789/</a></li>
+</ul> </div> <footer data-astro-cid-k2f5zb5c> <p data-astro-cid-k2f5zb5c>2026 &copy; Richard</p> <nav data-astro-cid-k2f5zb5c> <ul data-astro-cid-k2f5zb5c> <li data-astro-cid-k2f5zb5c><a href="/" data-astro-cid-k2f5zb5c>Home</a></li> <li data-astro-cid-k2f5zb5c><a href="/notes" data-astro-cid-k2f5zb5c>Notes</a></li> <li data-astro-cid-k2f5zb5c><a href="/writing" data-astro-cid-k2f5zb5c>Writing</a></li> <li data-astro-cid-k2f5zb5c><a href="/tbr" data-astro-cid-k2f5zb5c>TBR</a></li> </ul> </nav> </footer>   </html>
