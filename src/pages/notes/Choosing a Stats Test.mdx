@@ -1,0 +1,96 @@
+---
+layout: "../../layouts/NotesLayout.astro"
+title: "Choosing a Stats Test"
+keywords: "stats, statistics, test, choosing, guide"
+description: "A guide to choosing a stats test for your data."
+slug: "Choosing_a_Stats_Test"
+order: 11
+---
+
+### Inferential Statistics
+- Studies are conducted to test a hypothesis and to derive inferences from sample results about the population. 
+- The goal is to assess differences between groups (comparison), establish an association between two variables (correlation), predict one variable (regression), or look for agreement between measures (agreement).
+### Paired vs unpaired
+- Observations made on the same individual (before and after) are usually matched or **paired**.
+	- Data are considered paired if the values in one set are likely to be influenced by those in the other.
+- Comparisons made between individuals are **unpaired** or unmatched.
+### Types of Data
+- The test chosen will depend on the type of data: categorical (normal or ordinal) or numerical (skewed or normally distributed).
+- Tests used to analyse normally distributed data are known as **parametric** tests.
+- and have a **nonparametric** counterpart used for distribution-free data.
+- Parametric Tests:
+	- Assume that the sample data is normally distributed.
+	- <a href="#normality-testing">Normality Testing</a> can confirm this assumption.
+	- And that it has the same characteristics as the population.
+	-  more powerful and better able to detect differences between groups.
+- Nonparametric tests:
+	- Make no normality assumption.
+	- less efficient at identifying significant differences.
+- Time-to-event data require a specialised analysis, known as survival analysis.
+### How many measurements?
+- The test also depends on whether two or more than two measurements are being compared.
+- This includes more than two groups (unmatched data) or more than two measurements in a group (matched data).
+### Test for Comparison
+
+Table 1:
+
+| Type of Data         | Two Groups                                                                                                                                                   | More than two Groups             |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------- |
+| Nominal              | Chi-square test or Fisher’s exact test | "                                |
+| Ordinal or Skewed    | Mann–Whitney U-test (Wilcoxon rank sum test)                                                                                                           | Kruskal–Wallis test*             |
+| Normally distributed | Unpaired t-test                                                                                                                                              | Analysis of variance (ANOVA)* |
+
+
+\* To be followed by post hoc testing
+
+Table 2:
+
+| Type of Data         | Two Groups                                                     | More than two groups        |
+| -------------------- | -------------------------------------------------------------- | --------------------------- |
+| Nominal              | McNemar's Test | Cochran's Q                 |
+| Ordinal or Skewed    | Wilcoxon signed rank test                                      | Friedman test*              |
+| Normally distributed | Paired t-test                                                  | Repeated measures (ANOVA)* |
+- Table 1 lists tests used for comparing unpaired data.
+- Table 2 lists tests commonly used for paired data
+### Tests for Association 
+
+| Type of Data                               | Test                                                                  |
+| ------------------------------------------ | --------------------------------------------------------------------- |
+| **Correlation**                            |                                                                       |
+| Both variables normally distributed     | Pearson’s correlation coefficient                                     |
+| One or both variables ordinal or skewed | Spearman’s or Kendall’s correlation coefficient                    |
+| Nominal data                               | Chi-square test; odds ratio or relative risk (for binary outcomes) |
+| **Regression**                             |                                                                       |
+| Continuous outcome                         | Linear regression analysis                                            |
+| Categorical outcome (binary)               | Logistic regression analysis                                          |
+- The above lists test used to determine the association between variables.
+- Correlation determines the strength of the relationship between two variables.
+- Regression allows us to predict one variable from another.
+### Tests for Agreement between Measures
+
+| Type of Data     | Test                                                                                     |
+| ---------------- | ---------------------------------------------------------------------------------------- |
+| Categorical data | Cohen’s kappa                                                                            |
+| Numerical data   | Intraclass correlation coefficient (numerical) and Bland–Altman plot (graphical display) |
+
+## Normality Testing 
+- We can test normality either **analytically** or **graphically**.
+- The most common normality tests are:
+	- Kolmogorov-Smirnov Test
+	- Shapiro-Wilk Test
+	- Anderson-Darling Test
+- Where $H_0$ is that the data is normally distributed.
+- The test will give a $p$-value which will allow us to reject or not reject the null hypothesis. 
+### Issues
+- The $p$-value depends on the sample size.
+- So for small sample sizes, the $p$-value may be much larger than $0.05$, but for large samples it could be a lot smaller. 
+- To avoid this people tend to use graphical methods.
+### Graphical Tests
+- We can test graphically using Q-Q plots or histograms.
+- A Quantile-Quantile plot (Q-Q) compares theoretical quantiles that the data should have if they were perfectly normal.
+- If the data were perfectly normally distributed, all points would lie on the line.
+- The further the data deviate from the line, the less normally distributed they are.
+
+Resources: 
+- https://learningstatisticswithr.com/book
+- https://pmc.ncbi.nlm.nih.gov/articles/PMC8327789/
