@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Blogs from "../components/Blogs.tsx";
 
-const matches = await import.meta.glob('./blog/*.md', { eager: true });
+const matches = await import.meta.glob('./blog/*.mdx', { eager: true });
 const posts = Object.values(matches);
 ---
 

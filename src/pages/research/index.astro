@@ -1,0 +1,106 @@
+---
+let title = 'RichardMe123 | Research';
+import Layout from '../../layouts/Layout.astro';
+
+const matches = await import.meta.glob('../research/*.mdx', { eager: true });
+const posts = Object.values(matches);
+const allPosts = posts.filter((post : any) => post.frontmatter.title !== "RichardMe123")
+                      .sort((a : any, b : any) => {
+                        const dateA = new Date(a.frontmatter?.date ?? 0).getTime();
+                        const dateB = new Date(b.frontmatter?.date ?? 0).getTime();
+
+                        return dateB - dateA;
+                      });   
+
+function zeroPad(num: number, places: number) {
+    return String(num).padStart(places, '0');
+}
+---
+
+<Layout title={title}>
+<div class="container">
+    <h1>Research</h1>
+    <div class="research">
+
+        {
+            allPosts.length === 0 && (
+                <p>No research posts yet. Check back later!</p>
+             )
+        }
+
+        {allPosts.filter((post: any) => !post.frontmatter.draft).map((post: any, idx: number) => {
+            return (
+                <div class="box">
+                <div class="header">
+                    <p class="number">#{zeroPad(allPosts.length - (idx + 1), 4)}</p>
+                    {post && post.frontmatter.tags.map((tag: string) => (
+                        <span class="tag">{tag}</span>
+                    ))}
+                </div>
+              <a class="title" href={post.url}>{post.frontmatter.title}</a>
+              <p class="date">{post.frontmatter.date}</p>
+            </div>
+            )
+        })}
+        </div>
+</div>
+
+</Layout>
+
+<style>
+
+    .box {
+        border-top: 1px solid #ccc;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 4px;
+    }
+
+    .research {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        max-width: 50vw;
+        min-height: 60vh;
+    }
+
+    @media (max-width: 768px) {
+        .research {
+            max-width: 100%;
+        }
+    }
+
+    .tag {
+        background-color: #eee;
+        border-radius: 4px;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+        margin-left: 0.5rem;
+    }
+
+    .number {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.75rem;
+        color: #888888;
+    }
+
+    .header {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        margin-bottom: 0.5rem;
+        font-size: smaller;
+    }
+
+    .date {
+        font-size: smaller;
+        color: #888888;
+    }
+
+    .title {
+        text-decoration: none;
+    }
+    .title:hover {
+        color: hsl(141, 57%, 34%)
+    }
+</style>

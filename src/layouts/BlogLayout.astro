@@ -63,7 +63,7 @@ let { frontmatter } = Astro.props;
         <link rel="stylesheet" href="/style/home.css" />
     </head>
     <header>
-        <TopBar />
+        <TopBar backLink={frontmatter.backLink ?? '/'} />
     </header>
     <body>
         <div class="blog-container">
@@ -82,7 +82,6 @@ let { frontmatter } = Astro.props;
     </body>
     <Footer />
 
-
     <style is:global>
         ::selection {
             background-color: hsl(158, 53%, 56%);
@@ -90,3 +89,4 @@ let { frontmatter } = Astro.props;
         }
     </style>
 </html>
+

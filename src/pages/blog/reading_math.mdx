@@ -1,0 +1,78 @@
+---
+layout: "../../layouts/BlogLayout.astro"
+date: "20 Jul 2025"
+title: "A Guide to reading maths notation in Computer Science"
+url: "reading_math"
+backLink: "/blog"
+draft: true
+---
+
+## Machine Learning Mathematical Notation
+Mathematical notation is a powerful tool for expressing complex ideas in a concise and precise way. However, it can be intimidating for those who are new to the field of machine learning. In this guide, we will break down some of the most common mathematical notations used in machine learning and explain what they mean.
+
+### Sets and Functions
+- **Set**: A collection of distinct objects, considered as an object in its own right. For example, the set of all real numbers is denoted by ℝ.
+- **Function**: A relation between a set of inputs and a set of possible outputs. For example, f(x) = x^2 is a function that takes an input x and returns its square.   
+
+### Vectors and Matrices
+- **Vector**: An ordered list of numbers, which can represent a point in space or a direction. For example, a vector in three-dimensional space can be represented as v = [x, y, z].
+- **Matrix**: A rectangular array of numbers arranged in rows and columns. For example, a 2x2 matrix can be represented as M = [[a, b], [c, d]].    
+
+### Probability and Statistics
+**Probability**: A measure of the likelihood that an event will occur. For example, the probability of rolling a six on a fair die is 1/6.
+
+Probability can be expressed in various ways, such as:
+$$ P(A) $$
+which denotes the probability of event A occurring.
+
+**Conditional Probability**: The probability of an event occurring given that another event has already occurred. For example, the probability of rolling a six on a die given that the previous roll was a six is still 1/6. This is often expressed as:
+$$ P(A | B) $$
+which denotes the probability of event A occurring given that event B has occurred. We can compute conditional probability using Bayes' theorem:
+$$
+P(A | B) = \frac{P(B | A) P(A)}{P(B)}
+$$
+
+
+**Expectation**: The expected value of a random variable is the long-term average value of repetitions of the experiment it represents. For example, the expected value of rolling a six on a fair die is 1/6.
+The expectation of a random variable X is denoted as: $E[X]$ and can be calculated as: 
+
+$$ 
+\mathbb{E}[X] = \sum_{i} x_i P(X = x_i)
+$$ 
+
+### Optimization
+**Gradient**: A vector that points in the direction of the greatest rate of increase of a function. For example, the gradient of a function f(x) at a point x is denoted as ∇f(x) and can be calculated as:
+$$
+\nabla f(x) = \left[ \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, \ldots, \frac{\partial f}{\partial x_n} \right]
+$$
+
+such that $\frac{\partial f}{\partial x_i}$ is the partial derivative of $f$ with respect to $x_i$.
+
+**Loss Function**: A function that measures the difference between the predicted output of a model and the actual output. For example, the mean squared error loss function is defined as:
+$$
+\mathcal{L}(y, \hat{y}) = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+$$
+
+where y is the actual output, $\hat{y}$ is the predicted output, and n is the number of samples. The loss function is task specific and can vary depending on the problem being solved.
+
+## Maths for Reinforcement Learning
+In reinforcement learning, we often use the following notations:
+- **State**: The current situation of the agent, denoted as $s$.
+- **Action**: The decision made by the agent, denoted as $a$.
+- **Reward**: The feedback received by the agent after taking an action, denoted as $r$.
+- **Policy**: A strategy used by the agent to determine which action to take in a given state, denoted as $\pi(a|s)$.
+- **Value Function**: A function that estimates the expected return (cumulative reward) from a given state, denoted as $V(s)$.
+- **Q-Function**: A function that estimates the expected return from taking a specific action in a given state, denoted as $Q(s, a)$. 
+
+In RL loss functions, we often use the Bellman equation to express the relationship between the value function and the reward:
+$$
+V(s) = \max_a \left[ R(s, a) + \gamma \sum_{s'} P(s'|s, a) V(s') \right]
+$$
+where $R(s, a)$ is the reward received for taking action $a$ in state $s$, $\gamma$ is the discount factor, and $P(s'|s, a)$ is the probability of transitioning to state $s'$ given that action $a$ was taken in state $s$.
+
+We can also write this as an expected value:
+$$
+V(s) = \max_a \mathbb{E}_{s'} \left[ R(s, a) + \gamma V(s') \right]
+$$  
+Which we read as "the value of state $s$ is the maximum expected sum of rewards and discounted future values".
+

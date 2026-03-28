@@ -1,5 +1,15 @@
+---
+let { backLink } = Astro.props;
+
+let fallbackLink = '/';
+
+if (!backLink) {
+    backLink = fallbackLink;
+}
+---
+
 <nav>
-    <a href="/">&lt/back</a>
+    <a href={backLink}>&lt;back</a>
 </nav>
 
 <style>
