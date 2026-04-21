@@ -60,7 +60,17 @@ const { title } = Astro.props;
 	.nav-links {
 		display: flex;
 		gap: 1.5rem;
+		flex-wrap: wrap;
 	}
+	@media screen and (max-width: 600px) {
+		.nav-links {
+			justify-content: space-evenly;
+			gap: clamp(0.5rem, 5vw, 1.5rem);
+		}
+		.container {
+			padding: 2rem 1rem 0 1rem;
+			max-width: 100%;
+		}
 </style>
 
 <style is:global>
