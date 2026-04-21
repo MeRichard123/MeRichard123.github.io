@@ -31,15 +31,6 @@ a.invisible {
   width: 100%;
 }
 
-a.invisible::after {
-  content: url("/src/assets/extern.svg");
-  position: absolute;
-  top: 50%;
-  right: -20px;
-  width: 5px;
-  height: 5px;
-}
-
 .research-list li {
   margin-bottom: 1rem;
 }
