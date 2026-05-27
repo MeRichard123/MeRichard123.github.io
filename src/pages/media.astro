@@ -1,0 +1,192 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+    <div class="container">
+        <h1>Some of my favourite media</h1>
+        <p>
+            Here are some of my favourite movies, TV shows, and video games. I
+            update this page whenever I find something new that I really enjoy.
+        </p>
+
+        <h2>Books</h2>
+        <div class="items">
+            <div class="item">
+                <div class="thumb">
+                    <img
+                        loading="lazy"
+                        src="/media/babel.jpg"
+                        alt="Babel cover art"
+                    />
+                </div>
+                <div class="content">
+                    <div class="title">Babel</div>
+                    <div class="author">R. F. Kuang</div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumb">
+                    <img
+                        loading="lazy"
+                        src="/media/kafka_on_the_shore.jpg"
+                        alt="Kafka on the Shore cover art"
+                    />
+                </div>
+                <div class="content">
+                    <div class="title">Kafka on the Shore</div>
+                    <div class="author">Haruki Murakami</div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumb">
+                    <img
+                        loading="lazy"
+                        src="/media/agad.jpg"
+                        alt="As Good as Dead cover art"
+                    />
+                </div>
+                <div class="content">
+                    <div class="title">As Good as Dead</div>
+                    <div class="author">Holly Jackson</div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumb">
+                    <img
+                        loading="lazy"
+                        src="/media/all_thats_left_in_the_world.jpg"
+                        alt="All That's Left in the World cover art"
+                    />
+                </div>
+                <div class="content">
+                    <div class="title">All That's Left in the World</div>
+                    <div class="author">Erik J. Brown</div>
+                </div>
+            </div>
+        </div>
+        <div class="shelf"></div>
+
+        <h2>Video Games</h2>
+        <div class="items">
+            <div class="item">
+                <div class="thumb">
+                    <img
+                        loading="lazy"
+                        src="/media/Subnautica_cover_art.png"
+                        alt="Subnautica cover art"
+                    />
+                </div>
+                <div class="content">
+                    <div class="title">Subnautica</div>
+                    <div class="author">Unknown Worlds</div>
+                </div>
+            </div>
+        </div>
+        <div class="shelf"></div>
+
+        <h2>Movies</h2>
+        <div class="items">
+            <div class="item">
+                <div class="thumb">
+                    <img
+                        loading="lazy"
+                        src="/media/phm.jpg"
+                        alt="Project Hail Mary cover art"
+                    />
+                </div>
+                <div class="content">
+                    <div class="title">Project Hail Mary</div>
+                    <div class="author">Andy Weir | Phil Lord</div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="thumb">
+                    <img
+                        loading="lazy"
+                        src="/media/The_Imitation_Game_(2014).png"
+                        alt="The Imitation Game cover art"
+                    />
+                </div>
+                <div class="content">
+                    <div class="title">The Imitation Game</div>
+                    <div class="author">Morten Tyldum</div>
+                </div>
+            </div>
+        </div>
+        <div class="shelf"></div>
+    </div>
+</Layout>
+
+<style>
+    .container {
+        max-width: 90ch;
+        margin: 0 auto;
+        padding: 6rem 1rem 0 1rem;
+    }
+
+    .items {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        grid-auto-rows: 1fr;
+        align-items: stretch;
+    }
+
+    .item {
+        border: 1px solid #eee;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        box-sizing: border-box;
+        background: #fff;
+    }
+
+    .thumb {
+        width: 100%;
+        aspect-ratio: 2 / 3;
+        overflow: hidden;
+        border-radius: 4px;
+        background: #f6f6f6;
+        flex: 0 0 auto;
+    }
+
+    .thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        margin-top: 0.5rem;
+        flex: 1 1 auto;
+        justify-content: space-between;
+    }
+
+    .item .title {
+        padding: 0.3rem 0;
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+    .item .author {
+        color: #555;
+        padding: 0.3rem 0;
+    }
+    .shelf {
+        border-radius: 8px;
+        padding: 1rem;
+        background-color: #613e1f;
+        background-image: url("/wood-pattern-1920x1080.png");
+        background-size: cover;
+        background-position: center;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+</style>

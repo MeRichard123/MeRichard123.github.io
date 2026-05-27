@@ -40,19 +40,9 @@
     "coverScreenshot": "the-remains-of-the-day-kazuo-ishiguro.png"
   },
   {
-    "title": "Project Hail Mary",
-    "author": "Andy Weir",
-    "coverScreenshot": "project-hail-mary-andy-weir.png"
-  },
-  {
     "title": "The Stand",
     "author": "Stephen King",
     "coverScreenshot": "the-stand-stephen-king.png"
-  },
-  {
-    "title": "Better The Devil",
-    "author": "Erik J. Brown",
-    "coverScreenshot": "better-the-devil-erik-j-brown.png"
   },
   {
     "title": "Witchcraft for Wayward Girls",
@@ -63,11 +53,6 @@
     "title": "The Goldfinch",
     "author": "Donna Tartt",
     "coverScreenshot": "the-goldfinch-donna-tartt.png"
-  },
-  {
-    "title": "A Language of Dragons",
-    "author": "S.F. Williamson",
-    "coverScreenshot": "a-language-of-dragons-sf-williamson.png"
   },
   {
     "title": "You Are but Dust",
@@ -88,11 +73,6 @@
     "title": "The Drowning Faith",
     "author": "R.F. Kuang",
     "coverScreenshot": "the-drowning-faith-rf-kuang.png"
-  },
-  {
-    "title": "The Dragon Republic",
-    "author": "R.F. Kuang",
-    "coverScreenshot": "the-dragon-republic-rf-kuang.png"
   },
   {
     "title": "Absolution",
@@ -143,11 +123,6 @@
     "title": "From the Earth to the Moon",
     "author": "Jules Verne",
     "coverScreenshot": "from-the-earth-to-the-moon-jules-verne.png"
-  },
-  {
-    "title": "Rejection",
-    "author": "Tony Tulathimutte",
-    "coverScreenshot": "rejection-tony-tulathimutte.png"
   },
   {
     "title": "Teleny, or the Reverse of the Medal",
@@ -270,19 +245,9 @@
     "coverScreenshot": "notes-of-a-crocodile-qiu-miaojin.png"
   },
   {
-    "title": "Digital Fortress",
-    "author": "Dan Brown",
-    "coverScreenshot": "digital-fortress-dan-brown.png"
-  },
-  {
     "title": "Origin",
     "author": "Dan Brown",
     "coverScreenshot": "origin-dan-brown.png"
-  },
-  {
-    "title": "Gunk",
-    "author": "Saba Sams",
-    "coverScreenshot": "gunk-saba-sams.png"
   },
   {
     "title": "The Great Gatsby",
@@ -373,11 +338,6 @@
     "title": "Murder in the Greek Isles",
     "author": "Wendy Church",
     "coverScreenshot": "murder-in-the-greek-isles-wendy-church.png"
-  },
-  {
-    "title": "Four Seasons in Japan",
-    "author": "Nick Bradley",
-    "coverScreenshot": "four-seasons-in-japan-nick-bradley.png"
   },
   {
     "title": "The New Age of Sexism",
