@@ -4,6 +4,7 @@ import books from "../assets/output.json";
 
 const maxPages = Math.max(...books.map((book) => book.pages));
 const shelfWidth = 45;
+const mobileShelfWidth = 20;
 const tagsForBook = (book: (typeof books)[number]) => {
     if (!book.tags) return [];
     return Array.isArray(book.tags) ? book.tags : [book.tags];
@@ -27,15 +28,32 @@ const widthForBook = (book: (typeof books)[number]) =>
 const heightForBook = (book: (typeof books)[number]) =>
     10 + (book.pages / maxPages) * 6;
 
-const rowsForBooks = (sectionBooks: typeof books) => {
+const rowsForBooks = (
+    sectionBooks: typeof books,
+    rowWidth: number,
+    fillExistingRows = false,
+) => {
     const rows: (typeof books)[] = [];
+    const rowWidths: number[] = [];
     let currentRow: (typeof books) = [];
     let currentWidth = 0;
 
     for (const book of sectionBooks) {
         const width = widthForBook(book);
-        if (currentRow.length > 0 && currentWidth + width > shelfWidth) {
+        if (fillExistingRows) {
+            const rowIndex = rowWidths.findIndex(
+                (existingWidth) => existingWidth + width <= rowWidth,
+            );
+            if (rowIndex !== -1) {
+                rows[rowIndex].push(book);
+                rowWidths[rowIndex] += width;
+                continue;
+            }
+        }
+
+        if (currentRow.length > 0 && currentWidth + width > rowWidth) {
             rows.push(currentRow);
+            rowWidths.push(currentWidth);
             currentRow = [];
             currentWidth = 0;
         }
@@ -43,7 +61,10 @@ const rowsForBooks = (sectionBooks: typeof books) => {
         currentWidth += width;
     }
 
-    if (currentRow.length > 0) rows.push(currentRow);
+    if (currentRow.length > 0) {
+        rows.push(currentRow);
+        rowWidths.push(currentWidth);
+    }
     return rows;
 };
 ---
@@ -68,9 +89,10 @@ const rowsForBooks = (sectionBooks: typeof books) => {
                     <section class="shelf-section" data-section={section}>
                         <h2>{section}</h2>
                         <div class="shelves" aria-label={`${section} books`}>
-                            {rowsForBooks(sectionBooks).map((row, index) => (
-                                <div class="shelf" aria-label={`${section} shelf ${index + 1}`}>
-                                    {row.map((book) => (
+                            <div class="shelf-list desktop-shelves">
+                                {rowsForBooks(sectionBooks, shelfWidth).map((row, index) => (
+                                    <div class="shelf" aria-label={`${section} shelf ${index + 1}`}>
+                                        {row.map((book) => (
                                     <button
                                         class="book"
                                         type="button"
@@ -91,9 +113,33 @@ const rowsForBooks = (sectionBooks: typeof books) => {
                                             {/* <span class="cover-details">{book.title}</span> */}
                                         </span>
                                     </button>
-                                    ))}
-                                </div>
-                            ))}
+                                        ))}
+                                    </div>
+                                ))}
+                            </div>
+                            <div class="shelf-list mobile-shelves">
+                                {rowsForBooks(sectionBooks, mobileShelfWidth, true).map((row, index) => (
+                                    <div class="shelf" aria-label={`${section} mobile shelf ${index + 1}`}>
+                                        {row.map((book) => (
+                                            <button
+                                                class="book"
+                                                type="button"
+                                                aria-label={`Show cover for ${book.title}`}
+                                                style={`--book-width: ${widthForBook(book)}rem; --book-height: ${heightForBook(book)}rem; --book-color: ${colorForBook(book.title)};`}
+                                            >
+                                                <span class="book-spine" aria-hidden="true">
+                                                    <span class="book-title">{book.title}</span>
+                                                    <span class="book-author">{book.author}</span>
+                                                </span>
+                                                <span class="book-cover">
+                                                    <img loading="lazy" src={`/screenshots/${book.coverScreenshot}`} alt={`Cover of ${book.title}`} />
+                                                    <span class="cover-details">{book.title}</span>
+                                                </span>
+                                            </button>
+                                        ))}
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </section>
                 );
@@ -153,6 +199,10 @@ const rowsForBooks = (sectionBooks: typeof books) => {
     padding: 1rem 0 0;
     overflow: visible;
     border-bottom: 0.7rem solid #b98c6b;
+}
+
+.mobile-shelves {
+    display: none;
 }
 
 .book {
@@ -310,10 +360,23 @@ const rowsForBooks = (sectionBooks: typeof books) => {
 
     .shelf {
         padding-inline: 0.5rem;
+        min-height: 17rem;
+    }
+
+    .desktop-shelves {
+        display: none;
+    }
+
+    .mobile-shelves {
+        display: block;
     }
 
     .book {
-        height: 15rem;
+        height: 16rem;
+    }
+
+    .book-spine {
+        height: min(var(--book-height), 15rem);
     }
 
     .book-cover {
@@ -322,7 +385,17 @@ const rowsForBooks = (sectionBooks: typeof books) => {
     }
 
     .book.is-open {
-        transform: translate3d(0, -1rem, 4rem) rotateX(-2deg);
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 10rem;
+        height: 15rem;
+        z-index: 10;
+        transform: translate3d(-50%, calc(-50% - 1rem), 4rem) rotateX(-2deg);
+    }
+
+    .book:not(.is-open) {
+        transform: none;
     }
 
 }
