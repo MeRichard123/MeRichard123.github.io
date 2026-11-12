@@ -1,472 +1,1005 @@
 [
   {
+    "title": "She's Always Hungry",
+    "author": "Eliza Clark",
+    "pages": 225,
+    "coverScreenshot": "shes-always-hungry-eliza-clark.png"
+  },
+  {
+    "title": "All's Well",
+    "author": "Mona Awad",
+    "pages": 358,
+    "coverScreenshot": "alls-well-mona-awad.png"
+  },
+  {
+    "title": "Eileen",
+    "author": "Ottessa Moshfegh",
+    "pages": 272,
+    "coverScreenshot": "eileen-ottessa-moshfegh.png"
+  },
+  {
+    "title": "The Wax Child",
+    "author": "Olga Ravn",
+    "pages": 192,
+    "coverScreenshot": "the-wax-child-olga-ravn.png"
+  },
+  {
+    "title": "The Buried Giant",
+    "author": "Kazuo Ishiguro",
+    "pages": 362,
+    "coverScreenshot": "the-buried-giant-kazuo-ishiguro.png"
+  },
+  {
+    "title": "The Haunting of Hill House",
+    "author": "Shirley Jackson",
+    "pages": 182,
+    "coverScreenshot": "the-haunting-of-hill-house-shirley-jackson.png"
+  },
+  {
+    "title": "White Nights",
+    "author": "Fyodor Dostoevsky",
+    "pages": 80,
+    "coverScreenshot": "white-nights-fyodor-dostoevsky.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "The Woman in White",
+    "author": "Wilkie Collins",
+    "pages": 720,
+    "coverScreenshot": "the-woman-in-white-wilkie-collins.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "The Godfather",
+    "author": "Mario Puzo",
+    "pages": 447,
+    "coverScreenshot": "the-godfather-mario-puzo.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "The Little Friend",
+    "author": "Donna Tartt",
+    "pages": 555,
+    "coverScreenshot": "the-little-friend-donna-tartt.png"
+  },
+  {
+    "title": "The Sea, the Sea",
+    "author": "Iris Murdoch",
+    "pages": 528,
+    "coverScreenshot": "the-sea-the-sea-iris-murdoch.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Mrs. Dalloway",
+    "author": "Virginia Woolf",
+    "pages": 194,
+    "coverScreenshot": "mrs-dalloway-virginia-woolf.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Perfume: The Story of a Murderer",
+    "author": "Patrick Süskind",
+    "pages": 263,
+    "coverScreenshot": "perfume-the-story-of-a-murderer-patrick-suskind.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Tropic of Cancer",
+    "author": "Henry Miller",
+    "pages": 318,
+    "coverScreenshot": "tropic-of-cancer-henry-miller.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Sun Tzu: The Art of War",
+    "author": "Sun Tzu",
+    "pages": 280,
+    "coverScreenshot": "sun-tzu-the-art-of-war-sun-tzu.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Anna Karenina",
+    "author": "Leo Tolstoy",
+    "pages": 864,
+    "coverScreenshot": "anna-karenina-leo-tolstoy.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "The Diary of a Nobody",
+    "author": "Weedon Grossmith",
+    "pages": 176,
+    "coverScreenshot": "the-diary-of-a-nobody-weedon-grossmith.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "The Count of Monte Cristo",
+    "author": "Alexandre Dumas",
+    "pages": 1276,
+    "coverScreenshot": "the-count-of-monte-cristo-alexandre-dumas.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Lady Chatterley's Lover",
+    "author": "D.H. Lawrence",
+    "pages": 376,
+    "coverScreenshot": "lady-chatterleys-lover-dh-lawrence.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Catch-22",
+    "author": "Joseph Heller",
+    "pages": 453,
+    "coverScreenshot": "catch-22-joseph-heller.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "One Flew Over the Cuckoo's Nest",
+    "author": "Ken Kesey",
+    "pages": 281,
+    "coverScreenshot": "one-flew-over-the-cuckoos-nest-ken-kesey.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "The Death of the Heart",
+    "author": "Elizabeth Bowen",
+    "pages": 432,
+    "coverScreenshot": "the-death-of-the-heart-elizabeth-bowen.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "The Call of the Wild",
+    "author": "Jack London",
+    "pages": 172,
+    "coverScreenshot": "the-call-of-the-wild-jack-london.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "The Turn of the Screw",
+    "author": "Henry James",
+    "pages": 121,
+    "coverScreenshot": "the-turn-of-the-screw-henry-james.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "pages": 288,
+    "coverScreenshot": "brave-new-world-aldous-huxley.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Wide Sargasso Sea",
+    "author": "Jean Rhys",
+    "pages": 171,
+    "coverScreenshot": "wide-sargasso-sea-jean-rhys.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "One Hundred Years of Solitude",
+    "author": "Gabriel García Márquez",
+    "pages": 417,
+    "coverScreenshot": "one-hundred-years-of-solitude-gabriel-garcia-marquez.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Wuthering Heights",
+    "author": "Emily Brontë",
+    "pages": 409,
+    "coverScreenshot": "wuthering-heights-emily-bronte.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "A Room With a View",
+    "author": "E.M. Forster",
+    "pages": 120,
+    "coverScreenshot": "a-room-with-a-view-em-forster.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Do Androids Dream of Electric Sheep?",
+    "author": "Philip K. Dick",
+    "pages": 224,
+    "coverScreenshot": "do-androids-dream-of-electric-sheep-philip-k-dick.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Middlemarch",
+    "author": "George Eliot",
+    "pages": 904,
+    "coverScreenshot": "middlemarch-george-eliot.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Little Women",
+    "author": "Louisa May Alcott",
+    "pages": 456,
+    "coverScreenshot": "little-women-louisa-may-alcott.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Sense and Sensibility",
+    "author": "Jane Austen",
+    "pages": 381,
+    "coverScreenshot": "sense-and-sensibility-jane-austen.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "The Time Machine",
+    "author": "H.G. Wells",
+    "pages": 96,
+    "coverScreenshot": "the-time-machine-hg-wells.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Orlando",
+    "author": "Virginia Woolf",
+    "pages": 320,
+    "coverScreenshot": "orlando-virginia-woolf.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Lolita",
+    "author": "Vladimir Nabokov",
+    "pages": 317,
+    "coverScreenshot": "lolita-vladimir-nabokov.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "The Grapes of Wrath",
+    "author": "John Steinbeck",
+    "pages": 464,
+    "coverScreenshot": "the-grapes-of-wrath-john-steinbeck.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "The Illiad",
+    "author": "Homer",
+    "pages": null,
+    "coverScreenshot": "the-illiad-homer.png", 
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "To the Lighthouse",
+    "author": "Virginia Woolf",
+    "pages": 209,
+    "coverScreenshot": "to-the-lighthouse-virginia-woolf.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Les Misérables",
+    "author": "Victor Hugo",
+    "pages": 1463,
+    "coverScreenshot": "les-miserables-victor-hugo.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Persuasion",
+    "author": "Jane Austen",
+    "pages": 249,
+    "coverScreenshot": "persuasion-jane-austen.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Crime and Punishment",
+    "author": "Fyodor Dostoevsky",
+    "pages": 524,
+    "coverScreenshot": "crime-and-punishment-fyodor-dostoevsky.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Jane Eyre",
+    "author": "Charlotte Brontë",
+    "pages": 532,
+    "coverScreenshot": "jane-eyre-charlotte-bronte.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "pages": 435,
+    "coverScreenshot": "pride-and-prejudice-jane-austen.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Piranesi",
+    "author": "Susanna Clarke",
+    "pages": 245,
+    "coverScreenshot": "piranesi-susanna-clarke.png"
+  },
+  {
+    "title": "The Mammoth Book of Cthulhu: New Lovecraftian Fiction",
+    "author": "Damien Angelica Walters",
+    "pages": 496,
+    "coverScreenshot": "the-mammoth-book-of-cthulhu-new-lovecraftian-fiction-damien-angelica-walters.png"
+  },
+  {
+    "title": "East of Eden",
+    "author": "John Steinbeck",
+    "pages": 601,
+    "coverScreenshot": "east-of-eden-john-steinbeck.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "Ninth House",
+    "author": "Leigh Bardugo",
+    "pages": 458,
+    "coverScreenshot": "ninth-house-leigh-bardugo.png"
+  },
+  {
+    "title": "Girl with a Pearl Earring",
+    "author": "Tracy Chevalier",
+    "pages": 233,
+    "coverScreenshot": "girl-with-a-pearl-earring-tracy-chevalier.png"
+  },
+  {
+    "title": "I'll Be The Monster",
+    "author": "Sean Gilbert",
+    "pages": 339,
+    "coverScreenshot": "ill-be-the-monster-sean-gilbert.png"
+  },
+  {
+    "title": "Paradise",
+    "author": "Ben Tufnell",
+    "pages": 331,
+    "coverScreenshot": "paradise-ben-tufnell.png"
+  },
+  {
+    "title": "Switzy",
+    "author": "Emma Cline",
+    "pages": 336,
+    "coverScreenshot": "switzy-emma-cline.png"
+  },
+  {
+    "title": "Tender Is the Flesh",
+    "author": "Agustina Bazterrica",
+    "pages": 211,
+    "coverScreenshot": "tender-is-the-flesh-agustina-bazterrica.png"
+  },
+  {
+    "title": "Seveneves",
+    "author": "Neal Stephenson",
+    "pages": 880,
+    "coverScreenshot": "seveneves-neal-stephenson.png"
+  },
+  {
+    "title": "A Darkling Sea",
+    "author": "James L. Cambias",
+    "pages": 352,
+    "coverScreenshot": "a-darkling-sea-james-l-cambias.png"
+  },
+  {
+    "title": "The Swarm",
+    "author": "Frank Schätzing",
+    "pages": 881,
+    "coverScreenshot": "the-swarm-frank-schatzing.png"
+  },
+  {
+    "title": "God Emperor of Dune",
+    "author": "Frank Herbert",
+    "pages": 587,
+    "coverScreenshot": "god-emperor-of-dune-frank-herbert.png"
+  },
+  {
+    "title": "Children of Dune",
+    "author": "Frank Herbert",
+    "pages": 480,
+    "coverScreenshot": "children-of-dune-frank-herbert.png"
+  },
+  {
+    "title": "Dune Messiah",
+    "author": "Frank Herbert",
+    "pages": 336,
+    "coverScreenshot": "dune-messiah-frank-herbert.png"
+  },
+  {
+    "title": "In Ascension",
+    "author": "Martin MacInnes",
+    "pages": 496,
+    "coverScreenshot": "in-ascension-martin-macinnes.png"
+  },
+  {
+    "title": "Giovanni's Room",
+    "author": "James Baldwin",
+    "pages": 170,
+    "coverScreenshot": "giovannis-room-james-baldwin.png",
+    "tags": ["Books to Read before you Die"]
+  },
+  {
+    "title": "The Memory Police",
+    "author": "Yōko Ogawa",
+    "pages": 288,
+    "coverScreenshot": "the-memory-police-yoko-ogawa.png"
+  },
+  {
+    "title": "Another Country",
+    "author": "James Baldwin",
+    "pages": 448,
+    "coverScreenshot": "another-country-james-baldwin.png"
+  },
+  {
+    "title": "Stoner",
+    "author": "John Williams",
+    "pages": 288,
+    "coverScreenshot": "stoner-john-williams.png"
+  },
+  {
+    "title": "A Beast Slinks Towards Beijing",
+    "author": "Alice Evelyn Yang",
+    "pages": 360,
+    "coverScreenshot": "a-beast-slinks-towards-beijing-alice-evelyn-yang.png"
+  },
+  {
+    "title": "In the Miso Soup",
+    "author": "Ryu Murakami",
+    "pages": 181,
+    "coverScreenshot": "in-the-miso-soup-ryu-murakami.png"
+  },
+  {
+    "title": "Sea of Rust",
+    "author": "C. Robert Cargill",
+    "pages": 365,
+    "coverScreenshot": "sea-of-rust-c-robert-cargill.png"
+  },
+  {
+    "title": "Fundamentally",
+    "author": "Nussaibah Younis",
+    "pages": 352,
+    "coverScreenshot": "fundamentally-nussaibah-younis.png"
+  },
+  {
+    "title": "Anxious People",
+    "author": "Fredrik Backman",
+    "pages": 341,
+    "coverScreenshot": "anxious-people-fredrik-backman.png"
+  },
+  {
+    "title": "Argylle",
+    "author": "Elly Conway",
+    "pages": 384,
+    "coverScreenshot": "argylle-elly-conway.png"
+  },
+  {
+    "title": "Good Girl",
+    "author": "Aria Aber",
+    "pages": 368,
+    "coverScreenshot": "good-girl-aria-aber.png"
+  },
+  {
+    "title": "I Have the Right to Destroy Myself",
+    "author": "Young-Ha Kim",
+    "pages": 119,
+    "coverScreenshot": "i-have-the-right-to-destroy-myself-young-ha-kim.png"
+  },
+  {
     "title": "Mere",
     "author": "Danielle Giles",
+    "pages": 373,
     "coverScreenshot": "mere-danielle-giles.png"
   },
   {
     "title": "We Do Not Part",
     "author": "Han Kang",
+    "pages": 375,
     "coverScreenshot": "we-do-not-part-han-kang.png"
   },
   {
     "title": "Slags",
     "author": "Emma Jane Unsworth",
+    "pages": 288,
     "coverScreenshot": "slags-emma-jane-unsworth.png"
-  },
-  {
-    "title": "Monstrilio",
-    "author": "Gerardo Sámano Córdova",
-    "coverScreenshot": "monstrilio-gerardo-samano-cordova.png"
   },
   {
     "title": "Love Machines: How Artificial Intelligence is Transforming Our Relationships",
     "author": "James Muldoon",
+    "pages": 269,
     "coverScreenshot": "love-machines-how-artificial-intelligence-is-transforming-our-relationships-james-muldoon.png"
   },
   {
     "title": "The Alignment Problem: Machine Learning and Human Values",
     "author": "Brian Christian",
+    "pages": 496,
     "coverScreenshot": "the-alignment-problem-machine-learning-and-human-values-brian-christian.png"
   },
   {
     "title": "Overspill",
     "author": "Charlotte Paradise",
+    "pages": 416,
     "coverScreenshot": "overspill-charlotte-paradise.png"
   },
   {
     "title": "The Remains of the Day",
     "author": "Kazuo Ishiguro",
+    "pages": 258,
     "coverScreenshot": "the-remains-of-the-day-kazuo-ishiguro.png"
   },
   {
     "title": "The Stand",
     "author": "Stephen King",
+    "pages": 1213,
     "coverScreenshot": "the-stand-stephen-king.png"
   },
   {
     "title": "Witchcraft for Wayward Girls",
     "author": "Grady Hendrix",
+    "pages": 482,
     "coverScreenshot": "witchcraft-for-wayward-girls-grady-hendrix.png"
   },
   {
     "title": "The Goldfinch",
     "author": "Donna Tartt",
+    "pages": 962,
     "coverScreenshot": "the-goldfinch-donna-tartt.png"
   },
   {
     "title": "You Are but Dust",
     "author": "Hannah Clayton",
+    "pages": 302,
     "coverScreenshot": "you-are-but-dust-hannah-clayton.png"
   },
   {
     "title": "Collected Poems",
     "author": "Sylvia Plath",
+    "pages": 352,
     "coverScreenshot": "collected-poems-sylvia-plath.png"
-  },
-  {
-    "title": "The Burning God",
-    "author": "R.F. Kuang",
-    "coverScreenshot": "the-burning-god-rf-kuang.png"
-  },
-  {
-    "title": "The Drowning Faith",
-    "author": "R.F. Kuang",
-    "coverScreenshot": "the-drowning-faith-rf-kuang.png"
   },
   {
     "title": "Absolution",
     "author": "Jeff VanderMeer",
+    "pages": 441,
     "coverScreenshot": "absolution-jeff-vandermeer.png"
   },
   {
     "title": "Acceptance",
     "author": "Jeff VanderMeer",
+    "pages": 343,
     "coverScreenshot": "acceptance-jeff-vandermeer.png"
   },
   {
     "title": "Authority",
     "author": "Jeff VanderMeer",
+    "pages": 352,
     "coverScreenshot": "authority-jeff-vandermeer.png"
   },
   {
     "title": "Long Live the Pumpkin Queen",
     "author": "Shea Ernshaw",
+    "pages": 315,
     "coverScreenshot": "long-live-the-pumpkin-queen-shea-ernshaw.png"
   },
   {
     "title": "Hour of the Pumpkin Queen",
     "author": "Megan Shepherd",
+    "pages": 315,
     "coverScreenshot": "hour-of-the-pumpkin-queen-megan-shepherd.png"
   },
   {
     "title": "On Earth We're Briefly Gorgeous",
     "author": "Ocean Vuong",
+    "pages": 246,
     "coverScreenshot": "on-earth-were-briefly-gorgeous-ocean-vuong.png"
   },
   {
     "title": "Never Let Me Go",
     "author": "Kazuo Ishiguro",
+    "pages": 304,
     "coverScreenshot": "never-let-me-go-kazuo-ishiguro.png"
   },
   {
     "title": "I Who Have Never Known Men",
     "author": "Jacqueline Harpman",
+    "pages": 201,
     "coverScreenshot": "i-who-have-never-known-men-jacqueline-harpman.png"
   },
   {
     "title": "The Goldfinch",
     "author": "Donna Tartt",
+    "pages": 771,
     "coverScreenshot": "the-goldfinch-donna-tartt.png"
   },
   {
     "title": "From the Earth to the Moon",
     "author": "Jules Verne",
+    "pages": 240,
     "coverScreenshot": "from-the-earth-to-the-moon-jules-verne.png"
   },
   {
     "title": "Teleny, or the Reverse of the Medal",
     "author": "Oscar Wilde",
+    "pages": 138,
     "coverScreenshot": "teleny-or-the-reverse-of-the-medal-oscar-wilde.png"
   },
   {
     "title": "Dead Poets Society",
     "author": "N.H. Kleinbaum",
+    "pages": 166,
     "coverScreenshot": "dead-poets-society-nh-kleinbaum.png"
   },
   {
     "title": "Annihilation",
     "author": "Jeff VanderMeer",
+    "pages": 218,
     "coverScreenshot": "annihilation-jeff-vandermeer.png"
   },
   {
     "title": "Boy Parts",
     "author": "Eliza Clark",
+    "pages": 297,
     "coverScreenshot": "boy-parts-eliza-clark.png"
   },
   {
     "title": "The Cloisters",
     "author": "Katy Hays",
+    "pages": 312,
     "coverScreenshot": "the-cloisters-katy-hays.png"
   },
   {
     "title": "You've Found Oliver",
     "author": "Dustin Thao",
+    "pages": 274,
     "coverScreenshot": "youve-found-oliver-dustin-thao.png"
   },
   {
     "title": "This Book Kills",
     "author": "Ravena Guron",
+    "pages": 384,
     "coverScreenshot": "this-book-kills-ravena-guron.png"
   },
   {
     "title": "Atlas of Unknowable Things: A Novel",
     "author": "McCormick Templeman",
+    "pages": 320,
     "coverScreenshot": "atlas-of-unknowable-things-a-novel-mccormick-templeman.png"
   },
   {
     "title": "The Surrogate Mother",
     "author": "Freida McFadden",
+    "pages": 298,
     "coverScreenshot": "the-surrogate-mother-freida-mcfadden.png"
   },
   {
     "title": "Flashlight",
     "author": "Susan Choi",
+    "pages": 448,
     "coverScreenshot": "flashlight-susan-choi.png"
   },
   {
     "title": "A Clockwork Orange",
     "author": "Anthony Burgess",
+    "pages": 228,
     "coverScreenshot": "a-clockwork-orange-anthony-burgess.png"
   },
   {
     "title": "Since the World Is Ending",
     "author": "Indyana Schneider",
+    "pages": 320,
     "coverScreenshot": "since-the-world-is-ending-indyana-schneider.png"
   },
   {
     "title": "The Naturals",
     "author": "Jennifer Lynn Barnes",
+    "pages": 308,
     "coverScreenshot": "the-naturals-jennifer-lynn-barnes.png"
   },
   {
     "title": "The Trap",
     "author": "Catherine Ryan Howard",
+    "pages": 263,
     "coverScreenshot": "the-trap-catherine-ryan-howard.png"
   },
   {
     "title": "Dark Matter",
     "author": "Blake Crouch",
+    "pages": 342,
     "coverScreenshot": "dark-matter-blake-crouch.png"
-  },
-  {
-    "title": "A Short Stay in Hell",
-    "author": "Steven L. Peck",
-    "coverScreenshot": "a-short-stay-in-hell-steven-l-peck.png"
   },
   {
     "title": "Circe",
     "author": "Madeline Miller",
+    "pages": 393,
     "coverScreenshot": "circe-madeline-miller.png"
   },
   {
     "title": "No Escape: A claustrophobic, closed-room Gothic horror",
     "author": "M.A. Bennett",
+    "pages": 290,
     "coverScreenshot": "no-escape-a-claustrophobic-closed-room-gothic-horror-ma-bennett.png"
   },
   {
     "title": "Cleopatra and Frankenstein",
     "author": "Coco Mellors",
+    "pages": 368,
     "coverScreenshot": "cleopatra-and-frankenstein-coco-mellors.png"
   },
   {
     "title": "The Invisible Life of Addie LaRue",
     "author": "V.E. Schwab",
+    "pages": 444,
     "coverScreenshot": "the-invisible-life-of-addie-larue-ve-schwab.png"
   },
   {
     "title": "Violets",
     "author": "Kyung-sook Shin",
+    "pages": 212,
     "coverScreenshot": "violets-kyung-sook-shin.png"
   },
   {
     "title": "Concerning My Daughter",
     "author": "Kim Hye-jin",
+    "pages": 162,
     "coverScreenshot": "concerning-my-daughter-kim-hye-jin.png"
   },
   {
     "title": "Beauty and Sadness",
     "author": "Yasunari Kawabata",
+    "pages": 224,
     "coverScreenshot": "beauty-and-sadness-yasunari-kawabata.png"
   },
   {
     "title": "Notes of a Crocodile",
     "author": "Qiu Miaojin",
+    "pages": 242,
     "coverScreenshot": "notes-of-a-crocodile-qiu-miaojin.png"
   },
   {
-    "title": "Origin",
+    "title": "Pôvod",
     "author": "Dan Brown",
-    "coverScreenshot": "origin-dan-brown.png"
+    "pages": 528,
+    "coverScreenshot": "povod-dan-brown.png"
   },
   {
     "title": "The Great Gatsby",
     "author": "F. Scott Fitzgerald",
-    "coverScreenshot": "the-great-gatsby-f-scott-fitzgerald.png"
+    "pages": 180,
+    "coverScreenshot": "the-great-gatsby-f-scott-fitzgerald.png",
+    "tags": ["Books to Read before you Die"]
   },
   {
     "title": "Kairos",
     "author": "Jenny Erpenbeck",
+    "pages": 293,
     "coverScreenshot": "kairos-jenny-erpenbeck.png"
   },
   {
     "title": "Last Summer in the City",
     "author": "Gianfranco Calligarich",
+    "pages": 176,
     "coverScreenshot": "last-summer-in-the-city-gianfranco-calligarich.png"
   },
   {
     "title": "The Safe Keep",
     "author": "Yael van der Wouden",
+    "pages": 258,
     "coverScreenshot": "the-safe-keep-yael-van-der-wouden.png"
   },
   {
     "title": "Boulder",
     "author": "Eva Baltasar",
+    "pages": 105,
     "coverScreenshot": "boulder-eva-baltasar.png"
   },
   {
     "title": "Doppelganger",
     "author": "Naomi Klein",
+    "pages": 399,
     "coverScreenshot": "doppelganger-naomi-klein.png"
   },
   {
     "title": "If Beale Street Could Talk",
     "author": "James Baldwin",
+    "pages": 197,
     "coverScreenshot": "if-beale-street-could-talk-james-baldwin.png"
   },
   {
     "title": "Blue Sisters",
     "author": "Coco Mellors",
+    "pages": 352,
     "coverScreenshot": "blue-sisters-coco-mellors.png"
   },
   {
     "title": "All Fours",
     "author": "Miranda July",
+    "pages": 326,
     "coverScreenshot": "all-fours-miranda-july.png"
   },
   {
     "title": "The Adventures of Huckleberry Finn",
     "author": "Mark Twain",
-    "coverScreenshot": "the-adventures-of-huckleberry-finn-mark-twain.png"
+    "pages": 219,
+    "coverScreenshot": "the-adventures-of-huckleberry-finn-mark-twain.png",
+    "tags": ["Books to Read before you Die"]
   },
   {
-    "title": "It",
+    "title": "IT",
     "author": "Stephen King",
+    "pages": 1120,
     "coverScreenshot": "it-stephen-king.png"
   },
   {
     "title": "The Shining",
     "author": "Stephen King",
+    "pages": 497,
     "coverScreenshot": "the-shining-stephen-king.png"
   },
   {
     "title": "Apocalypse Cow",
     "author": "O.R. Sorrel",
+    "pages": 320,
     "coverScreenshot": "apocalypse-cow-or-sorrel.png"
   },
   {
     "title": "The List",
     "author": "Yomi Adegoke",
+    "pages": 384,
     "coverScreenshot": "the-list-yomi-adegoke.png"
   },
   {
     "title": "The Gentleman from Peru",
     "author": "André Aciman",
+    "pages": 169,
     "coverScreenshot": "the-gentleman-from-peru-andre-aciman.png"
   },
   {
     "title": "Private Lives",
     "author": "Emily Edwards",
+    "pages": 352,
     "coverScreenshot": "private-lives-emily-edwards.png"
-  },
-  {
-    "title": "Naked Lunch",
-    "author": "William S. Burroughs",
-    "coverScreenshot": "naked-lunch-william-s-burroughs.png"
   },
   {
     "title": "Murder in the Greek Isles",
     "author": "Wendy Church",
+    "pages": 256,
     "coverScreenshot": "murder-in-the-greek-isles-wendy-church.png"
   },
   {
     "title": "The New Age of Sexism",
     "author": "Laura Bates",
+    "pages": 312,
     "coverScreenshot": "the-new-age-of-sexism-laura-bates.png"
   },
   {
     "title": "Girlfriend on Mars",
     "author": "Deborah Willis",
+    "pages": 368,
     "coverScreenshot": "girlfriend-on-mars-deborah-willis.png"
   },
   {
     "title": "Breasts and Eggs",
     "author": "Mieko Kawakami",
+    "pages": 430,
     "coverScreenshot": "breasts-and-eggs-mieko-kawakami.png"
   },
   {
     "title": "All the Lovers in the Night",
     "author": "Mieko Kawakami",
+    "pages": 221,
     "coverScreenshot": "all-the-lovers-in-the-night-mieko-kawakami.png"
   },
   {
     "title": "Goodnight Tokyo",
     "author": "Atsuhiro Yoshida",
+    "pages": 176,
     "coverScreenshot": "goodnight-tokyo-atsuhiro-yoshida.png"
   },
   {
     "title": "Twenty Thousand Leagues Under the Sea",
     "author": "Jules Verne",
+    "pages": 269,
     "coverScreenshot": "twenty-thousand-leagues-under-the-sea-jules-verne.png"
-  },
-  {
-    "title": "The Ghost Cat",
-    "author": "Alex Howard",
-    "coverScreenshot": "the-ghost-cat-alex-howard.png"
   },
   {
     "title": "Men Without Women: Stories",
     "author": "Haruki Murakami",
+    "pages": 242,
     "coverScreenshot": "men-without-women-stories-haruki-murakami.png"
   },
   {
     "title": "I Was Born for This",
     "author": "Alice Oseman",
+    "pages": 395,
     "coverScreenshot": "i-was-born-for-this-alice-oseman.png"
   },
   {
     "title": "Loveless",
     "author": "Alice Oseman",
+    "pages": 433,
     "coverScreenshot": "loveless-alice-oseman.png"
   },
   {
     "title": "Radio Silence",
     "author": "Alice Oseman",
+    "pages": 403,
     "coverScreenshot": "radio-silence-alice-oseman.png"
   },
   {
     "title": "The Boy in the Suit",
     "author": "James Fox",
+    "pages": 379,
     "coverScreenshot": "the-boy-in-the-suit-james-fox.png"
   },
   {
     "title": "Outline",
     "author": "Rachel Cusk",
+    "pages": 249,
     "coverScreenshot": "outline-rachel-cusk.png"
   },
   {
     "title": "To Kill a Mockingbird",
     "author": "Harper Lee",
-    "coverScreenshot": "to-kill-a-mockingbird-harper-lee.png"
+    "pages": 323,
+    "coverScreenshot": "to-kill-a-mockingbird-harper-lee.png",
+    "tags": ["Books to Read before you Die"]
   },
   {
     "title": "Just by Looking at Him",
     "author": "Ryan O'Connell",
+    "pages": 294,
     "coverScreenshot": "just-by-looking-at-him-ryan-oconnell.png"
   },
   {
     "title": "The Three Lives of Cate Kay",
     "author": "Kate Fagan",
+    "pages": 294,
     "coverScreenshot": "the-three-lives-of-cate-kay-kate-fagan.png"
   },
   {
     "title": "Around the World in Eighty Days",
     "author": "Jules Verne",
+    "pages": 248,
     "coverScreenshot": "around-the-world-in-eighty-days-jules-verne.png"
   },
   {
     "title": "Emma",
     "author": "Jane Austen",
-    "coverScreenshot": "emma-jane-austen.png"
+    "pages": 476,
+    "coverScreenshot": "emma-jane-austen.png",
+    "tags": ["Books to Read before you Die"]
   },
   {
     "title": "Welcome to the Hyunam-dong Bookshop",
     "author": "Hwang Bo-Reum",
+    "pages": 301,
     "coverScreenshot": "welcome-to-the-hyunam-dong-bookshop-hwang-bo-reum.png"
   },
   {
     "title": "The Goodbye Cat",
     "author": "Hiro Arikawa",
+    "pages": 244,
     "coverScreenshot": "the-goodbye-cat-hiro-arikawa.png"
   },
   {
     "title": "The Housemaid's Secret",
     "author": "Freida McFadden",
+    "pages": 316,
     "coverScreenshot": "the-housemaids-secret-freida-mcfadden.png"
   },
   {
     "title": "Boyfriend Material",
     "author": "Alexis Hall",
+    "pages": 425,
     "coverScreenshot": "boyfriend-material-alexis-hall.png"
   },
   {
     "title": "Enigma Variations",
     "author": "André Aciman",
+    "pages": 288,
     "coverScreenshot": "enigma-variations-andre-aciman.png"
   },
   {
     "title": "One Last Stop",
     "author": "Casey McQuiston",
+    "pages": 421,
     "coverScreenshot": "one-last-stop-casey-mcquiston.png"
   },
   {
     "title": "The Henna Wars",
     "author": "Adiba Jaigirdar",
+    "pages": 389,
     "coverScreenshot": "the-henna-wars-adiba-jaigirdar.png"
   },
   {
     "title": "An Absolutely Remarkable Thing",
     "author": "Hank Green",
+    "pages": 343,
     "coverScreenshot": "an-absolutely-remarkable-thing-hank-green.png"
   }
 ]

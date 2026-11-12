@@ -1,19 +1,103 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import books from "../assets/output.json";
+
+const maxPages = Math.max(...books.map((book) => book.pages));
+const shelfWidth = 45;
+const tagsForBook = (book: (typeof books)[number]) => {
+    if (!book.tags) return [];
+    return Array.isArray(book.tags) ? book.tags : [book.tags];
+};
+const bookTags = books.flatMap(tagsForBook);
+const sections = [...new Set(bookTags)].sort();
+const uncategorisedBooks = books.filter((book) => tagsForBook(book).length === 0);
+if (uncategorisedBooks.length > 0) sections.push("Uncategorised");
+
+const colorForBook = (title: string) => {
+    let hash = 0;
+    for (const character of title) {
+        hash = (hash * 31 + character.charCodeAt(0)) % 360;
+    }
+
+    return `hsl(${hash}, 62%, 68%)`;
+};
+
+const widthForBook = (book: (typeof books)[number]) =>
+    2.5 + (book.pages / maxPages) * 7.5;
+const heightForBook = (book: (typeof books)[number]) =>
+    10 + (book.pages / maxPages) * 6;
+
+const rowsForBooks = (sectionBooks: typeof books) => {
+    const rows: (typeof books)[] = [];
+    let currentRow: (typeof books) = [];
+    let currentWidth = 0;
+
+    for (const book of sectionBooks) {
+        const width = widthForBook(book);
+        if (currentRow.length > 0 && currentWidth + width > shelfWidth) {
+            rows.push(currentRow);
+            currentRow = [];
+            currentWidth = 0;
+        }
+        currentRow.push(book);
+        currentWidth += width;
+    }
+
+    if (currentRow.length > 0) rows.push(currentRow);
+    return rows;
+};
 ---
 
 <Layout>
     <div class="container">
         <h1>TBR Wishlist - Total {books.length}</h1>
-        <div class="book-list">
-          {books.map((book) => (
-            <div class="book-item">
-              <h2>{book.title}</h2>
-              <p>{book.author}</p>
-              <img loading="lazy" src={`/screenshots/${book.coverScreenshot}`} alt="">
-            </div>
-          ))}
+        <nav class="filters" aria-label="Filter books by category">
+            <button class="filter-button is-active" type="button" data-filter="all">All</button>
+            {sections.map((section) => (
+                <button class="filter-button" type="button" data-filter={section}>{section}</button>
+            ))}
+        </nav>
+
+        <div class="shelves">
+            {sections.map((section) => {
+                const sectionBooks = section === "Uncategorised"
+                    ? uncategorisedBooks
+                    : books.filter((book) => tagsForBook(book).includes(section));
+
+                return (
+                    <section class="shelf-section" data-section={section}>
+                        <h2>{section}</h2>
+                        <div class="shelves" aria-label={`${section} books`}>
+                            {rowsForBooks(sectionBooks).map((row, index) => (
+                                <div class="shelf" aria-label={`${section} shelf ${index + 1}`}>
+                                    {row.map((book) => (
+                                    <button
+                                        class="book"
+                                        type="button"
+                                        aria-label={`Show cover for ${book.title}`}
+                                        style={`--book-width: ${widthForBook(book)}rem; --book-height: ${heightForBook(book)}rem; --book-color: ${colorForBook(book.title)};`}
+                                        data-book-tags={tagsForBook(book).join("|") || "Uncategorised"}
+                                    >
+                                        <span class="book-spine" aria-hidden="true">
+                                            <span class="book-title">{book.title}</span>
+                                            <span class="book-author">{book.author}</span>
+                                        </span>
+                                        <span class="book-cover">
+                                            <img
+                                                loading="lazy"
+                                                src={`/screenshots/${book.coverScreenshot}`}
+                                                alt={`Cover of ${book.title}`}
+                                            />
+                                            {/* <span class="cover-details">{book.title}</span> */}
+                                        </span>
+                                    </button>
+                                    ))}
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                );
+            })}
         </div>
     </div>
 </Layout>
@@ -22,95 +106,252 @@ import books from "../assets/output.json";
 .container {
     max-width: 90ch;
     margin: 0 auto;
-    padding: 6rem 1rem 0 1rem;
+    padding: 6rem 1rem 4rem;
 }
 
-.book-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-}
-
-.book-item {
-    border: 1px solid #eee;
-    border-radius: 8px;
-    padding: 1rem;
-    text-align: center;
+.filters {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.5rem 0 2rem;
 }
 
-.book-item h2 {
-    font-size: 1.25rem; 
-    line-height: 1.2;
-    margin: 0.5rem 0;
-    min-height: 3rem;
-    max-height: 3rem;
-    overflow-wrap: anywhere;
-    overflow: hidden;
+.filter-button {
+    padding: 0.45rem 0.8rem;
+    color: #24201c;
+    background: transparent;
+    border: 1px solid #8a5a3b;
+    border-radius: 999px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.8rem;
 }
 
-
-.book-item p {
-    margin: 0 0 0.5rem 0;
-    color: #555;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    min-height: 1.2em;
+.filter-button:hover,
+.filter-button.is-active {
+    color: #fffcf0;
+    background: #8a5a3b;
 }
 
-.book-item img {
+.shelf-section {
+    margin: 0 0 2.5rem;
+}
+
+.shelf-section h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.2rem;
+}
+
+.shelf {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    perspective: 900px;
+    perspective-origin: center 70%;
     width: 100%;
-    aspect-ratio: 2 / 3;
-    object-fit: cover;
-    border-radius: 4px;
+    min-height: 19rem;
+    padding: 1rem 0 0;
+    overflow: visible;
+    border-bottom: 0.7rem solid #b98c6b;
 }
 
+.book {
+    position: relative;
+    display: block;
+    flex: 0 0 var(--book-width);
+    width: var(--book-width);
+    height: 18rem;
+    padding: 0;
+    color: #24201c;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transform-origin: center bottom;
+    transition: transform 0.8s cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+.book:focus-visible {
+    outline: 0.2rem solid #24201c;
+    outline-offset: 0.2rem;
+}
+
+.book-spine,
+.book-cover {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    backface-visibility: hidden;
+    transition: transform 0.45s ease, opacity 0.45s ease;
+    transition-delay: 0s;
+}
+
+.book-spine {
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem 0.35rem 0.75rem;
+    overflow: hidden;
+    background: var(--book-color);
+    border: 0.15rem solid rgba(36, 32, 28, 0.28);
+    border-radius: 0.2rem 0.35rem 0.25rem 0.2rem;
+    box-shadow:
+        inset 0.25rem 0 0 rgba(255, 255, 255, 0.28),
+        inset -0.2rem 0 rgba(36, 32, 28, 0.18),
+        0.15rem 0.2rem 0.25rem rgba(81, 49, 31, 0.2);
+    transform-origin: left center;
+    transform: rotateY(0);
+}
+
+.book-spine {
+    inset: auto 0 0;
+    height: var(--book-height);
+}
+
+.book-spine::after {
+    position: absolute;
+    inset: 0.45rem 0.3rem;
+    border: 1px solid rgba(36, 32, 28, 0.28);
+    border-radius: 0.1rem;
+    content: "";
+    pointer-events: none;
+}
+
+.book-title {
+    z-index: 1;
+    max-height: 10.5rem;
+    overflow: hidden;
+    font-size: clamp(0.55rem, 1.1vw, 0.78rem);
+    font-weight: 700;
+    line-height: 1.1;
+    text-align: center;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.book-author {
+    z-index: 1;
+    max-width: 100%;
+    overflow: hidden;
+    font-size: 0.55rem;
+    line-height: 1;
+    text-align: center;
+    text-overflow: ellipsis;
+    writing-mode: vertical-rl;
+    white-space: nowrap;
+}
+
+.book-cover {
+    display: block;
+    width: 12rem;
+    aspect-ratio: 2 / 3;
+    height: auto;
+    overflow: hidden;
+    background: #24201c;
+    border-radius: 0.2rem;
+    opacity: 0;
+    transform: rotateY(-90deg);
+    transform-origin: left center;
+}
+
+.book:not(.is-open) .book-spine {
+    opacity: 1;
+    transform: rotateY(0);
+}
+
+.book:not(.is-open) .book-cover {
+    opacity: 0;
+    transform: rotateY(-90deg);
+}
+
+.book-cover img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.cover-details {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0.45rem;
+    color: #fffcf0;
+    background: rgba(36, 32, 28, 0.78);
+    font-size: 0.65rem;
+    text-align: center;
+}
+
+.book.is-open {
+    z-index: 2;
+    transform: translate3d(0, -2rem, 8rem) rotateX(-3deg);
+}
+
+.book.is-open .book-spine {
+    transform: rotateY(90deg);
+    transition-delay: 0.35s;
+}
+
+.book.is-open .book-cover {
+    opacity: 1;
+    transform: rotateY(0);
+    transition-delay: 0.35s;
+}
+
+.shelf-section.is-hidden {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding-top: 4rem;
+    }
+
+    .shelf {
+        padding-inline: 0.5rem;
+    }
+
+    .book {
+        height: 15rem;
+    }
+
+    .book-cover {
+        width: 10rem;
+        height: auto;
+    }
+
+    .book.is-open {
+        transform: translate3d(0, -1rem, 4rem) rotateX(-2deg);
+    }
+
+}
 </style>
 
-<script is:inline>
-    // Reduce title font-size per card so long titles fit within two lines
-    const shrinkTitles = () => {
-        const titles = document.querySelectorAll('.book-item h2');
-        titles.forEach((el) => {
-            const maxHeight = parseFloat(getComputedStyle(el).maxHeight || getComputedStyle(el).minHeight) || 48; 
-            let fontSize = parseFloat(getComputedStyle(el).fontSize);
-            const minSize = 12;
-            let safety = 20; // prevent infinite loops
-            while (el.scrollHeight > maxHeight && fontSize > minSize && safety-- > 0) {
-                fontSize -= 1;
-                el.style.fontSize = fontSize + 'px';
-            }
-        });
-    };
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', shrinkTitles, { once: true });
-    } else {
-        shrinkTitles();
-    }
-    // Re-run on resize to adjust when grid width changes
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            // Reset sizes and recompute
-            document.querySelectorAll('.book-item h2').forEach((el) => {
-                el.style.fontSize = '';
+<script>
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>(".filter-button");
+    const shelfSections = document.querySelectorAll<HTMLElement>(".shelf-section");
+    const books = document.querySelectorAll<HTMLButtonElement>(".book");
+
+    filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const filter = button.dataset.filter;
+            filterButtons.forEach((item) => item.classList.toggle("is-active", item === button));
+            shelfSections.forEach((section) => {
+                section.classList.toggle("is-hidden", filter !== "all" && section.dataset.section !== filter);
             });
-            shrinkTitles();
-        }, 150);
+        });
     });
-    // Optional: if Astro islands dynamically hydrate components later, you can observe
-    const observer = new MutationObserver((mutations) => {
-        for (const m of mutations) {
-            if (m.addedNodes && m.addedNodes.length) {
-                shrinkTitles();
-                break;
-            }
-        }
+
+    books.forEach((book) => {
+        book.addEventListener("click", () => {
+            const wasOpen = book.classList.contains("is-open");
+            books.forEach((item) => item.classList.remove("is-open"));
+            if (!wasOpen) book.classList.add("is-open");
+        });
+
+        book.addEventListener("blur", () => {
+            book.classList.remove("is-open");
+        });
     });
-    observer.observe(document.body, { childList: true, subtree: true });
-    // Disconnect after a short period to avoid overhead (most content is static)
-    setTimeout(() => observer.disconnect(), 5000);
 </script>
